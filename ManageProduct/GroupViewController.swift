@@ -10,11 +10,16 @@ import UIKit
 
 class GroupViewController: UIViewController {
     
+    var list = ["Tất cả", "Người nhập hàng", "Khách hàng"]
+    var selectIndex = 0
+    var selectType = ""
+    
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,20 +28,45 @@ class GroupViewController: UIViewController {
     }
     
     @IBAction func btnDone(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        let userDefaultStore = UserDefaults.standard
+        userDefaultStore.set(selectType, forKey: "key_Value")
+        self.dismiss(animated: true, completion: nil)        
     }
 
 }
 
 extension GroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel!.text = list[indexPath.row]
+        if(indexPath.row == selectIndex) {
+            cell.accessoryType = .checkmark;
+        }
+        else {
+            cell.accessoryType = .none;
+        }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectType = list[indexPath.row]
+        selectIndex = indexPath.row;
+        tableView.reloadData()
+    }
+    
 }
+
+
+
+
+
+
+
+
+
 
 

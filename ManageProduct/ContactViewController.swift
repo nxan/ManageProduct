@@ -34,7 +34,7 @@ class ContactViewController: UIViewController {
         tableView.reloadData()
         tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
         tableView(tableView, didSelectRowAt: index as IndexPath)
-    }
+    }   
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
