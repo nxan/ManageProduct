@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "ContactViewController.prepare(for:sender:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peopleArray[row].type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ContactViewController.filterContent(searchText:scope:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filterPeople.count">
+            </PersistentString>
+            <PersistentString
+               value = "peopleArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailContactViewController.btnRemove(_:):DetailContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "id">
+            </PersistentString>
+            <PersistentString
+               value = "objects.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContactViewController.tableView(_:commit:forRowAt:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filterPeople.count">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "filterPeople">
+            </PersistentString>
+            <PersistentString
+               value = "peopleArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
