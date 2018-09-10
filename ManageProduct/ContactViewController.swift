@@ -17,7 +17,7 @@ class ContactViewController: UIViewController {
     var index = NSIndexPath()
     let searchController = UISearchController(searchResultsController: nil)
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class ContactViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadItem()
+        //loadDataByType(type: UserDefaults.standard.string(forKey: "key_Value")!)
         tableView.reloadData()
         tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
         tableView(tableView, didSelectRowAt: index as IndexPath)
@@ -68,6 +69,19 @@ class ContactViewController: UIViewController {
             print("Saved")
         } catch {
             print("Error save")
+        }
+    }
+    
+    public func loadDataByType(type: String) {
+        do {
+            let fetchRequest : NSFetchRequest<People> = People.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "type == %@", type)
+            let fetchedResults = try context.fetch(fetchRequest)
+            for result in fetchedResults {
+                peopleArray.append(result)
+            }
+        } catch {
+            print("Error")
         }
     }
     

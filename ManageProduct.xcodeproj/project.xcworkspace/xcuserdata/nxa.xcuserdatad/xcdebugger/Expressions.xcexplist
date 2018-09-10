@@ -3,12 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ContactViewController.prepare(for:sender:):ContactViewController.swift">
+         contextName = "ContactViewController.loadDataByType(type:):ContactViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "peopleArray[row].type">
+               value = "peopleArray.count">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GroupViewController.btnDone(_:):GroupViewController.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in ContactViewController.filterContent(searchText:scope:):ContactViewController.swift">
@@ -22,6 +25,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContactViewController.loadDataByType():ContactViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "DetailContactViewController.btnRemove(_:):DetailContactViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -29,6 +35,14 @@
             </PersistentString>
             <PersistentString
                value = "objects.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContactViewController.prepare(for:sender:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peopleArray[row].type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -70,6 +70,7 @@
 				EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */,
 				EFEE303C2139862B0026B50B /* ContactViewController.swift */,
 				EF05C88A213E773D001067C3 /* DetailContactViewController.swift */,
+				EFD666F52143CE54000DD9A4 /* GroupViewController.swift */,
 				EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */,
 				EFEE302C21397EAA0026B50B /* Main.storyboard */,
 				EFEE302F21397EAA0026B50B /* Assets.xcassets */,
@@ -77,7 +78,6 @@
 				EFEE303421397EAA0026B50B /* Info.plist */,
 				EFFF235C213AE63C007797A2 /* FloatingTextField.swift */,
 				EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */,
-				EFD666F52143CE54000DD9A4 /* GroupViewController.swift */,
 			);
 			path = ManageProduct;
 			sourceTree = "<group>";
