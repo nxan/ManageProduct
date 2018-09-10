@@ -275,7 +275,7 @@
         <!--Group View Controller-->
         <scene sceneID="SCP-yA-ZeJ">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="8ET-9F-CS6" customClass="GroupViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="groupView" modalPresentationStyle="overCurrentContext" id="8ET-9F-CS6" customClass="GroupViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MtV-v5-P7K">
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

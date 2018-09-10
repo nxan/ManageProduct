@@ -17,7 +17,7 @@ class ContactViewController: UIViewController {
     var index = NSIndexPath()
     let searchController = UISearchController(searchResultsController: nil)
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +27,11 @@ class ContactViewController: UIViewController {
         let indexPath = NSIndexPath(row: 0, section: 0)
         tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
         tableView(tableView, didSelectRowAt: indexPath as IndexPath)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadItem()
-        //loadDataByType(type: UserDefaults.standard.string(forKey: "key_Value")!)
         tableView.reloadData()
         tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
         tableView(tableView, didSelectRowAt: index as IndexPath)
@@ -40,6 +40,15 @@ class ContactViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func loadList(){
+        peopleArray.removeAll()
+        loadDataByType(type: UserDefaults.standard.string(forKey: "key_Value")!)
+        self.tableView.reloadData()
+        let indexPath = NSIndexPath(row: 0, section: 0)
+        tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
+        tableView(tableView, didSelectRowAt: indexPath as IndexPath)
     }
     
     private func setUpNavBar() {
@@ -161,7 +170,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
         index = indexPath as NSIndexPath
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {       
         if(segue.identifier == "showDetail") {
             let row =  (sender as! NSIndexPath).row
             if(searchController.isActive && searchController.searchBar.text != "") {

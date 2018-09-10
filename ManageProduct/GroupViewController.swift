@@ -13,14 +13,14 @@ class GroupViewController: UIViewController {
     var list = ["Tất cả", "Người nhập hàng", "Khách hàng"]
     var selectIndex = 0
     var selectType = ""
-    let vc = ContactViewController()
     
     @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
-        tableView.dataSource = self        
+        tableView.dataSource = self
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,9 +31,8 @@ class GroupViewController: UIViewController {
     @IBAction func btnDone(_ sender: Any) {
         let userDefaultStore = UserDefaults.standard
         userDefaultStore.set(selectType, forKey: "key_Value")
-        vc.loadDataByType(type: UserDefaults.standard.string(forKey: "key_Value")!)
-        vc.tableView.reloadData()
-        self.dismiss(animated: true, completion: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        dismiss(animated: true, completion: nil)
     }
 
 }
