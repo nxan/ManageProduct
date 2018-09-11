@@ -12,7 +12,7 @@ class GroupViewController: UIViewController {
     
     var list = ["Tất cả", "Người nhập hàng", "Khách hàng"]
     var selectIndex = 0
-    var selectType = ""
+    var selectType = "Tất cả"
     
     @IBOutlet var tableView: UITableView!
     

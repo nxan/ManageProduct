@@ -20,7 +20,6 @@ class DetailContactViewController: UIViewController {
     @IBOutlet var txtBankLocation: FloatingTextField!
     @IBOutlet var txtProduct: FloatingTextField!
     @IBOutlet var btnEditText: UIButton!
-    @IBOutlet var btnRemoveText: UIButton!
     
     var id, name, phone, card, cardDate, bankCode, bankLocation, type, product:String?
     

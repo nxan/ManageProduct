@@ -82,15 +82,19 @@ class ContactViewController: UIViewController {
     }
     
     public func loadDataByType(type: String) {
-        do {
-            let fetchRequest : NSFetchRequest<People> = People.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "type == %@", type)
-            let fetchedResults = try context.fetch(fetchRequest)
-            for result in fetchedResults {
-                peopleArray.append(result)
+        if(type == "Tất cả") {
+            loadItem()
+        } else {
+            do {
+                let fetchRequest : NSFetchRequest<People> = People.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "type == %@", type)
+                let fetchedResults = try context.fetch(fetchRequest)
+                for result in fetchedResults {
+                    peopleArray.append(result)
+                }
+            } catch {
+                print("Error")
             }
-        } catch {
-            print("Error")
         }
     }
     
@@ -137,7 +141,6 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 let objects = try! context.fetch(fetchRequest)
                 for object in objects {
                     context.delete(object as! NSManagedObject)
-                    print("Removed")
                 }
                 saveItem()
                 self.filterPeople.remove(at: indexPath.row)
@@ -153,7 +156,6 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 let objects = try! context.fetch(fetchRequest)
                 for object in objects {
                     context.delete(object as! NSManagedObject)
-                    print("Removed")
                 }
                 saveItem()
                 self.peopleArray.remove(at: indexPath.row)

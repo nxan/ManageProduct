@@ -47,6 +47,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EFCE0DE02147A507008BE2B0 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */,
+				EF05C88A213E773D001067C3 /* DetailContactViewController.swift */,
+				EFD666F52143CE54000DD9A4 /* GroupViewController.swift */,
+				EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */,
+				EFEE303C2139862B0026B50B /* ContactViewController.swift */,
+			);
+			path = Contact;
+			sourceTree = "<group>";
+		};
+		EFCE0DE12147A97A008BE2B0 /* ImportProduct */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImportProduct;
+			sourceTree = "<group>";
+		};
 		EFEE301C21397EAA0026B50B = {
 			isa = PBXGroup;
 			children = (
@@ -67,11 +86,8 @@
 			isa = PBXGroup;
 			children = (
 				EFEE302821397EAA0026B50B /* AppDelegate.swift */,
-				EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */,
-				EFEE303C2139862B0026B50B /* ContactViewController.swift */,
-				EF05C88A213E773D001067C3 /* DetailContactViewController.swift */,
-				EFD666F52143CE54000DD9A4 /* GroupViewController.swift */,
-				EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */,
+				EFCE0DE02147A507008BE2B0 /* Contact */,
+				EFCE0DE12147A97A008BE2B0 /* ImportProduct */,
 				EFEE302C21397EAA0026B50B /* Main.storyboard */,
 				EFEE302F21397EAA0026B50B /* Assets.xcassets */,
 				EFEE303121397EAA0026B50B /* LaunchScreen.storyboard */,
