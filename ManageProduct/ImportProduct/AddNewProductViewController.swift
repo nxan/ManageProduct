@@ -9,27 +9,94 @@
 import UIKit
 
 class AddNewProductViewController: UIViewController {
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var selectItem = ""
+    let product = ["", "Củ sen", "Củ hành"]
+    
+    
+    @IBOutlet var txtProductName: FloatingTextField!
+    @IBOutlet var txtPeople: FloatingTextField!
+    @IBOutlet var txtDate: FloatingTextField!
+    @IBOutlet var txtMoney: FloatingTextField!
+    @IBOutlet var txtWeight: FloatingTextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        createPickerViewProduct()
+        createToolbarPickerView()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func btnCancel(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    @IBAction func btnSave(_ sender: Any) {
+        
+    }
+    
+    private func createPickerViewProduct() {
+        let typePicker = UIPickerView()
+        typePicker.delegate = self
+        txtProductName.inputView = typePicker
+    }
+    
+    private func createToolbarPickerView() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(AddNewProductViewController.dismissKeyboard))
+        toolbar.setItems([doneButton], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        txtProductName.inputAccessoryView = toolbar
+    }
+    
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }
+
+extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        var item = 0
+        if(txtProductName.isEditing) {
+            item = product.count
+//        } else if(txtProduct.isEditing) {
+//            item = product.count
+        }
+        return item
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        var item = ""
+        if(txtProductName.isEditing) {
+            item = product[row]
+//        } else if(txtProduct.isEditing) {
+//            item = product[row]
+        }
+        return item
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if(txtProductName.isEditing) {
+            selectItem = product[row]
+            txtProductName.text = selectItem
+        }
+    }
+}
+
+
+
+
+
+

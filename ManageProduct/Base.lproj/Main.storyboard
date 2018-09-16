@@ -1051,10 +1051,10 @@
             </objects>
             <point key="canvasLocation" x="-1413" y="2950"/>
         </scene>
-        <!--View Controller-->
+        <!--Add New Product View Controller-->
         <scene sceneID="AXZ-JX-iAf">
             <objects>
-                <viewController storyboardIdentifier="AddNewProduct" id="1G1-tA-bo1" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewProduct" id="1G1-tA-bo1" customClass="AddNewProductViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="occ-L5-YgA">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1065,8 +1065,16 @@
                                 <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <navigationItem title="Nhập hàng Mới" id="mUP-dr-Y2w">
-                                        <barButtonItem key="leftBarButtonItem" title="Hủy" id="XXP-3I-xWa"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Xong" id="lad-0q-aya"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Hủy" id="XXP-3I-xWa">
+                                            <connections>
+                                                <action selector="btnCancel:" destination="1G1-tA-bo1" id="Zfn-LD-CYm"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Xong" id="lad-0q-aya">
+                                            <connections>
+                                                <action selector="btnSave:" destination="1G1-tA-bo1" id="l9E-Wx-iK6"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1215,6 +1223,13 @@
                         <viewLayoutGuide key="safeArea" id="lqZ-iq-YFE"/>
                     </view>
                     <navigationItem key="navigationItem" id="4FT-T3-vaZ"/>
+                    <connections>
+                        <outlet property="txtDate" destination="YdX-T8-EBi" id="xV9-7A-Mh3"/>
+                        <outlet property="txtMoney" destination="y0k-0t-Bpf" id="Zi2-Rc-BfO"/>
+                        <outlet property="txtPeople" destination="vEp-EU-HV1" id="oE9-lj-Jtu"/>
+                        <outlet property="txtProductName" destination="Fa5-q0-VuT" id="2fw-6Q-aWD"/>
+                        <outlet property="txtWeight" destination="9xD-wb-6BW" id="9dy-71-ba0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMW-94-3PD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
