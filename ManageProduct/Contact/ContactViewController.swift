@@ -27,7 +27,8 @@ class ContactViewController: UIViewController {
         let indexPath = NSIndexPath(row: 0, section: 0)
         tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
         tableView(tableView, didSelectRowAt: indexPath as IndexPath)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadType"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +48,14 @@ class ContactViewController: UIViewController {
         loadDataByType(type: UserDefaults.standard.string(forKey: "key_Value")!)
         self.tableView.reloadData()
         let indexPath = NSIndexPath(row: 0, section: 0)
+        tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
+        tableView(tableView, didSelectRowAt: indexPath as IndexPath)
+    }
+    
+    @objc func loadData(){
+        loadItem()
+        self.tableView.reloadData()
+        let indexPath = NSIndexPath(row: peopleArray.count - 1, section: 0)
         tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
         tableView(tableView, didSelectRowAt: indexPath as IndexPath)
     }

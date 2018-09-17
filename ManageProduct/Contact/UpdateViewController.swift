@@ -48,6 +48,7 @@ class UpdateViewController: UIViewController {
                 objectUpdate.setValue(txtProduct.text, forKey: "product")
                 objectUpdate.setValue(txtType.text, forKey: "type")
                 saveItem()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
                 dismiss(animated: true, completion: nil)
             }
         }

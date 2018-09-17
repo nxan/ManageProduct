@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class AddNewProductViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectItem = ""
     let product = ["", "Củ sen", "Củ hành"]
+    let peopleArray = [People]()
     
     
     @IBOutlet var txtProductName: FloatingTextField!
@@ -25,6 +27,7 @@ class AddNewProductViewController: UIViewController {
         super.viewDidLoad()
         createPickerViewProduct()
         createToolbarPickerView()
+        getPeople(product: "Củ sen")
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +60,24 @@ class AddNewProductViewController: UIViewController {
     
     @objc private func dismissKeyboard() {
         view.endEditing(true)
+    }
+    
+    private func getPeople(product: String) {
+        let temp = product
+        let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.predicate = NSPredicate(format: "product == %@", temp)
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let personList = try context.fetch(fetchRequest)
+            print(personList)
+        } catch let error as NSError {
+            print(error)
+        }
     }
     
 }

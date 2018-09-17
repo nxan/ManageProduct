@@ -14,6 +14,14 @@
          contextName = "GroupViewController.btnDone(_:):GroupViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "ContactViewController.loadData():ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peopleArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #1 in ContactViewController.filterContent(searchText:scope:):ContactViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -21,6 +29,14 @@
             </PersistentString>
             <PersistentString
                value = "peopleArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddNewProductViewController.getPeople(product:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "people">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

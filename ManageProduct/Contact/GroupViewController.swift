@@ -31,7 +31,7 @@ class GroupViewController: UIViewController {
     @IBAction func btnDone(_ sender: Any) {
         let userDefaultStore = UserDefaults.standard
         userDefaultStore.set(selectType, forKey: "key_Value")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadType"), object: nil)
         dismiss(animated: true, completion: nil)
     }
 

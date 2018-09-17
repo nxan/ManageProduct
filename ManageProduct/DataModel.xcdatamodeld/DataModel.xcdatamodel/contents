@@ -10,6 +10,9 @@
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="product" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <fetchedProperty name="fetchedProperty" optional="YES" syncable="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="People"/>
+        </fetchedProperty>
     </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,7 +23,7 @@
         <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="People" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="People" positionX="-63" positionY="-18" width="128" height="209"/>
         <element name="Product" positionX="-63" positionY="54" width="128" height="135"/>
     </elements>
 </model>
