@@ -15,7 +15,7 @@ class AddNewProductViewController: UIViewController {
     var selectItem = ""
     let product = ["", "Củ sen", "Củ hành"]
     let peopleArray = [People]()
-    
+    let datePicker = UIDatePicker()
     
     @IBOutlet var txtProductName: FloatingTextField!
     @IBOutlet var txtPeople: FloatingTextField!
@@ -26,8 +26,10 @@ class AddNewProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createPickerViewProduct()
+        createPickerViewPeople()
         createToolbarPickerView()
-        getPeople(product: "Củ sen")
+        showDatePicker()
+        txtPeople.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +51,12 @@ class AddNewProductViewController: UIViewController {
         txtProductName.inputView = typePicker
     }
     
+    private func createPickerViewPeople() {
+        let typePicker = UIPickerView()
+        typePicker.delegate = self
+        txtPeople.inputView = typePicker
+    }
+    
     private func createToolbarPickerView() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -56,16 +64,21 @@ class AddNewProductViewController: UIViewController {
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         txtProductName.inputAccessoryView = toolbar
+        txtPeople.inputAccessoryView = toolbar
     }
     
     @objc private func dismissKeyboard() {
+        if(!(txtProductName.text?.isEmpty)!) {
+            txtPeople.isEnabled = true
+        }
         view.endEditing(true)
     }
     
-    private func getPeople(product: String) {
+    private func getPeople(product: String) -> [String]{
         let temp = product
+        var arrPeople = [String]()
         let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+        let fetchRequest = NSFetchRequest<NSDictionary>()
         fetchRequest.entity = entityDescription
         fetchRequest.includesPropertyValues = true
         fetchRequest.returnsObjectsAsFaults = false
@@ -74,12 +87,36 @@ class AddNewProductViewController: UIViewController {
         fetchRequest.resultType = .dictionaryResultType
         do {
             let personList = try context.fetch(fetchRequest)
-            print(personList)
+            let resultDict = personList as! [[String : String]]
+            for r in resultDict {
+                arrPeople.append(r["name"]!)
+            }
+            arrPeople.insert("", at: 0)
         } catch let error as NSError {
             print(error)
         }
+        return arrPeople
     }
     
+    func showDatePicker(){
+        datePicker.datePickerMode = .date
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([doneButton,spaceButton], animated: false)
+        txtDate.inputAccessoryView = toolbar
+        txtDate.inputView = datePicker
+        
+    }
+    
+    @objc func donedatePicker(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        txtDate.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+       
 }
 
 extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -92,8 +129,8 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         var item = 0
         if(txtProductName.isEditing) {
             item = product.count
-//        } else if(txtProduct.isEditing) {
-//            item = product.count
+        } else if(txtPeople.isEditing) {
+            item = getPeople(product: txtProductName.text!).count
         }
         return item
     }
@@ -102,8 +139,8 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         var item = ""
         if(txtProductName.isEditing) {
             item = product[row]
-//        } else if(txtProduct.isEditing) {
-//            item = product[row]
+        } else if(txtPeople.isEditing) {
+            item = getPeople(product: txtProductName.text!)[row]
         }
         return item
     }
@@ -112,6 +149,9 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             selectItem = product[row]
             txtProductName.text = selectItem
+        } else if(txtPeople.isEditing) {
+            selectItem = getPeople(product: txtProductName.text!)[row]
+            txtPeople.text = selectItem
         }
     }
 }

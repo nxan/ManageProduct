@@ -1134,7 +1134,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày nhập" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y0k-0t-Bpf" customClass="FloatingTextField" customModule="ManageProduct">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng lượng" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y0k-0t-Bpf" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="360" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1162,7 +1162,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày cấp" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YdX-T8-EBi" customClass="FloatingTextField" customModule="ManageProduct">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày nhập" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YdX-T8-EBi" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="280" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
