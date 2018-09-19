@@ -20,9 +20,11 @@ class AddNewProductViewController: UIViewController {
     @IBOutlet var txtProductName: FloatingTextField!
     @IBOutlet var txtPeople: FloatingTextField!
     @IBOutlet var txtDate: FloatingTextField!
-    @IBOutlet var txtMoney: FloatingTextField!
+    
     @IBOutlet var txtWeight: FloatingTextField!
-
+    @IBOutlet var txtMoney: FloatingTextField!
+    @IBOutlet var txtUnit: FloatingTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         createPickerViewProduct()
@@ -30,6 +32,9 @@ class AddNewProductViewController: UIViewController {
         createToolbarPickerView()
         showDatePicker()
         txtPeople.isEnabled = false
+        txtMoney.isEnabled = false
+        txtDate.text = getCurrentDate()
+        txtMoney.text = "0"
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,6 +48,72 @@ class AddNewProductViewController: UIViewController {
     
     @IBAction func btnSave(_ sender: Any) {
         
+    }
+    
+    @IBAction func txtUnitEditChanged(_ sender: Any) {
+        txtUnit.text = removeCommaNumber(string: txtUnit.text!)
+        if(!(txtUnit.text?.isEmpty)!) {
+            txtUnit.text = addCommaNumber(string: txtUnit.text!)
+        }
+        if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
+            txtUnit.text = removeCommaNumber(string: txtUnit.text!)
+            txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+            txtMoney.text = String(Int(txtUnit.text!)! * Int(txtWeight.text!)!)
+            txtUnit.text = addCommaNumber(string: txtUnit.text!)
+            txtWeight.text = addCommaNumber(string: txtWeight.text!)
+            txtMoney.text = addCommaNumber(string: txtMoney.text!)
+        } else {
+            txtMoney.text = "0"
+        }
+    }
+    
+    @IBAction func txtWeightEditChanged(_ sender: Any) {
+        txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+        if(!(txtWeight.text?.isEmpty)!) {
+            txtWeight.text = addCommaNumber(string: txtWeight.text!)
+        }
+        if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
+            txtUnit.text = removeCommaNumber(string: txtUnit.text!)
+            txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+            txtMoney.text = String(Double(txtUnit.text!)! * Double(txtWeight.text!)!)
+            txtUnit.text = addCommaNumber(string: txtUnit.text!)
+            txtWeight.text = addCommaNumber(string: txtWeight.text!)
+            txtMoney.text = addCommaNumber(string: txtMoney.text!)
+        } else {
+            txtMoney.text = "0"
+        }
+    }
+    
+    private func addCommaNumber(string: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.groupingSize = 3
+        let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
+        return formattedNumber!
+    }
+    
+    private func removeCommaNumber(string: String) -> String {
+        var newString = ""
+        newString = string.replacingOccurrences(of: ",", with: "")
+        return newString
+    }
+    
+    private func formatCurrency(string: String) -> String{
+        let price = Int(string)
+        let curFormatter : NumberFormatter = NumberFormatter()
+        curFormatter.numberStyle = .currency
+        curFormatter.currencyCode = "USD"
+        curFormatter.maximumFractionDigits = 0
+        let total = curFormatter.string(from: price! as NSNumber)
+        return total!
+    }
+    
+    private func getCurrentDate() -> String {
+        let date = Date()
+        let formater = DateFormatter()
+        formater.dateFormat = "dd/MM/yyyy"
+        let result = formater.string(from: date)
+        return result
     }
     
     private func createPickerViewProduct() {

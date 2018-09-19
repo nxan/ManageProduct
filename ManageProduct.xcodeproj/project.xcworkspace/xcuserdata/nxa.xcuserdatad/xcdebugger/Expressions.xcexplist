@@ -41,6 +41,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddNewProductViewController.txtWeightEditChanged(_:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "txtWeight.text">
+            </PersistentString>
+            <PersistentString
+               value = "txtUnit.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContactViewController.loadDataByType():ContactViewController.swift">
       </ContextState>
       <ContextState

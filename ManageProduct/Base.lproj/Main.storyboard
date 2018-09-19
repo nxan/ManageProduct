@@ -1134,7 +1134,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng lượng" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y0k-0t-Bpf" customClass="FloatingTextField" customModule="ManageProduct">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Đơn giá " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y0k-0t-Bpf" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="360" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1161,6 +1161,9 @@
                                         <color key="value" red="0.87124294040000005" green="0.13492506739999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="txtUnitEditChanged:" destination="1G1-tA-bo1" eventType="editingChanged" id="pgH-vz-6Yt"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày nhập" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YdX-T8-EBi" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="280" width="507" height="30"/>
@@ -1190,10 +1193,41 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thành tiền" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xD-wb-6BW" customClass="FloatingTextField" customModule="ManageProduct">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng lượng (kg)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xD-wb-6BW" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="440" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="enableFloatingTitle" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="inactiveBottomLineColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="errorBottomLineColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleActiveTextColor">
+                                        <color key="value" red="0.87124294040000005" green="0.13492506739999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="titleInactiveTextColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                        <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="activeBottomLineColor">
+                                        <color key="value" red="0.87124294040000005" green="0.13492506739999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="txtWeightEditChanged:" destination="1G1-tA-bo1" eventType="editingChanged" id="URt-ZI-bTO"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thành tiền" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zw4-0F-1CD" customClass="FloatingTextField" customModule="ManageProduct">
+                                <rect key="frame" x="131" y="520" width="507" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <userDefinedRuntimeAttributes>
@@ -1225,10 +1259,11 @@
                     <navigationItem key="navigationItem" id="4FT-T3-vaZ"/>
                     <connections>
                         <outlet property="txtDate" destination="YdX-T8-EBi" id="xV9-7A-Mh3"/>
-                        <outlet property="txtMoney" destination="y0k-0t-Bpf" id="Zi2-Rc-BfO"/>
+                        <outlet property="txtMoney" destination="zw4-0F-1CD" id="fCv-5g-hjZ"/>
                         <outlet property="txtPeople" destination="vEp-EU-HV1" id="oE9-lj-Jtu"/>
                         <outlet property="txtProductName" destination="Fa5-q0-VuT" id="2fw-6Q-aWD"/>
-                        <outlet property="txtWeight" destination="9xD-wb-6BW" id="9dy-71-ba0"/>
+                        <outlet property="txtUnit" destination="y0k-0t-Bpf" id="1wI-C0-Tjg"/>
+                        <outlet property="txtWeight" destination="9xD-wb-6BW" id="hhN-JG-Uie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMW-94-3PD" userLabel="First Responder" sceneMemberID="firstResponder"/>

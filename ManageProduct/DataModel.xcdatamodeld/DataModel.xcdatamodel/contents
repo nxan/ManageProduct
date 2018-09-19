@@ -15,15 +15,16 @@
         </fetchedProperty>
     </entity>
     <entity name="Product" representedClassName="Product" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="money" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="money" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="peopleType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="productName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weight" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="People" positionX="-63" positionY="-18" width="128" height="209"/>
-        <element name="Product" positionX="-63" positionY="54" width="128" height="135"/>
+        <element name="Product" positionX="-63" positionY="54" width="128" height="150"/>
     </elements>
 </model>
