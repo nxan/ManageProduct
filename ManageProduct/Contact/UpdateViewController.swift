@@ -12,8 +12,8 @@ import CoreData
 
 class UpdateViewController: UIViewController {
     
-    let type = ["", "Người nhập hàng", "Khách hàng"]
-    let product = ["", "Củ sen", "Củ hành"]
+    let type = ["", "Người Nhập Hàng", "Khách Hàng"]
+    let product = ["", "Củ Sen", "Củ Hành"]
     var selectItem: String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var peopleArray = [People]()

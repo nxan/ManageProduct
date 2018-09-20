@@ -90,5 +90,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "UpdateProductViewController.pickerView(_:numberOfRowsInComponent:):UpdateProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "txtProductName.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -9,7 +9,13 @@
 /* Begin PBXBuildFile section */
 		EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */; };
 		EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05C88A213E773D001067C3 /* DetailContactViewController.swift */; };
+		EF22DA262152B1D100A59016 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */; };
+		EF22DA272152B1D100A59016 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF22DA252152B1D100A59016 /* ProductTableViewCell.xib */; };
+		EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */; };
+		EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */; };
 		EF2C882C2140310000AF7EA8 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */; };
+		EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */; };
+		EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */; };
 		EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */; };
 		EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */; };
 		EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */; };
@@ -17,7 +23,6 @@
 		EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEE302821397EAA0026B50B /* AppDelegate.swift */; };
 		EFEE302E21397EAA0026B50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEE302C21397EAA0026B50B /* Main.storyboard */; };
 		EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEE302F21397EAA0026B50B /* Assets.xcassets */; };
-		EFEE303321397EAA0026B50B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEE303121397EAA0026B50B /* LaunchScreen.storyboard */; };
 		EFEE303D2139862B0026B50B /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEE303C2139862B0026B50B /* ContactViewController.swift */; };
 		EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFF235C213AE63C007797A2 /* FloatingTextField.swift */; };
 /* End PBXBuildFile section */
@@ -25,7 +30,13 @@
 /* Begin PBXFileReference section */
 		EF05C867213E311F001067C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EF05C88A213E773D001067C3 /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
+		EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
+		EF22DA252152B1D100A59016 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
+		EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
+		EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
+		EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
 		EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
@@ -34,7 +45,6 @@
 		EFEE302821397EAA0026B50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEE302D21397EAA0026B50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EFEE302F21397EAA0026B50B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EFEE303221397EAA0026B50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EFEE303421397EAA0026B50B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EFEE303C2139862B0026B50B /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		EFFF235C213AE63C007797A2 /* FloatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTextField.swift; sourceTree = "<group>"; };
@@ -59,6 +69,8 @@
 				EFD666F52143CE54000DD9A4 /* GroupViewController.swift */,
 				EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */,
 				EFEE303C2139862B0026B50B /* ContactViewController.swift */,
+				EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */,
+				EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -68,6 +80,10 @@
 			children = (
 				EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */,
 				EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */,
+				EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */,
+				EF22DA252152B1D100A59016 /* ProductTableViewCell.xib */,
+				EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */,
+				EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */,
 			);
 			path = ImportProduct;
 			sourceTree = "<group>";
@@ -96,7 +112,6 @@
 				EFCE0DE12147A97A008BE2B0 /* ImportProduct */,
 				EFEE302C21397EAA0026B50B /* Main.storyboard */,
 				EFEE302F21397EAA0026B50B /* Assets.xcassets */,
-				EFEE303121397EAA0026B50B /* LaunchScreen.storyboard */,
 				EFEE303421397EAA0026B50B /* Info.plist */,
 				EFFF235C213AE63C007797A2 /* FloatingTextField.swift */,
 				EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */,
@@ -163,8 +178,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFEE303321397EAA0026B50B /* LaunchScreen.storyboard in Resources */,
+				EF22DA272152B1D100A59016 /* ProductTableViewCell.xib in Resources */,
 				EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */,
+				EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */,
 				EFEE302E21397EAA0026B50B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +192,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */,
+				EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */,
 				EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */,
 				EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */,
 				EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */,
@@ -183,9 +201,11 @@
 				EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */,
 				EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */,
 				EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */,
+				EF22DA262152B1D100A59016 /* ProductTableViewCell.swift in Sources */,
 				EF2C882C2140310000AF7EA8 /* UpdateViewController.swift in Sources */,
 				EFEE303D2139862B0026B50B /* ContactViewController.swift in Sources */,
 				EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */,
+				EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,14 +218,6 @@
 				EFEE302D21397EAA0026B50B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EFEE303121397EAA0026B50B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EFEE303221397EAA0026B50B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -329,6 +341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6DNR25453;
 				INFOPLIST_FILE = ManageProduct/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProduct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -344,6 +357,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6DNR25453;
 				INFOPLIST_FILE = ManageProduct/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProduct;
 				PRODUCT_NAME = "$(TARGET_NAME)";

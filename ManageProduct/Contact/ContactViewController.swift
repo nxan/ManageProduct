@@ -24,25 +24,32 @@ class ContactViewController: UIViewController {
         setUpNavBar()
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loadItem()
-        let indexPath = NSIndexPath(row: 0, section: 0)
-        tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
-        tableView(tableView, didSelectRowAt: indexPath as IndexPath)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadType"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(loadUpdateData), name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
+        if(peopleArray.count > 0) {
+            selectRowAtZero()
+            NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadType"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(loadUpdateData), name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
+        }
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadItem()
-        tableView.reloadData()
-        tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
-        tableView(tableView, didSelectRowAt: index as IndexPath)
-    }   
+        NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
+        if(!peopleArray.isEmpty) {
+            tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
+            tableView(tableView, didSelectRowAt: index as IndexPath)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    private func selectRowAtZero() {
+        let indexPath = NSIndexPath(row: 0, section: 0)
+        tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
+        tableView(tableView, didSelectRowAt: indexPath as IndexPath)
     }
     
     @objc func loadList(){
@@ -54,7 +61,7 @@ class ContactViewController: UIViewController {
         tableView(tableView, didSelectRowAt: indexPath as IndexPath)
     }
     
-    @objc func loadData(){
+    @objc func loadData(){ //add new
         loadItem()
         self.tableView.reloadData()
         let indexPath = NSIndexPath(row: peopleArray.count - 1, section: 0)
@@ -139,11 +146,11 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = Bundle.main.loadNibNamed("ContactTableViewCell", owner: self, options: nil)?.first as! ContactTableViewCell
         if(searchController.isActive && searchController.searchBar.text != "") {
-            cell.textLabel?.text = filterPeople[indexPath.row].name
+            cell.titleLabel?.text = filterPeople[indexPath.row].name
         } else {
-            cell.textLabel?.text = peopleArray[indexPath.row].name
+            cell.titleLabel?.text = peopleArray[indexPath.row].name
         }
         return cell
     }
@@ -152,9 +159,9 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if editingStyle == .delete {
             if(searchController.isActive && searchController.searchBar.text != "") {
                 var empId = ""
-                empId = (filterPeople[indexPath.row].name)!
+                empId = (filterPeople[indexPath.row].id)!
                 let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
-                let predicate = NSPredicate(format: "name = '\(empId)'")
+                let predicate = NSPredicate(format: "id = '\(empId)'")
                 fetchRequest.predicate = predicate
                 let objects = try! context.fetch(fetchRequest)
                 for object in objects {
@@ -164,12 +171,13 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.filterPeople.remove(at: indexPath.row)
                 self.peopleArray.remove(at: indexPath.row + 1)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.reloadData()                
+                tableView.reloadData()
+                selectRowAtZero()
             } else {
                 var empId = ""
-                empId = (peopleArray[indexPath.row].name)!
+                empId = (peopleArray[indexPath.row].id)!
                 let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
-                let predicate = NSPredicate(format: "name = '\(empId)'")
+                let predicate = NSPredicate(format: "id = '\(empId)'")
                 fetchRequest.predicate = predicate
                 let objects = try! context.fetch(fetchRequest)
                 for object in objects {
@@ -179,6 +187,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.peopleArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
+                selectRowAtZero()
             }
         } else if editingStyle == .insert {
 
@@ -188,6 +197,10 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showDetail", sender: indexPath)
         index = indexPath as NSIndexPath
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {       

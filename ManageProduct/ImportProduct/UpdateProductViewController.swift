@@ -1,22 +1,25 @@
 //
-//  AddNewProductViewController.swift
+//  UpdateProductViewController.swift
 //  ManageProduct
 //
-//  Created by NXA on 9/11/18.
+//  Created by NXA on 9/20/18.
 //  Copyright © 2018 NXA. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class AddNewProductViewController: UIViewController {
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var selectItem = ""
+class UpdateProductViewController: UIViewController {
+
+    var tempProduct = ""
+    let type = ["", "Người Nhập Hàng", "Khách Hàng"]
     let product = ["", "Củ Sen", "Củ Hành"]
-    let peopleArray = [People]()
+    var selectItem: String?
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var productArray = [Product]()
+    var id = "", productName = "", people = "", money = "", weight = "", unit = "", date = ""
     let datePicker = UIDatePicker()
+    let typePicker = UIPickerView()
     
     @IBOutlet var txtProductName: FloatingTextField!
     @IBOutlet var txtPeople: FloatingTextField!
@@ -27,39 +30,55 @@ class AddNewProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateItem()
         createPickerViewProduct()
         createPickerViewPeople()
         createToolbarPickerView()
         showDatePicker()
-        txtPeople.isEnabled = false
         txtMoney.isEnabled = false
-        txtDate.text = getCurrentDate()
-        txtMoney.text = "0"
+        tempProduct = txtProductName.text!
+        typePicker.delegate = self
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func btnEdit(_ sender: Any) {
+        let empId = id
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Product")
+        let predicate = NSPredicate(format: "id = '\(empId)'")
+        fetchRequest.predicate = predicate
+        do
+        {
+            let test = try context.fetch(fetchRequest)
+            if test.count == 1
+            {
+                let objectUpdate = test[0] as! NSManagedObject
+                objectUpdate.setValue(txtProductName.text, forKey: "productName")
+                objectUpdate.setValue(txtPeople.text, forKey: "peopleType")
+                objectUpdate.setValue((removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue, forKey: "money")
+                objectUpdate.setValue((removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue, forKey: "weight")
+                objectUpdate.setValue((removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue, forKey: "unit")
+                objectUpdate.setValue(txtDate.text, forKey: "date")
+                saveItem()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
+                dismiss(animated: true, completion: nil)
+            }
+        }
+        catch
+        {
+            print(error)
+        }
     }
-
+    
     @IBAction func btnCancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func btnSave(_ sender: Any) {
-        let newItem = Product(context: self.context)
-        newItem.id = UUID.init().uuidString
-        newItem.productName = txtProductName.text
-        newItem.peopleType = txtPeople.text
-        newItem.date = txtDate.text
-        newItem.unit = (removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue
-        newItem.weight = (removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue
-        newItem.money = (removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue
-        self.productArray.append(newItem)
-        self.saveItem()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
-        dismiss(animated: true, completion: nil)
-    }
+    private func saveItem() {
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            print("Error save")
+        }
+    }    
     
     @IBAction func txtUnitEditChanged(_ sender: Any) {
         txtUnit.text = removeCommaNumber(string: txtUnit.text!)
@@ -95,28 +114,13 @@ class AddNewProductViewController: UIViewController {
         }
     }
     
-    private func addCommaNumber(string: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        numberFormatter.groupingSize = 3
-        let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
-        return formattedNumber!
-    }
-    
-    private func removeCommaNumber(string: String) -> String {
-        var newString = ""
-        newString = string.replacingOccurrences(of: ",", with: "")
-        return newString
-    }
-    
-    private func formatCurrency(string: String) -> String{
-        let price = Int(string)
-        let curFormatter : NumberFormatter = NumberFormatter()
-        curFormatter.numberStyle = .currency
-        curFormatter.currencyCode = "USD"
-        curFormatter.maximumFractionDigits = 0
-        let total = curFormatter.string(from: price! as NSNumber)
-        return total!
+    private func updateItem() {
+        txtProductName.text = productName
+        txtPeople.text = people
+        txtMoney.text = money
+        txtWeight.text = weight
+        txtUnit.text = unit
+        txtDate.text = date
     }
     
     private func getCurrentDate() -> String {
@@ -128,21 +132,17 @@ class AddNewProductViewController: UIViewController {
     }
     
     private func createPickerViewProduct() {
-        let typePicker = UIPickerView()
-        typePicker.delegate = self
         txtProductName.inputView = typePicker
     }
     
-    private func createPickerViewPeople() {
-        let typePicker = UIPickerView()
-        typePicker.delegate = self
+    private func createPickerViewPeople() {        
         txtPeople.inputView = typePicker
     }
     
     private func createToolbarPickerView() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(AddNewProductViewController.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(UpdateProductViewController.dismissKeyboard))
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         txtProductName.inputAccessoryView = toolbar
@@ -153,19 +153,30 @@ class AddNewProductViewController: UIViewController {
         if(!(txtProductName.text?.isEmpty)!) {
             txtPeople.isEnabled = true
         }
+        typePicker.selectRow(0, inComponent: 0, animated: false)
         view.endEditing(true)
     }
     
-    private func saveItem() {
-        do {
-            try context.save()
-            print("Saved")
-        } catch {
-            print("Error save")
-        }
+    func showDatePicker(){
+        datePicker.datePickerMode = .date
+        let toolbar = UIToolbar();
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        toolbar.setItems([doneButton,spaceButton], animated: false)
+        txtDate.inputAccessoryView = toolbar
+        txtDate.inputView = datePicker
+        
     }
     
-    private func getPeople(product: String) -> [String]{
+    @objc func donedatePicker(){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        txtDate.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+    }
+    
+    private func getPeople(product: String) -> [String] {
         let temp = product
         var arrPeople = [String]()
         let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
@@ -189,28 +200,28 @@ class AddNewProductViewController: UIViewController {
         return arrPeople
     }
     
-    func showDatePicker(){
-        datePicker.datePickerMode = .date
-        let toolbar = UIToolbar();
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([doneButton,spaceButton], animated: false)
-        txtDate.inputAccessoryView = toolbar
-        txtDate.inputView = datePicker
-        
+    private func addCommaNumber(string: String) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.groupingSize = 3
+        let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
+        return formattedNumber!
     }
     
-    @objc func donedatePicker(){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        txtDate.text = formatter.string(from: datePicker.date)
-        self.view.endEditing(true)
+    private func removeCommaNumber(string: String) -> String {
+        var newString = ""
+        newString = string.replacingOccurrences(of: ",", with: "")
+        return newString
+    }        
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-       
+    
 }
 
-extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -240,15 +251,15 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             selectItem = product[row]
             txtProductName.text = selectItem
+            if(tempProduct != txtProductName.text) {
+                txtPeople.text = ""
+                tempProduct = selectItem!
+            }
         } else if(txtPeople.isEditing) {
             selectItem = getPeople(product: txtProductName.text!)[row]
             txtPeople.text = selectItem
         }
     }
 }
-
-
-
-
 
 
