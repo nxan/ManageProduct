@@ -52,9 +52,11 @@ class ProductViewController: UIViewController {
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Tìm kiếm..."
+        searchController.searchBar.scopeButtonTitles = ["Tất cả", "Nhập hàng", "Bán hàng"]
+        searchController.searchBar.delegate = self
     }
     
-    private func filterContent(searchText: String, scope: String = "All") {
+    private func filterContent(searchText: String) {
         filterProduct = productArray.filter { product in
             if(searchText == "") {
                 return true
@@ -112,7 +114,7 @@ class ProductViewController: UIViewController {
     }
 }
 
-extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchController.isActive && searchController.searchBar.text != "") {
             return filterProduct.count
@@ -151,7 +153,9 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.productArray.remove(at: indexPath.row + 1)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
-                selectRowAtZero()
+                if(productArray.count > 0) {
+                    selectRowAtZero()
+                }
             } else {
                 var empId = ""
                 empId = (productArray[indexPath.row].id)!
@@ -166,7 +170,9 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.productArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
-                selectRowAtZero()
+                if(productArray.count > 0) {
+                    selectRowAtZero()
+                }
             }
         } else if editingStyle == .insert {
             
@@ -197,13 +203,15 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 }
             } else {
                 if let destinationVC = segue.destination as? DetailProductViewController {
-                    destinationVC.id = productArray[row].id
-                    destinationVC.productName = productArray[row].productName
-                    destinationVC.money = String(productArray[row].money)
-                    destinationVC.people = productArray[row].peopleType
-                    destinationVC.unit = String(productArray[row].unit)
-                    destinationVC.weight = String(productArray[row].weight)
-                    destinationVC.date = productArray[row].date
+                    if row > -1 {
+                        destinationVC.id = productArray[row].id
+                        destinationVC.productName = productArray[row].productName
+                        destinationVC.money = String(productArray[row].money)
+                        destinationVC.people = productArray[row].peopleType
+                        destinationVC.unit = String(productArray[row].unit)
+                        destinationVC.weight = String(productArray[row].weight)
+                        destinationVC.date = productArray[row].date
+                    }
                 }
             }
         } else if(segue.identifier == "showAddNewProduct") {
@@ -214,6 +222,10 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func updateSearchResults(for searchController: UISearchController) {
         filterContent(searchText: searchController.searchBar.text!)
         tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        print(selectedScope)
     }
 }
 

@@ -24,6 +24,11 @@ class AddNewProductViewController: UIViewController {
     @IBOutlet var txtWeight: FloatingTextField!
     @IBOutlet var txtMoney: FloatingTextField!
     @IBOutlet var txtUnit: FloatingTextField!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var lbInfo: UILabel!
+    @IBOutlet var txtNote: FloatingTextField!
+    @IBOutlet var lbSwitch: UILabel!
+    @IBOutlet var SwitchText: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,7 @@ class AddNewProductViewController: UIViewController {
         txtMoney.isEnabled = false
         txtDate.text = getCurrentDate()
         txtMoney.text = "0"
+        lbInfo.attributedText = boldString(text1: "Nhập Hàng")
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,6 +52,54 @@ class AddNewProductViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func indexChanged(_ sender: Any) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            lbInfo.attributedText = boldString(text1: "Nhập Hàng")
+            refreshTextField()
+            break
+        case 1:
+            lbInfo.attributedText = boldString(text1: "Bán Hàng")
+            refreshTextField()
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func btnSwitch(_ sender: Any) {
+        if SwitchText.isOn {
+            lbSwitch.text = "Bật"
+            createPickerViewProduct()
+            createPickerViewPeople()
+            createToolbarPickerView()
+            txtPeople.isEnabled = true
+        } else {
+            lbSwitch.text = "Tắt"
+            createPickerViewProduct()
+            createPickerViewPeople()
+            createToolbarPickerView()
+            txtPeople.isEnabled = false
+            
+        }
+    }
+    
+    
+    private func boldString(text1: String) -> NSAttributedString {
+        let text = text1
+        let attributedString = NSMutableAttributedString(string: "Bạn đã chọn ")
+        let attributedString2 = NSMutableAttributedString(string: " .Vui lòng điền đẩy đủ thông tin.")
+        let att = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17)]
+        let boldAge = NSMutableAttributedString(string: text, attributes: att)
+        attributedString.append(boldAge)
+        attributedString.append(attributedString2)
+        return attributedString
+    }
+    
+    private func refreshTextField() {
+        txtProductName.text = ""; txtPeople.text = ""; txtUnit.text = ""; txtWeight.text = ""; txtMoney.text = "0"; txtNote.text = "";
+    }
+    
     @IBAction func btnSave(_ sender: Any) {
         let newItem = Product(context: self.context)
         newItem.id = UUID.init().uuidString
@@ -55,6 +109,8 @@ class AddNewProductViewController: UIViewController {
         newItem.unit = (removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue
         newItem.weight = (removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue
         newItem.money = (removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue
+        newItem.note = txtNote.text
+        newItem.type = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
         self.productArray.append(newItem)
         self.saveItem()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
@@ -130,13 +186,23 @@ class AddNewProductViewController: UIViewController {
     private func createPickerViewProduct() {
         let typePicker = UIPickerView()
         typePicker.delegate = self
-        txtProductName.inputView = typePicker
+        if(SwitchText.isOn) {
+            txtProductName.inputView = nil
+            refreshTextField()
+        } else {
+            txtProductName.inputView = typePicker
+            refreshTextField()
+        }
     }
     
     private func createPickerViewPeople() {
         let typePicker = UIPickerView()
         typePicker.delegate = self
-        txtPeople.inputView = typePicker
+        if(SwitchText.isOn) {
+            txtPeople.inputView = nil
+        } else {
+            txtPeople.inputView = typePicker
+        }
     }
     
     private func createToolbarPickerView() {
@@ -145,8 +211,13 @@ class AddNewProductViewController: UIViewController {
         let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(AddNewProductViewController.dismissKeyboard))
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
-        txtProductName.inputAccessoryView = toolbar
-        txtPeople.inputAccessoryView = toolbar
+        if(SwitchText.isOn) {
+            txtProductName.inputAccessoryView = nil
+            txtPeople.inputAccessoryView = nil
+        } else {
+            txtProductName.inputAccessoryView = toolbar
+            txtPeople.inputAccessoryView = toolbar
+        }
     }
     
     @objc private func dismissKeyboard() {
@@ -165,15 +236,16 @@ class AddNewProductViewController: UIViewController {
         }
     }
     
-    private func getPeople(product: String) -> [String]{
+    private func getPeople(product: String, type: Int) -> [String]{
         let temp = product
+        let tempTypePeople = (type == 0) ? "Người Nhập Hàng" : "Khách Hàng"
         var arrPeople = [String]()
         let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
         let fetchRequest = NSFetchRequest<NSDictionary>()
         fetchRequest.entity = entityDescription
         fetchRequest.includesPropertyValues = true
         fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.predicate = NSPredicate(format: "product == %@", temp)
+        fetchRequest.predicate = NSPredicate(format: "product == %@ && type == %@", temp, tempTypePeople)
         fetchRequest.propertiesToFetch = ["name"]
         fetchRequest.resultType = .dictionaryResultType
         do {
@@ -221,7 +293,7 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product.count
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!).count
+            item = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex).count
         }
         return item
     }
@@ -231,7 +303,7 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product[row]
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!)[row]
+            item = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex)[row]
         }
         return item
     }
@@ -241,10 +313,12 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
             selectItem = product[row]
             txtProductName.text = selectItem
         } else if(txtPeople.isEditing) {
-            selectItem = getPeople(product: txtProductName.text!)[row]
+            selectItem = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex)[row]
             txtPeople.text = selectItem
         }
     }
+    
+    
 }
 
 

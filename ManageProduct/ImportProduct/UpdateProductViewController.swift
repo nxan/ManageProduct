@@ -27,6 +27,7 @@ class UpdateProductViewController: UIViewController {
     @IBOutlet var txtWeight: FloatingTextField!
     @IBOutlet var txtMoney: FloatingTextField!
     @IBOutlet var txtUnit: FloatingTextField!
+    @IBOutlet var txtNote: FloatingTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -260,6 +261,7 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
             txtPeople.text = selectItem
         }
     }
+    
 }
 
 

@@ -16,6 +16,7 @@ class DetailProductViewController: UIViewController {
     @IBOutlet var txtUnit: FloatingTextField!
     @IBOutlet var txtWeight: FloatingTextField!
     @IBOutlet var txtDate: UILabel!
+    @IBOutlet var txtNote: FloatingTextField!
     
     var id, productName, money, people, unit, weight, date: String?
     
@@ -25,12 +26,14 @@ class DetailProductViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        txtProductName.text = productName
-        txtMoney.text = addCommaNumber(string: money!) + " VND"
-        txtPeople.text = people
-        txtUnit.text = addCommaNumber(string: unit!) + " VND"
-        txtWeight.text = addCommaNumber(string: weight!) + " Kg"
-        txtDate.text = date
+        if(id != nil) {
+            txtProductName.text = productName
+            txtMoney.text = addCommaNumber(string: money!) + " VND"
+            txtPeople.text = people
+            txtUnit.text = addCommaNumber(string: unit!) + " VND"
+            txtWeight.text = addCommaNumber(string: weight!) + " Kg"
+            txtDate.text = date
+        }
     }
     
     override func viewDidLoad() {

@@ -172,7 +172,9 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.peopleArray.remove(at: indexPath.row + 1)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
-                selectRowAtZero()
+                if(peopleArray.count > 0) {
+                    selectRowAtZero()
+                }
             } else {
                 var empId = ""
                 empId = (peopleArray[indexPath.row].id)!
@@ -187,7 +189,9 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 self.peopleArray.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
-                selectRowAtZero()
+                if(peopleArray.count > 0) {
+                    selectRowAtZero()
+                }
             }
         } else if editingStyle == .insert {
 
@@ -220,15 +224,17 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 }
             } else {
                 if let destinationVC = segue.destination as? DetailContactViewController {
-                    destinationVC.id = peopleArray[row].id
-                    destinationVC.name = peopleArray[row].name
-                    destinationVC.phone = peopleArray[row].phone
-                    destinationVC.card = peopleArray[row].card
-                    destinationVC.cardDate = peopleArray[row].cardDate
-                    destinationVC.bankCode = peopleArray[row].bankCode
-                    destinationVC.bankLocation = peopleArray[row].bankLocation
-                    destinationVC.type = peopleArray[row].type
-                    destinationVC.product = peopleArray[row].product
+                    if row > -1 {
+                        destinationVC.id = peopleArray[row].id
+                        destinationVC.name = peopleArray[row].name
+                        destinationVC.phone = peopleArray[row].phone
+                        destinationVC.card = peopleArray[row].card
+                        destinationVC.cardDate = peopleArray[row].cardDate
+                        destinationVC.bankCode = peopleArray[row].bankCode
+                        destinationVC.bankLocation = peopleArray[row].bankLocation
+                        destinationVC.type = peopleArray[row].type
+                        destinationVC.product = peopleArray[row].product
+                    }
                 }
             }
         } else if(segue.identifier == "showAddNew") {

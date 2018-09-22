@@ -3,75 +3,7 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ContactViewController.loadDataByType(type:):ContactViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "peopleArray.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "GroupViewController.btnDone(_:):GroupViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ContactViewController.loadData():ContactViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "peopleArray.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "closure #1 in ContactViewController.filterContent(searchText:scope:):ContactViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "filterPeople.count">
-            </PersistentString>
-            <PersistentString
-               value = "peopleArray">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddNewProductViewController.getPeople(product:):AddNewProductViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "people">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "AddNewProductViewController.txtWeightEditChanged(_:):AddNewProductViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "txtWeight.text">
-            </PersistentString>
-            <PersistentString
-               value = "txtUnit.text">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContactViewController.loadDataByType():ContactViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DetailContactViewController.btnRemove(_:):DetailContactViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "id">
-            </PersistentString>
-            <PersistentString
-               value = "objects.count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ContactViewController.prepare(for:sender:):ContactViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "peopleArray[row].type">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ContactViewController.tableView(_:commit:forRowAt:):ContactViewController.swift">
@@ -91,10 +23,86 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ContactViewController.loadData():ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peopleArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContactViewController.loadDataByType():ContactViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DetailContactViewController.btnRemove(_:):DetailContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "id">
+            </PersistentString>
+            <PersistentString
+               value = "objects.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddNewProductViewController.txtWeightEditChanged(_:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "txtWeight.text">
+            </PersistentString>
+            <PersistentString
+               value = "txtUnit.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailProductViewController.viewWillAppear(_:):DetailProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ContactViewController.filterContent(searchText:scope:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filterPeople.count">
+            </PersistentString>
+            <PersistentString
+               value = "peopleArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContactViewController.prepare(for:sender:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peopleArray[row].type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "UpdateProductViewController.pickerView(_:numberOfRowsInComponent:):UpdateProductViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "txtProductName.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContactViewController.loadDataByType(type:):ContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "peopleArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddNewProductViewController.getPeople(product:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "people">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
