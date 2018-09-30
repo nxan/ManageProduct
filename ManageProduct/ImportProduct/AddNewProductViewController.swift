@@ -11,6 +11,7 @@ import CoreData
 
 class AddNewProductViewController: UIViewController {
     
+    var tempProduct = ""
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectItem = ""
     let product = ["", "Củ Sen", "Củ Hành"]
@@ -29,6 +30,7 @@ class AddNewProductViewController: UIViewController {
     @IBOutlet var txtNote: FloatingTextField!
     @IBOutlet var lbSwitch: UILabel!
     @IBOutlet var SwitchText: UISwitch!
+    @IBOutlet var lbSave: UINavigationBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +86,9 @@ class AddNewProductViewController: UIViewController {
         }
     }
     
+    @IBAction func txtProductNameDidChanged(_ sender: Any) {
+        
+    }
     
     private func boldString(text1: String) -> NSAttributedString {
         let text = text1
@@ -105,13 +110,13 @@ class AddNewProductViewController: UIViewController {
         newItem.id = UUID.init().uuidString
         newItem.productName = txtProductName.text
         newItem.peopleType = txtPeople.text
-        newItem.date = txtDate.text
+        newItem.date = convertStringToDate(string: txtDate.text!)
         newItem.unit = (removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue
         newItem.weight = (removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue
         newItem.money = (removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue
         newItem.note = txtNote.text
-        newItem.type = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
-        self.productArray.append(newItem)
+        newItem.type = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)        
+        self.productArray.insert(newItem, at: 0)
         self.saveItem()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
         dismiss(animated: true, completion: nil)
@@ -150,6 +155,14 @@ class AddNewProductViewController: UIViewController {
             txtMoney.text = "0"
         }
     }
+    
+    private func convertStringToDate(string: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        let date = dateFormatter.date(from: string)
+        return date!
+    }        
     
     private func addCommaNumber(string: String) -> String {
         let numberFormatter = NumberFormatter()
@@ -312,6 +325,10 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             selectItem = product[row]
             txtProductName.text = selectItem
+            if(tempProduct != txtProductName.text) {
+                txtPeople.text = ""
+                tempProduct = selectItem
+            }            
         } else if(txtPeople.isEditing) {
             selectItem = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex)[row]
             txtPeople.text = selectItem

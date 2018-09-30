@@ -13,12 +13,19 @@ class ProductViewController: UIViewController {
 
     var productArray = [Product]()
     var filterProduct = [Product]()
+    var productSortArray: [Date:[Product]?] = [:]
+    var filterSortProduct: [Date:[Product]?] = [:]
     let searchController = UISearchController(searchResultsController: nil)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var index = NSIndexPath()
+    var x = [String]()
+    var dateArray: [Date] = []
+    var filterDateArray: [Date] = []
+    var flag = false
+    var updateView = UpdateProductViewController()
+    var selectScope = "Tất cả"
     
     @IBOutlet var tableView: UITableView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavBar()
@@ -31,12 +38,14 @@ class ProductViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
         if(!productArray.isEmpty) {
             tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
             tableView(tableView, didSelectRowAt: index as IndexPath)
         }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -57,13 +66,23 @@ class ProductViewController: UIViewController {
     }
     
     private func filterContent(searchText: String) {
-        filterProduct = productArray.filter { product in
-            if(searchText == "") {
-                return true
+        if(searchText.isEmpty || searchText == "") {
+            loadDataByType(type: selectScope)
+            flag = true
+            filterProduct = productArray.filter { product in
+                if(searchText == "") {
+                    return true
+                }
+                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
             }
-            return (product.productName?.contains(searchText))!
+        } else {
+            filterProduct = filterProduct.filter { product in
+                if(searchText == "") {
+                    return true
+                }
+                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
+            }
         }
-        tableView.reloadData()
     }
     
     private func saveItem() {
@@ -82,7 +101,23 @@ class ProductViewController: UIViewController {
         } catch {
             print("Error reload data")
         }
+        order(array: productArray)
+        dateArray = Array(productSortArray.keys)
+        dateArray.sort { $0 > $1 }
     }
+    
+    private func loadItemFilter() {
+        let request: NSFetchRequest<Product> = Product.fetchRequest()
+        do {
+            filterProduct = try context.fetch(request)
+        } catch {
+            print("Error reload data")
+        }
+        orderFilter(array: filterProduct)
+        filterDateArray = Array(filterSortProduct.keys)
+        filterDateArray.sort { $0 > $1 }
+    }
+
     
     private func selectRowAtZero() {
         let indexPath = NSIndexPath(row: 0, section: 0)
@@ -93,16 +128,14 @@ class ProductViewController: UIViewController {
     @objc func loadData(){
         loadItem()
         self.tableView.reloadData()
-        let indexPath = NSIndexPath(row: productArray.count - 1, section: 0)
-        tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
-        tableView(tableView, didSelectRowAt: indexPath as IndexPath)
+        selectRowAtZero()
     }
     
-    @objc func loadUpdateData(){
+    @objc func loadUpdateData() {
         loadItem()
-        tableView.reloadData()
-        tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
-        tableView(tableView, didSelectRowAt: index as IndexPath)
+        self.productSortArray[dateArray[index.section]]!!.remove(at: index.row)
+        self.tableView.reloadData()
+        selectRowAtZero()
     }
     
     private func addCommaNumber(string: String) -> String {
@@ -112,26 +145,163 @@ class ProductViewController: UIViewController {
         let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
         return formattedNumber!
     }
+    
+    public func loadDataByType(type: String) {
+        if(searchController.isActive && searchController.searchBar.text != "") {
+            filterProduct.removeAll()
+            filterDateArray.removeAll()
+            filterSortProduct.removeAll()
+            if(type == "Tất cả") {
+                loadItemFilter()
+            } else {
+                do {
+                    let fetchRequest : NSFetchRequest<Product> = Product.fetchRequest()
+                    fetchRequest.predicate = NSPredicate(format: "type == %@", type)
+                    let fetchedResults = try context.fetch(fetchRequest)
+                    for result in fetchedResults {
+                        filterProduct.append(result)
+                    }
+                } catch {
+                    print("Error")
+                }
+            }
+            orderFilter(array: filterProduct)
+            filterDateArray = Array(filterSortProduct.keys)
+            filterDateArray.sort { $0 > $1 }
+            updateSearchResults(for: searchController)
+        } else {
+            productArray.removeAll()
+            dateArray.removeAll()
+            productSortArray.removeAll()
+            if(type == "Tất cả") {
+                loadItem()
+            } else {
+                do {
+                    let fetchRequest : NSFetchRequest<Product> = Product.fetchRequest()
+                    fetchRequest.predicate = NSPredicate(format: "type == %@", type)
+                    let fetchedResults = try context.fetch(fetchRequest)
+                    for result in fetchedResults {
+                        productArray.append(result)
+                    }
+                } catch {
+                    print("Error")
+                }
+            }
+            order(array: productArray)
+            dateArray = Array(productSortArray.keys)
+            dateArray.sort { $0 > $1 }
+        }
+    }
+    
+    private func getDate() -> [String] {
+        var arrDate = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Product", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.propertiesToFetch = ["date"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let personList = try context.fetch(fetchRequest)
+            let resultDict = personList
+            for r in resultDict {
+                if(!arrDate.contains(convertDateToString(date: r["date"]! as! Date))) {
+                    arrDate.append(convertDateToString(date: r["date"]! as! Date))
+                } else {
+                    
+                }
+            }
+        } catch let error as NSError {
+            print(error)
+        }
+        return arrDate
+    }
+    
+    private func order(array: [Product]) {
+        for product in array {
+            var products = productSortArray[product.date!] ?? []
+            if products?.count == 0 {
+                productSortArray[product.date!] = [product]
+            } else {
+                if(!(products?.contains(product))!) {
+                    products?.insert(product, at: 0)
+                }
+                productSortArray[product.date!] = products
+            }
+        }
+    }
+    
+    private func orderFilter(array: [Product]) {
+        filterDateArray.removeAll()
+        filterSortProduct.removeAll()
+        for product in filterProduct {
+            var products = filterSortProduct[product.date!] ?? []
+            if products?.count == 0 {
+                filterSortProduct[product.date!] = [product]
+            } else {
+                if(!(products?.contains(product))!) {
+                    products?.insert(product, at: 0)
+                }
+                filterSortProduct[product.date!] = products
+            }
+        }
+    }
+    
+    private func convertDateToString(date: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        formatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        let myString = formatter.string(from: date)
+        return myString        
+    }
 }
 
 extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if(searchController.isActive && searchController.searchBar.text != "") {
+            return filterDateArray.count
+        }
+        return dateArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(searchController.isActive && searchController.searchBar.text != "") {
+            return convertDateToString(date: filterDateArray[section])
+        }
+        return convertDateToString(date: dateArray[section])
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchController.isActive && searchController.searchBar.text != "") {
-            return filterProduct.count
+            return (filterSortProduct[filterDateArray[section]]!!.count)
         }
-        return productArray.count
+        return (productSortArray[dateArray[section]]!!.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = Bundle.main.loadNibNamed("ProductTableViewCell", owner: self, options: nil)?.first as! ProductTableViewCell
         if(searchController.isActive && searchController.searchBar.text != "") {
-            cell.titleLabel.text = filterProduct[indexPath.row].productName
-            cell.detailLabel.text = filterProduct[indexPath.row].peopleType
-            cell.rightLabel.text = addCommaNumber(string: String(filterProduct[indexPath.row].money))
+            let filterProduct = filterSortProduct[filterDateArray[indexPath.section]]!![indexPath.row]
+            cell.titleLabel.text = filterProduct.productName
+            cell.detailLabel.text = filterProduct.peopleType
+            cell.rightLabel.text = addCommaNumber(string: String(filterProduct.money))
+            if(filterProduct.type == "Nhập Hàng") {
+                cell.rightLabel.textColor = UIColor.red
+            } else {
+                cell.rightLabel.textColor = UIColor(red: 24/255, green: 160/255, blue: 42/255, alpha: 1)
+            }
         } else {
-            cell.titleLabel.text = productArray[indexPath.row].productName
-            cell.detailLabel.text = productArray[indexPath.row].peopleType
-            cell.rightLabel.text = addCommaNumber(string: String(productArray[indexPath.row].money))
+            let product = productSortArray[dateArray[indexPath.section]]!![indexPath.row]
+            cell.titleLabel.text = product.productName
+            cell.detailLabel.text = product.peopleType
+            cell.rightLabel.text = addCommaNumber(string: String(product.money))
+            if(product.type == "Nhập Hàng") {
+                cell.rightLabel.textColor = UIColor.red
+            } else {
+                cell.rightLabel.textColor = UIColor(red: 24/255, green: 160/255, blue: 42/255, alpha: 1)
+            }
         }
         return cell
     }
@@ -139,8 +309,9 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if(searchController.isActive && searchController.searchBar.text != "") {
+                let filterProduct = filterSortProduct[filterDateArray[indexPath.section]]!![indexPath.row]
                 var empId = ""
-                empId = (filterProduct[indexPath.row].id)!
+                empId = (filterProduct.id)!
                 let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Product")
                 let predicate = NSPredicate(format: "id = '\(empId)'")
                 fetchRequest.predicate = predicate
@@ -150,15 +321,13 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 }
                 saveItem()
                 self.filterProduct.remove(at: indexPath.row)
-                self.productArray.remove(at: indexPath.row + 1)
+                self.filterSortProduct[filterDateArray[indexPath.section]]!!.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
                 tableView.reloadData()
-                if(productArray.count > 0) {
-                    selectRowAtZero()
-                }
             } else {
+                let product = productSortArray[dateArray[indexPath.section]]!![indexPath.row]
                 var empId = ""
-                empId = (productArray[indexPath.row].id)!
+                empId = (product.id)!
                 let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Product")
                 let predicate = NSPredicate(format: "id = '\(empId)'")
                 fetchRequest.predicate = predicate
@@ -168,14 +337,24 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 }
                 saveItem()
                 self.productArray.remove(at: indexPath.row)
+                self.productSortArray[dateArray[indexPath.section]]!!.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.reloadData()
-                if(productArray.count > 0) {
-                    selectRowAtZero()
+                if(productSortArray[dateArray[indexPath.section]]!!.isEmpty) {
+                    productSortArray.removeValue(forKey: dateArray[indexPath.section])
+                    while dateArray.contains(dateArray[indexPath.section]) {
+                        if let itemToRemoveIndex = dateArray.index(of: dateArray[indexPath.section]) {
+                            dateArray.remove(at: itemToRemoveIndex)
+                            break
+                        }
+                    }
+                    let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                    tableView.deleteSections(indexSet, with: .fade)
                 }
+                tableView.reloadData()
+                selectRowAtZero()
             }
         } else if editingStyle == .insert {
-            
+
         }
     }
     
@@ -190,27 +369,34 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showDetailProduct") {
-            let row =  (sender as! NSIndexPath).row
+            let section = (sender as! IndexPath).section
+            let row =  (sender as! IndexPath).row
             if(searchController.isActive && searchController.searchBar.text != "") {
+                let filterProduct = filterSortProduct[filterDateArray[section]]!![row]
                 if let destinationVC = segue.destination as? DetailProductViewController {
-                    destinationVC.id = filterProduct[row].id
-                    destinationVC.productName = filterProduct[row].productName
-                    destinationVC.money = String(filterProduct[row].money)
-                    destinationVC.people = filterProduct[row].peopleType
-                    destinationVC.unit = String(filterProduct[row].unit)
-                    destinationVC.weight = String(filterProduct[row].weight)
-                    destinationVC.date = filterProduct[row].date
+                    destinationVC.id = filterProduct.id
+                    destinationVC.productName = filterProduct.productName
+                    destinationVC.money = String(filterProduct.money)
+                    destinationVC.people = filterProduct.peopleType
+                    destinationVC.unit = String(filterProduct.unit)
+                    destinationVC.weight = String(filterProduct.weight)
+                    destinationVC.date = convertDateToString(date: filterProduct.date!)
+                    destinationVC.note = filterProduct.note
+                    destinationVC.transaction = filterProduct.type
                 }
             } else {
+                let product = productSortArray[dateArray[section]]!![row]
                 if let destinationVC = segue.destination as? DetailProductViewController {
                     if row > -1 {
-                        destinationVC.id = productArray[row].id
-                        destinationVC.productName = productArray[row].productName
-                        destinationVC.money = String(productArray[row].money)
-                        destinationVC.people = productArray[row].peopleType
-                        destinationVC.unit = String(productArray[row].unit)
-                        destinationVC.weight = String(productArray[row].weight)
-                        destinationVC.date = productArray[row].date
+                        destinationVC.id = product.id
+                        destinationVC.productName = product.productName
+                        destinationVC.money = String(product.money)
+                        destinationVC.people = product.peopleType
+                        destinationVC.unit = String(product.unit)
+                        destinationVC.weight = String(product.weight)
+                        destinationVC.date = convertDateToString(date: product.date!)
+                        destinationVC.note = product.note
+                        destinationVC.transaction = product.type
                     }
                 }
             }
@@ -220,12 +406,31 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func updateSearchResults(for searchController: UISearchController) {
+        if(flag) { filterProduct = productArray }
+        flag = false
         filterContent(searchText: searchController.searchBar.text!)
+        orderFilter(array: filterProduct)
+        filterDateArray = Array(filterSortProduct.keys)
+        filterDateArray.sort { $0 > $1 }
         tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        print(selectedScope)
+        switch selectedScope {
+        case 1:
+            loadDataByType(type: "Nhập Hàng")
+            selectScope = "Nhập Hàng"
+            break
+        case 2:
+            loadDataByType(type: "Bán Hàng")
+            selectScope = "Bán Hàng"
+            break
+        default:
+            loadDataByType(type: "Tất cả")
+            selectScope = "Tất cả"
+            break
+        }
+        tableView.reloadData()
     }
 }
 

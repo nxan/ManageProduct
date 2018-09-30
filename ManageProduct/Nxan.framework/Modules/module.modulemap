@@ -1,0 +1,11 @@
+framework module Nxan {
+  umbrella header "Nxan.h"
+
+  export *
+  module * { export * }
+}
+
+module Nxan.Swift {
+    header "Nxan-Swift.h"
+    requires objc
+}

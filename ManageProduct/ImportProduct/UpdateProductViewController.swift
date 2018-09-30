@@ -17,7 +17,7 @@ class UpdateProductViewController: UIViewController {
     var selectItem: String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var productArray = [Product]()
-    var id = "", productName = "", people = "", money = "", weight = "", unit = "", date = ""
+    var id = "", productName = "", people = "", money = "", weight = "", unit = "", date = "", note = "", transaction = ""
     let datePicker = UIDatePicker()
     let typePicker = UIPickerView()
     
@@ -28,6 +28,9 @@ class UpdateProductViewController: UIViewController {
     @IBOutlet var txtMoney: FloatingTextField!
     @IBOutlet var txtUnit: FloatingTextField!
     @IBOutlet var txtNote: FloatingTextField!
+    @IBOutlet var lbSwitch: UISwitch!
+    @IBOutlet var txtType: UILabel!
+    @IBOutlet var lbEditHand: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +43,24 @@ class UpdateProductViewController: UIViewController {
         tempProduct = txtProductName.text!
         typePicker.delegate = self
     }
+    
+    @IBAction func btnSwitch(_ sender: Any) {
+        if lbSwitch.isOn {
+            lbEditHand.text = "Bật"
+            createPickerViewProduct()
+            createPickerViewPeople()
+            createToolbarPickerView()
+            txtPeople.isEnabled = true
+        } else {
+            lbEditHand.text = "Tắt"
+            createPickerViewProduct()
+            createPickerViewPeople()
+            createToolbarPickerView()
+            txtPeople.isEnabled = false            
+        }
+    }
+    
+    
     @IBAction func btnEdit(_ sender: Any) {
         let empId = id
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Product")
@@ -56,8 +77,8 @@ class UpdateProductViewController: UIViewController {
                 objectUpdate.setValue((removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue, forKey: "money")
                 objectUpdate.setValue((removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue, forKey: "weight")
                 objectUpdate.setValue((removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue, forKey: "unit")
-                objectUpdate.setValue(txtDate.text, forKey: "date")
-                saveItem()
+                objectUpdate.setValue(convertStringToDate(string: txtDate.text!), forKey: "date")
+                saveItem()               
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
                 dismiss(animated: true, completion: nil)
             }
@@ -79,7 +100,15 @@ class UpdateProductViewController: UIViewController {
         } catch {
             print("Error save")
         }
-    }    
+    }
+    
+    private func convertStringToDate(string: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        let date = dateFormatter.date(from: string)
+        return date!
+    }
     
     @IBAction func txtUnitEditChanged(_ sender: Any) {
         txtUnit.text = removeCommaNumber(string: txtUnit.text!)
@@ -122,6 +151,8 @@ class UpdateProductViewController: UIViewController {
         txtWeight.text = weight
         txtUnit.text = unit
         txtDate.text = date
+        txtNote.text = note
+        txtType.text = "Thông tin " + transaction
     }
     
     private func getCurrentDate() -> String {
@@ -133,11 +164,19 @@ class UpdateProductViewController: UIViewController {
     }
     
     private func createPickerViewProduct() {
-        txtProductName.inputView = typePicker
+        if(lbSwitch.isOn) {
+            txtProductName.inputView = nil
+        } else {
+            txtProductName.inputView = typePicker
+        }
     }
     
     private func createPickerViewPeople() {        
-        txtPeople.inputView = typePicker
+        if(lbSwitch.isOn) {
+            txtPeople.inputView = nil
+        } else {
+            txtPeople.inputView = typePicker
+        }
     }
     
     private func createToolbarPickerView() {
@@ -146,8 +185,13 @@ class UpdateProductViewController: UIViewController {
         let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(UpdateProductViewController.dismissKeyboard))
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
-        txtProductName.inputAccessoryView = toolbar
-        txtPeople.inputAccessoryView = toolbar
+        if(lbSwitch.isOn) {
+            txtProductName.inputAccessoryView = nil
+            txtPeople.inputAccessoryView = nil
+        } else {
+            txtProductName.inputAccessoryView = toolbar
+            txtPeople.inputAccessoryView = toolbar
+        }
     }
     
     @objc private func dismissKeyboard() {
@@ -177,15 +221,16 @@ class UpdateProductViewController: UIViewController {
         self.view.endEditing(true)
     }
     
-    private func getPeople(product: String) -> [String] {
+    private func getPeople(product: String, type: String) -> [String] {
         let temp = product
+        let tempTypePeople = (type == "Nhập Hàng") ? "Người Nhập Hàng" : "Khách Hàng"
         var arrPeople = [String]()
         let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
         let fetchRequest = NSFetchRequest<NSDictionary>()
         fetchRequest.entity = entityDescription
         fetchRequest.includesPropertyValues = true
         fetchRequest.returnsObjectsAsFaults = false
-        fetchRequest.predicate = NSPredicate(format: "product == %@", temp)
+        fetchRequest.predicate = NSPredicate(format: "product == %@ && type == %@", temp, tempTypePeople)
         fetchRequest.propertiesToFetch = ["name"]
         fetchRequest.resultType = .dictionaryResultType
         do {
@@ -233,7 +278,7 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product.count
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!).count
+            item = getPeople(product: txtProductName.text!, type: transaction).count
         }
         return item
     }
@@ -243,7 +288,7 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product[row]
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!)[row]
+            item = getPeople(product: txtProductName.text!, type: transaction)[row]
         }
         return item
     }
@@ -257,7 +302,7 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 tempProduct = selectItem!
             }
         } else if(txtPeople.isEditing) {
-            selectItem = getPeople(product: txtProductName.text!)[row]
+            selectItem = getPeople(product: txtProductName.text!, type: transaction)[row]
             txtPeople.text = selectItem
         }
     }

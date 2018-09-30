@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w7O-sX-3Wn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="w7O-sX-3Wn">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -260,7 +260,7 @@
             <objects>
                 <navigationController id="2mu-lB-wBe" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="d9Y-3t-p5V">
-                        <rect key="frame" x="0.0" y="20" width="320" height="96"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="102"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" cocoaTouchSystemColor="lightTextColor"/>
                     </navigationBar>
@@ -1216,7 +1216,7 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tên mặt hàng" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVw-iY-JRB" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="159" width="507" height="30"/>
+                                <rect key="frame" x="131" y="190" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1244,7 +1244,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Người nhập hàng" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SfW-u9-O7k" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="239" width="507" height="30"/>
+                                <rect key="frame" x="131" y="270" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1272,7 +1272,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Đơn giá " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mD2-UQ-CVX" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="399" width="507" height="30"/>
+                                <rect key="frame" x="131" y="430" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1303,7 +1303,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ngày nhập" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fhy-2l-ePD" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="319" width="507" height="30"/>
+                                <rect key="frame" x="131" y="350" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1331,7 +1331,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Trọng lượng (kg)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4CB-5M-vdu" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="479" width="507" height="30"/>
+                                <rect key="frame" x="131" y="510" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1362,7 +1362,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Thành tiền" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oev-Fj-SsA" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="559" width="507" height="30"/>
+                                <rect key="frame" x="131" y="590" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1390,7 +1390,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lYa-z2-Csi" customClass="FloatingTextField" customModule="ManageProduct">
-                                <rect key="frame" x="131" y="639" width="507" height="30"/>
+                                <rect key="frame" x="131" y="670" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1420,16 +1420,48 @@
                                     <action selector="txtWeightEditChanged:" destination="JN5-OG-gsZ" eventType="editingChanged" id="Ixf-xL-tX9"/>
                                 </connections>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tính năng tự động nhập: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MF6-Bk-odt">
+                                <rect key="frame" x="146" y="137" width="292" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tắt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ID-os-L85">
+                                <rect key="frame" x="340" y="138" width="49" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d2Z-eu-oSu">
+                                <rect key="frame" x="575" y="132" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="btnSwitch:" destination="1G1-tA-bo1" eventType="valueChanged" id="ZSf-VD-UyY"/>
+                                    <action selector="btnSwitch:" destination="JN5-OG-gsZ" eventType="valueChanged" id="lLg-On-K1L"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Thông tin nhập hàng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPa-Ye-itg">
+                                <rect key="frame" x="215" y="90" width="355" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Aqo-mT-qPe"/>
                     </view>
                     <connections>
+                        <outlet property="lbEditHand" destination="4ID-os-L85" id="cc7-JW-9PX"/>
+                        <outlet property="lbSwitch" destination="d2Z-eu-oSu" id="7pv-2X-aec"/>
                         <outlet property="txtDate" destination="Fhy-2l-ePD" id="Drz-M1-T3l"/>
                         <outlet property="txtMoney" destination="oev-Fj-SsA" id="Zh2-Un-9Nt"/>
                         <outlet property="txtNote" destination="lYa-z2-Csi" id="zLl-Bh-5KK"/>
                         <outlet property="txtPeople" destination="SfW-u9-O7k" id="JOH-nf-EOp"/>
                         <outlet property="txtProductName" destination="bVw-iY-JRB" id="syr-18-Hec"/>
+                        <outlet property="txtType" destination="GPa-Ye-itg" id="CfP-Yg-y4N"/>
                         <outlet property="txtUnit" destination="mD2-UQ-CVX" id="jQS-SZ-ZAo"/>
                         <outlet property="txtWeight" destination="4CB-5M-vdu" id="4SS-AY-gWv"/>
                     </connections>
@@ -1443,7 +1475,7 @@
             <objects>
                 <navigationController id="enR-vo-mQg" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jWZ-Jt-ibZ">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -1457,7 +1489,7 @@
         <!--Nhập hàng-->
         <scene sceneID="Q8F-fF-ql8">
             <objects>
-                <splitViewController id="8c7-Hc-gtO" sceneMemberID="viewController">
+                <splitViewController id="8c7-Hc-gtO" customClass="MasterViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Nhập hàng" id="mkl-h0-QSO"/>
                     <connections>
                         <segue destination="enR-vo-mQg" kind="relationship" relationship="masterViewController" id="qFh-4E-Rzd"/>
@@ -1522,6 +1554,9 @@
                                         <color key="value" red="0.87124294040000005" green="0.13492506739999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="txtProductNameDidChanged:" destination="1G1-tA-bo1" eventType="editingChanged" id="sTP-pu-SC0"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Người nhập hàng" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vEp-EU-HV1" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="282" width="507" height="30"/>
@@ -1669,17 +1704,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E2f-LL-Gaj">
-                                <rect key="frame" x="174" y="65" width="421" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Nhập Hàng"/>
-                                    <segment title="Bán Hàng"/>
-                                </segments>
-                                <connections>
-                                    <action selector="indexChanged:" destination="1G1-tA-bo1" eventType="valueChanged" id="B3Y-c8-gPA"/>
-                                </connections>
-                            </segmentedControl>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ghi chú" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iez-LG-7eq" customClass="FloatingTextField" customModule="ManageProduct">
                                 <rect key="frame" x="131" y="682" width="507" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1709,14 +1733,15 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cBy-XO-fUr">
-                                <rect key="frame" x="531" y="101" width="49" height="31"/>
+                                <rect key="frame" x="531" y="104" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="safeArea" id="TeS-B0-ShJ"/>
                                 <connections>
                                     <action selector="btnSwitch:" destination="1G1-tA-bo1" eventType="valueChanged" id="aNR-QZ-U9x"/>
                                 </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tính năng tự động nhập: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0o-bh-dWc">
-                                <rect key="frame" x="174" y="106" width="292" height="21"/>
+                                <rect key="frame" x="174" y="109" width="292" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1736,6 +1761,17 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E2f-LL-Gaj">
+                                <rect key="frame" x="174" y="70" width="421" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Nhập Hàng"/>
+                                    <segment title="Bán Hàng"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="1G1-tA-bo1" eventType="valueChanged" id="B3Y-c8-gPA"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="lqZ-iq-YFE"/>
@@ -1744,6 +1780,7 @@
                     <connections>
                         <outlet property="SwitchText" destination="cBy-XO-fUr" id="MeJ-Bc-zWZ"/>
                         <outlet property="lbInfo" destination="4YK-xK-gee" id="eqt-lD-eT0"/>
+                        <outlet property="lbSave" destination="AtK-8D-sgG" id="Qyc-hw-bmw"/>
                         <outlet property="lbSwitch" destination="VpQ-jI-PNX" id="abQ-O9-z16"/>
                         <outlet property="segmentedControl" destination="E2f-LL-Gaj" id="Cis-Fq-uk0"/>
                         <outlet property="txtDate" destination="YdX-T8-EBi" id="xV9-7A-Mh3"/>
@@ -1762,6 +1799,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IUn-DG-veR"/>
-        <segue reference="JKg-NS-Qch"/>
+        <segue reference="Opu-5a-Jlm"/>
     </inferredMetricsTieBreakers>
 </document>

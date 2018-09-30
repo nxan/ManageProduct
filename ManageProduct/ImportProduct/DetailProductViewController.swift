@@ -18,7 +18,7 @@ class DetailProductViewController: UIViewController {
     @IBOutlet var txtDate: UILabel!
     @IBOutlet var txtNote: FloatingTextField!
     
-    var id, productName, money, people, unit, weight, date: String?
+    var id, productName, money, people, unit, weight, date, note, transaction: String?
     
     @IBAction func btnEdit(_ sender: Any) {
         performSegue(withIdentifier: "showDetailProduct", sender: self)
@@ -33,6 +33,12 @@ class DetailProductViewController: UIViewController {
             txtUnit.text = addCommaNumber(string: unit!) + " VND"
             txtWeight.text = addCommaNumber(string: weight!) + " Kg"
             txtDate.text = date
+            txtNote.text = note
+            if(transaction == "Nhập Hàng") {
+                txtMoney.textColor = UIColor.red
+            } else {
+                txtMoney.textColor = UIColor(red: 24/255, green: 160/255, blue: 42/255, alpha: 1)
+            }
         }
     }
     
@@ -65,6 +71,8 @@ class DetailProductViewController: UIViewController {
             updateVC.unit = self.addCommaNumber(string: unit!)
             updateVC.weight = self.addCommaNumber(string: weight!)
             updateVC.date = self.date!
+            updateVC.note = self.note!
+            updateVC.transaction = self.transaction!
         }
     }
 }

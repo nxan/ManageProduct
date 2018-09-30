@@ -1,24 +1,20 @@
 //
-//  ProductTableViewCell.swift
+//  TableSectionHeader.swift
 //  ManageProduct
 //
-//  Created by NXA on 9/19/18.
+//  Created by NXA on 9/23/18.
 //  Copyright © 2018 NXA. All rights reserved.
 //
 
 import UIKit
 
-class ProductTableViewCell: UITableViewCell {
+class TableSectionHeader: UITableViewCell {
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var detailLabel: UILabel!
-    @IBOutlet var rightLabel: UILabel!
-    var sectionIndex:Int?
+    @IBOutlet var txtDate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
