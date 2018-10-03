@@ -19,12 +19,12 @@
 		EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */; };
 		EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */; };
 		EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */; };
-		EF93926D216121AD0029977A /* MyDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF93926C216121AD0029977A /* MyDateTime.swift */; };
 		EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF93926E2161DEBD0029977A /* MyCoreData.swift */; };
 		EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */; };
 		EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */; };
 		EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */; };
 		EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD666F52143CE54000DD9A4 /* GroupViewController.swift */; };
+		EFDD983D2164B34000B01C01 /* MyDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD983C2164B34000B01C01 /* MyDateTime.swift */; };
 		EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEE302821397EAA0026B50B /* AppDelegate.swift */; };
 		EFEE302E21397EAA0026B50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEE302C21397EAA0026B50B /* Main.storyboard */; };
 		EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEE302F21397EAA0026B50B /* Assets.xcassets */; };
@@ -58,12 +58,12 @@
 		EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSectionHeader.xib; sourceTree = "<group>"; };
 		EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
-		EF93926C216121AD0029977A /* MyDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDateTime.swift; sourceTree = "<group>"; };
 		EF93926E2161DEBD0029977A /* MyCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreData.swift; sourceTree = "<group>"; };
 		EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		EFD666F52143CE54000DD9A4 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		EFDD983C2164B34000B01C01 /* MyDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDateTime.swift; sourceTree = "<group>"; };
 		EFEE302521397EAA0026B50B /* ManageProduct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManageProduct.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEE302821397EAA0026B50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEE302D21397EAA0026B50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -87,8 +87,8 @@
 		EF93926B2160FC230029977A /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				EF93926C216121AD0029977A /* MyDateTime.swift */,
 				EF93926E2161DEBD0029977A /* MyCoreData.swift */,
+				EFDD983C2164B34000B01C01 /* MyDateTime.swift */,
 			);
 			path = Framework;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF93926D216121AD0029977A /* MyDateTime.swift in Sources */,
+				EFDD983D2164B34000B01C01 /* MyDateTime.swift in Sources */,
 				EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */,
 				EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */,
 				EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */,
