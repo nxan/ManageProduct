@@ -40,7 +40,7 @@ class AddNewProductViewController: UIViewController {
         showDatePicker()
         txtPeople.isEnabled = false
         txtMoney.isEnabled = false
-        txtDate.text = getCurrentDate()
+        txtDate.text = MyDateTime.getCurrentDate()
         txtMoney.text = "0"
         lbInfo.attributedText = boldString(text1: "Nhập Hàng")
     }
@@ -94,7 +94,7 @@ class AddNewProductViewController: UIViewController {
         let text = text1
         let attributedString = NSMutableAttributedString(string: "Bạn đã chọn ")
         let attributedString2 = NSMutableAttributedString(string: " .Vui lòng điền đẩy đủ thông tin.")
-        let att = [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 17)]
+        let att = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 17)]
         let boldAge = NSMutableAttributedString(string: text, attributes: att)
         attributedString.append(boldAge)
         attributedString.append(attributedString2)
@@ -110,90 +110,50 @@ class AddNewProductViewController: UIViewController {
         newItem.id = UUID.init().uuidString
         newItem.productName = txtProductName.text
         newItem.peopleType = txtPeople.text
-        newItem.date = convertStringToDate(string: txtDate.text!)
-        newItem.unit = (removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue
-        newItem.weight = (removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue
-        newItem.money = (removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue
+        newItem.date = MyDateTime.convertStringToDate(string: txtDate.text!)
+        newItem.unit = (MyDateTime.removeCommaNumber(string: txtUnit.text!)! as NSString).doubleValue
+        newItem.weight = (MyDateTime.removeCommaNumber(string: txtWeight.text!)! as NSString).doubleValue
+        newItem.money = (MyDateTime.removeCommaNumber(string: txtMoney.text!)! as NSString).doubleValue
         newItem.note = txtNote.text
         newItem.type = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)        
         self.productArray.insert(newItem, at: 0)
-        self.saveItem()
+        MyCoreData.saveItem()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func txtUnitEditChanged(_ sender: Any) {
-        txtUnit.text = removeCommaNumber(string: txtUnit.text!)
+        txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
         if(!(txtUnit.text?.isEmpty)!) {
-            txtUnit.text = addCommaNumber(string: txtUnit.text!)
+            txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
         }
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
-            txtUnit.text = removeCommaNumber(string: txtUnit.text!)
-            txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+            txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
             txtMoney.text = String(Int(txtUnit.text!)! * Int(txtWeight.text!)!)
-            txtUnit.text = addCommaNumber(string: txtUnit.text!)
-            txtWeight.text = addCommaNumber(string: txtWeight.text!)
-            txtMoney.text = addCommaNumber(string: txtMoney.text!)
+            txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+            txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
         } else {
             txtMoney.text = "0"
         }
     }
     
     @IBAction func txtWeightEditChanged(_ sender: Any) {
-        txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+        txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
         if(!(txtWeight.text?.isEmpty)!) {
-            txtWeight.text = addCommaNumber(string: txtWeight.text!)
+            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
         }
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
-            txtUnit.text = removeCommaNumber(string: txtUnit.text!)
-            txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+            txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
             txtMoney.text = String(Double(txtUnit.text!)! * Double(txtWeight.text!)!)
-            txtUnit.text = addCommaNumber(string: txtUnit.text!)
-            txtWeight.text = addCommaNumber(string: txtWeight.text!)
-            txtMoney.text = addCommaNumber(string: txtMoney.text!)
+            txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+            txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
         } else {
             txtMoney.text = "0"
         }
-    }
-    
-    private func convertStringToDate(string: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        let date = dateFormatter.date(from: string)
-        return date!
-    }        
-    
-    private func addCommaNumber(string: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        numberFormatter.groupingSize = 3
-        let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
-        return formattedNumber!
-    }
-    
-    private func removeCommaNumber(string: String) -> String {
-        var newString = ""
-        newString = string.replacingOccurrences(of: ",", with: "")
-        return newString
-    }
-    
-    private func formatCurrency(string: String) -> String{
-        let price = Int(string)
-        let curFormatter : NumberFormatter = NumberFormatter()
-        curFormatter.numberStyle = .currency
-        curFormatter.currencyCode = "USD"
-        curFormatter.maximumFractionDigits = 0
-        let total = curFormatter.string(from: price! as NSNumber)
-        return total!
-    }
-    
-    private func getCurrentDate() -> String {
-        let date = Date()
-        let formater = DateFormatter()
-        formater.dateFormat = "dd/MM/yyyy"
-        let result = formater.string(from: date)
-        return result
     }
     
     private func createPickerViewProduct() {
@@ -240,16 +200,7 @@ class AddNewProductViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func saveItem() {
-        do {
-            try context.save()
-            print("Saved")
-        } catch {
-            print("Error save")
-        }
-    }
-    
-    private func getPeople(product: String, type: Int) -> [String]{
+    private func getPeople(product: String, type: Int) -> [String] {
         let temp = product
         let tempTypePeople = (type == 0) ? "Người Nhập Hàng" : "Khách Hàng"
         var arrPeople = [String]()
@@ -279,7 +230,7 @@ class AddNewProductViewController: UIViewController {
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         toolbar.setItems([doneButton,spaceButton], animated: false)
         txtDate.inputAccessoryView = toolbar
         txtDate.inputView = datePicker

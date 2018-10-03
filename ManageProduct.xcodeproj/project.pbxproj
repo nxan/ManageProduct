@@ -19,6 +19,8 @@
 		EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */; };
 		EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */; };
 		EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */; };
+		EF93926D216121AD0029977A /* MyDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF93926C216121AD0029977A /* MyDateTime.swift */; };
+		EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF93926E2161DEBD0029977A /* MyCoreData.swift */; };
 		EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */; };
 		EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */; };
 		EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */; };
@@ -56,6 +58,8 @@
 		EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSectionHeader.xib; sourceTree = "<group>"; };
 		EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
+		EF93926C216121AD0029977A /* MyDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDateTime.swift; sourceTree = "<group>"; };
+		EF93926E2161DEBD0029977A /* MyCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreData.swift; sourceTree = "<group>"; };
 		EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
@@ -80,11 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EF9387202160D3450029977A /* Frameworks */ = {
+		EF93926B2160FC230029977A /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				EF93926C216121AD0029977A /* MyDateTime.swift */,
+				EF93926E2161DEBD0029977A /* MyCoreData.swift */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		EFB4E3292163743B00B5E5BC /* SearchOrder */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = Frameworks;
+			path = SearchOrder;
 			sourceTree = "<group>";
 		};
 		EFCE0DE02147A507008BE2B0 /* Contact */ = {
@@ -120,7 +133,6 @@
 		EFEE301C21397EAA0026B50B = {
 			isa = PBXGroup;
 			children = (
-				EF9387202160D3450029977A /* Frameworks */,
 				EFEE302721397EAA0026B50B /* ManageProduct */,
 				EFEE302621397EAA0026B50B /* Products */,
 			);
@@ -138,8 +150,10 @@
 			isa = PBXGroup;
 			children = (
 				EFEE302821397EAA0026B50B /* AppDelegate.swift */,
+				EF93926B2160FC230029977A /* Framework */,
 				EFCE0DE02147A507008BE2B0 /* Contact */,
 				EFCE0DE12147A97A008BE2B0 /* ImportProduct */,
+				EFB4E3292163743B00B5E5BC /* SearchOrder */,
 				EFEE302C21397EAA0026B50B /* Main.storyboard */,
 				EFEE302F21397EAA0026B50B /* Assets.xcassets */,
 				EFEE303421397EAA0026B50B /* Info.plist */,
@@ -182,6 +196,7 @@
 				TargetAttributes = {
 					EFEE302421397EAA0026B50B = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -224,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF93926D216121AD0029977A /* MyDateTime.swift in Sources */,
 				EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */,
 				EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */,
 				EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */,
@@ -231,6 +247,7 @@
 				EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */,
 				EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */,
 				EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */,
+				EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */,
 				EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */,
 				EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */,
 				EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */,
@@ -378,13 +395,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManageProduct",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SwiftFramework/DerivedData/SwiftFramework/Build/Products/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = ManageProduct/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProduct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -399,13 +417,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManageProduct",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/SwiftFramework/DerivedData/SwiftFramework/Build/Products/Debug-iphonesimulator",
 				);
 				INFOPLIST_FILE = ManageProduct/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProduct;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

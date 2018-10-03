@@ -11,6 +11,7 @@ import UIKit
 class TableSectionHeader: UITableViewCell {
     
     @IBOutlet var txtDate: UILabel!
+    @IBOutlet var lblTotal: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

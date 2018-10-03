@@ -28,10 +28,10 @@ class DetailProductViewController: UIViewController {
         super.viewWillAppear(animated)
         if(id != nil) {
             txtProductName.text = productName
-            txtMoney.text = addCommaNumber(string: money!) + " VND"
+            txtMoney.text = MyDateTime.addCommaNumber(string: money!)! + " VND"
             txtPeople.text = people
-            txtUnit.text = addCommaNumber(string: unit!) + " VND"
-            txtWeight.text = addCommaNumber(string: weight!) + " Kg"
+            txtUnit.text = MyDateTime.addCommaNumber(string: unit!)! + " VND"
+            txtWeight.text = MyDateTime.addCommaNumber(string: weight!)! + " Kg"
             txtDate.text = date
             txtNote.text = note
             if(transaction == "Nhập Hàng") {
@@ -51,14 +51,6 @@ class DetailProductViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }        
-    
-    private func addCommaNumber(string: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        numberFormatter.groupingSize = 3
-        let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
-        return formattedNumber!
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,9 +59,9 @@ class DetailProductViewController: UIViewController {
             updateVC.id = id!
             updateVC.productName = self.productName!
             updateVC.people = self.people!
-            updateVC.money = self.addCommaNumber(string: money!)
-            updateVC.unit = self.addCommaNumber(string: unit!)
-            updateVC.weight = self.addCommaNumber(string: weight!)
+            updateVC.money = MyDateTime.addCommaNumber(string: money!)!
+            updateVC.unit = MyDateTime.addCommaNumber(string: unit!)!
+            updateVC.weight = MyDateTime.addCommaNumber(string: weight!)!
             updateVC.date = self.date!
             updateVC.note = self.note!
             updateVC.transaction = self.transaction!

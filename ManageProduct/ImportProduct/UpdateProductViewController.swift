@@ -74,11 +74,11 @@ class UpdateProductViewController: UIViewController {
                 let objectUpdate = test[0] as! NSManagedObject
                 objectUpdate.setValue(txtProductName.text, forKey: "productName")
                 objectUpdate.setValue(txtPeople.text, forKey: "peopleType")
-                objectUpdate.setValue((removeCommaNumber(string: txtMoney.text!) as NSString).doubleValue, forKey: "money")
-                objectUpdate.setValue((removeCommaNumber(string: txtWeight.text!) as NSString).doubleValue, forKey: "weight")
-                objectUpdate.setValue((removeCommaNumber(string: txtUnit.text!) as NSString).doubleValue, forKey: "unit")
-                objectUpdate.setValue(convertStringToDate(string: txtDate.text!), forKey: "date")
-                saveItem()               
+                objectUpdate.setValue((MyDateTime.removeCommaNumber(string: txtMoney.text!)! as NSString).doubleValue, forKey: "money")
+                objectUpdate.setValue((MyDateTime.removeCommaNumber(string: txtWeight.text!)! as NSString).doubleValue, forKey: "weight")
+                objectUpdate.setValue((MyDateTime.removeCommaNumber(string: txtUnit.text!)! as NSString).doubleValue, forKey: "unit")
+                objectUpdate.setValue(MyDateTime.convertStringToDate(string: txtDate.text!), forKey: "date")
+                MyCoreData.saveItem()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
                 dismiss(animated: true, completion: nil)
             }
@@ -93,52 +93,35 @@ class UpdateProductViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    private func saveItem() {
-        do {
-            try context.save()
-            print("Saved")
-        } catch {
-            print("Error save")
-        }
-    }
-    
-    private func convertStringToDate(string: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
-        let date = dateFormatter.date(from: string)
-        return date!
-    }
-    
     @IBAction func txtUnitEditChanged(_ sender: Any) {
-        txtUnit.text = removeCommaNumber(string: txtUnit.text!)
+        txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
         if(!(txtUnit.text?.isEmpty)!) {
-            txtUnit.text = addCommaNumber(string: txtUnit.text!)
+            txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
         }
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
-            txtUnit.text = removeCommaNumber(string: txtUnit.text!)
-            txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+            txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
             txtMoney.text = String(Int(txtUnit.text!)! * Int(txtWeight.text!)!)
-            txtUnit.text = addCommaNumber(string: txtUnit.text!)
-            txtWeight.text = addCommaNumber(string: txtWeight.text!)
-            txtMoney.text = addCommaNumber(string: txtMoney.text!)
+            txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+            txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
         } else {
             txtMoney.text = "0"
         }
     }
     
     @IBAction func txtWeightEditChanged(_ sender: Any) {
-        txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+        txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
         if(!(txtWeight.text?.isEmpty)!) {
-            txtWeight.text = addCommaNumber(string: txtWeight.text!)
+            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
         }
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
-            txtUnit.text = removeCommaNumber(string: txtUnit.text!)
-            txtWeight.text = removeCommaNumber(string: txtWeight.text!)
+            txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
             txtMoney.text = String(Double(txtUnit.text!)! * Double(txtWeight.text!)!)
-            txtUnit.text = addCommaNumber(string: txtUnit.text!)
-            txtWeight.text = addCommaNumber(string: txtWeight.text!)
-            txtMoney.text = addCommaNumber(string: txtMoney.text!)
+            txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
+            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+            txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
         } else {
             txtMoney.text = "0"
         }
@@ -154,15 +137,7 @@ class UpdateProductViewController: UIViewController {
         txtNote.text = note
         txtType.text = "Thông tin " + transaction
     }
-    
-    private func getCurrentDate() -> String {
-        let date = Date()
-        let formater = DateFormatter()
-        formater.dateFormat = "dd/MM/yyyy"
-        let result = formater.string(from: date)
-        return result
-    }
-    
+  
     private func createPickerViewProduct() {
         if(lbSwitch.isOn) {
             txtProductName.inputView = nil
@@ -207,7 +182,7 @@ class UpdateProductViewController: UIViewController {
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker));
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         toolbar.setItems([doneButton,spaceButton], animated: false)
         txtDate.inputAccessoryView = toolbar
         txtDate.inputView = datePicker
@@ -245,20 +220,6 @@ class UpdateProductViewController: UIViewController {
         }
         return arrPeople
     }
-    
-    private func addCommaNumber(string: String) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        numberFormatter.groupingSize = 3
-        let formattedNumber = numberFormatter.string(from: NSNumber(value:Double(string)!))
-        return formattedNumber!
-    }
-    
-    private func removeCommaNumber(string: String) -> String {
-        var newString = ""
-        newString = string.replacingOccurrences(of: ",", with: "")
-        return newString
-    }        
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

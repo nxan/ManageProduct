@@ -155,7 +155,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if(searchController.isActive && searchController.searchBar.text != "") {
                 var empId = ""

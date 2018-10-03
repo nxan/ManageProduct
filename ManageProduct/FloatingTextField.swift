@@ -19,7 +19,7 @@ import QuartzCore
         }
         func heightWithConstrainedWidth(width: CGFloat, font: UIFont) -> CGFloat {
             let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-            let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedStringKey: font], context: nil)
+            let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [kCTFontAttributeName as NSAttributedString.Key: font], context: nil)
             
             return boundingBox.height
         }
@@ -51,7 +51,7 @@ import QuartzCore
         }
         
         fileprivate func setup() {
-            borderStyle = UITextBorderStyle.none
+            borderStyle = UITextField.BorderStyle.none
             titleActiveTextColor = tintColor
             // Set up title label
             title.alpha = 0.0
@@ -109,7 +109,7 @@ import QuartzCore
                 return self.placeHolderColor
             }
             set {
-                self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[kCTForegroundColorAttributeName as NSAttributedStringKey: newValue!])
+                self.attributedPlaceholder = NSAttributedString(string:self.placeholder != nil ? self.placeholder! : "", attributes:[kCTForegroundColorAttributeName as NSAttributedString.Key: newValue!])
             }
         }
         override func layoutSubviews() {
@@ -160,7 +160,7 @@ import QuartzCore
         
         fileprivate func showTitle(_ animated:Bool) {
             let dur = animated ? animationDuration : 0
-            UIView.animate(withDuration: dur, delay:0, options: [UIViewAnimationOptions.beginFromCurrentState, UIViewAnimationOptions.curveEaseOut], animations:{
+            UIView.animate(withDuration: dur, delay:0, options: [UIView.AnimationOptions.beginFromCurrentState, UIView.AnimationOptions.curveEaseOut], animations:{
                 // Animation
                 self.title.text = self.placeholder
                 self.title.alpha = 1.0
@@ -176,7 +176,7 @@ import QuartzCore
             self.isFloatingTitleHidden = true
             
             let dur = animated ? animationDuration : 0
-            UIView.animate(withDuration: dur, delay:0, options: [UIViewAnimationOptions.beginFromCurrentState, UIViewAnimationOptions.curveEaseIn], animations:{
+            UIView.animate(withDuration: dur, delay:0, options: [UIView.AnimationOptions.beginFromCurrentState, UIView.AnimationOptions.curveEaseIn], animations:{
                 // Animation
                 self.title.alpha = 0.0
                 var r = self.title.frame

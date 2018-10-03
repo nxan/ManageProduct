@@ -10,7 +10,7 @@ import UIKit
 
 class GroupViewController: UIViewController {
     
-    var list = ["Tất cả", "Người nhập hàng", "Khách hàng"]
+    var list = ["Tất cả", "Người Nhập Hàng", "Khách Hàng"]
     var selectIndex = 0
     var selectType = "Tất cả"
     
