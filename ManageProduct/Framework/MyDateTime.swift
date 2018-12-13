@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class MyDateTime {
     
@@ -60,6 +61,14 @@ public class MyDateTime {
         curFormatter.maximumFractionDigits = 0
         let total = curFormatter.string(from: price! as NSNumber)
         return total
+    }
+    
+    public static func addImageTF(textField: UITextField, string: String) {
+        textField.rightViewMode = .always
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        let image = UIImage(named: string)
+        imageView.image = image
+        textField.rightView = imageView
     }
     
 }

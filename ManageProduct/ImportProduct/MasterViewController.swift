@@ -12,10 +12,8 @@ class MasterViewController: UISplitViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.preferredDisplayMode = UISplitViewControllerDisplayMode.allVisible
-//        self.maximumPrimaryColumnWidth = 600 // specify your width here
-        
+        self.preferredDisplayMode = .allVisible
+        self.maximumPrimaryColumnWidth = 600
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +21,7 @@ class MasterViewController: UISplitViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+ 
     /*
     // MARK: - Navigation
 
@@ -35,3 +33,5 @@ class MasterViewController: UISplitViewController {
     */
 
 }
+
+

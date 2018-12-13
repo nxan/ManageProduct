@@ -42,7 +42,7 @@ class AddNewProductViewController: UIViewController {
         txtMoney.isEnabled = false
         txtDate.text = MyDateTime.getCurrentDate()
         txtMoney.text = "0"
-        lbInfo.attributedText = boldString(text1: "Nhập Hàng")
+        lbInfo.attributedText = boldString(text1: "Nhập Hàng")           
     }
 
     override func didReceiveMemoryWarning() {

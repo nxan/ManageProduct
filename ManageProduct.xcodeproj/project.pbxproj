@@ -25,6 +25,9 @@
 		EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */; };
 		EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD666F52143CE54000DD9A4 /* GroupViewController.swift */; };
 		EFDD983D2164B34000B01C01 /* MyDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD983C2164B34000B01C01 /* MyDateTime.swift */; };
+		EFE0A45E21A4030300DC1D28 /* SearchOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0A45D21A4030300DC1D28 /* SearchOrderViewController.swift */; };
+		EFE0A46021A410EB00DC1D28 /* ResultOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0A45F21A410EB00DC1D28 /* ResultOrderViewController.swift */; };
+		EFE412052168AF78000A6AF7 /* GroupTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE412042168AF78000A6AF7 /* GroupTimeViewController.swift */; };
 		EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFEE302821397EAA0026B50B /* AppDelegate.swift */; };
 		EFEE302E21397EAA0026B50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFEE302C21397EAA0026B50B /* Main.storyboard */; };
 		EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EFEE302F21397EAA0026B50B /* Assets.xcassets */; };
@@ -64,6 +67,9 @@
 		EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		EFD666F52143CE54000DD9A4 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		EFDD983C2164B34000B01C01 /* MyDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDateTime.swift; sourceTree = "<group>"; };
+		EFE0A45D21A4030300DC1D28 /* SearchOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrderViewController.swift; sourceTree = "<group>"; };
+		EFE0A45F21A410EB00DC1D28 /* ResultOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultOrderViewController.swift; sourceTree = "<group>"; };
+		EFE412042168AF78000A6AF7 /* GroupTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTimeViewController.swift; sourceTree = "<group>"; };
 		EFEE302521397EAA0026B50B /* ManageProduct.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManageProduct.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFEE302821397EAA0026B50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFEE302D21397EAA0026B50B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 		EFB4E3292163743B00B5E5BC /* SearchOrder */ = {
 			isa = PBXGroup;
 			children = (
+				EFE0A45D21A4030300DC1D28 /* SearchOrderViewController.swift */,
+				EFE0A45F21A410EB00DC1D28 /* ResultOrderViewController.swift */,
 			);
 			path = SearchOrder;
 			sourceTree = "<group>";
@@ -126,6 +134,7 @@
 				EF468D1E2157A5A400E90E07 /* TableSectionHeader.swift */,
 				EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */,
 				EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */,
+				EFE412042168AF78000A6AF7 /* GroupTimeViewController.swift */,
 			);
 			path = ImportProduct;
 			sourceTree = "<group>";
@@ -247,6 +256,8 @@
 				EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */,
 				EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */,
 				EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */,
+				EFE0A46021A410EB00DC1D28 /* ResultOrderViewController.swift in Sources */,
+				EFE412052168AF78000A6AF7 /* GroupTimeViewController.swift in Sources */,
 				EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */,
 				EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */,
 				EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */,
@@ -257,6 +268,7 @@
 				EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */,
 				EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */,
 				EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */,
+				EFE0A45E21A4030300DC1D28 /* SearchOrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

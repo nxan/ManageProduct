@@ -26,6 +26,11 @@ class ProductViewController: UIViewController {
     var selectScope = "Tất cả"
     
     @IBOutlet var tableView: UITableView!
+    
+    @IBAction func refreshProduct(_ sender: Any) {
+        loadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavBar()
@@ -34,8 +39,8 @@ class ProductViewController: UIViewController {
             selectRowAtZero()
             NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(loadUpdateData), name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(filterByDate), name: NSNotification.Name(rawValue: "loadByDate"), object: nil)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +60,7 @@ class ProductViewController: UIViewController {
 
     private func setUpNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.setToolbarHidden(false, animated: false)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -64,6 +70,16 @@ class ProductViewController: UIViewController {
         searchController.searchBar.placeholder = "Tìm kiếm..."
         searchController.searchBar.scopeButtonTitles = ["Tất cả", "Nhập hàng", "Bán hàng"]
         searchController.searchBar.delegate = self
+    }
+    
+    @objc func filterByDate() {
+        productArray.removeAll()
+        loadDataByDate(beginDate: UserDefaults.standard.string(forKey: "BeginDate")!, endDate: UserDefaults.standard.string(forKey: "EndDate")!)
+        self.tableView.reloadData()
+        let indexPath = NSIndexPath(row: 0, section: 0)
+        tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
+        tableView(tableView, didSelectRowAt: indexPath as IndexPath)
+        
     }
     
     private func filterContent(searchText: String) {
@@ -140,6 +156,33 @@ class ProductViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    public func loadDataByDate(beginDate: String, endDate: String) {
+        productArray.removeAll()
+        dateArray.removeAll()
+        productSortArray.removeAll()
+        let fromdate = "\(beginDate) 00:00"
+        let todate = "\(endDate) 23:59"
+        do {
+            let fetchRequest : NSFetchRequest<Product> = Product.fetchRequest()
+            fetchRequest.returnsObjectsAsFaults = false
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+            let a:Date = dateFormatter.date(from: fromdate)!
+            let b:Date = dateFormatter.date(from: todate)!
+            fetchRequest.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@)", a as CVarArg, b as CVarArg)
+            let fetchedResults = try context.fetch(fetchRequest)
+            for result in fetchedResults {
+                productArray.append(result)
+            }
+        } catch {
+            print("Error")
+        }
+        order(array: productArray)
+        dateArray = Array(productSortArray.keys)
+        dateArray.sort { $0 > $1 }
+    }
+    
     public func loadDataByType(type: String) {
         if(searchController.isActive && searchController.searchBar.text != "") {
             filterProduct.removeAll()
@@ -187,6 +230,7 @@ class ProductViewController: UIViewController {
         }
     }
     
+    
     private func order(array: [Product]) {
         for product in array {
             var products = productSortArray[product.date!] ?? []
@@ -227,34 +271,37 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
         return dateArray.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(searchController.isActive && searchController.searchBar.text != "") {
-            return MyDateTime.convertDateToString(date: filterDateArray[section])
-        }
-        return MyDateTime.convertDateToString(date: dateArray[section])
-    }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let header = Bundle.main.loadNibNamed("TableSectionHeader", owner: self, options: nil)?.first as! TableSectionHeader
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        if(searchController.isActive && searchController.searchBar.text != "") {
-//            var money: Double = 0
-//            for i in 0..<filterSortProduct[filterDateArray[section]]!!.count {
-//
-//                money += filterSortProduct[dateArray[section]]!![i].money
-//            }
-//            header.lblTotal.text = MyDateTime.addCommaNumber(string: String(money))
-//            header.txtDate.text = MyDateTime.convertDateToString(date: dateArray[section])
-//        } else {
-//            var money: Double = 0
-//            for i in 0..<productSortArray[dateArray[section]]!!.count {
-//
-//                money += productSortArray[dateArray[section]]!![i].money
-//            }
-//            header.lblTotal.text = MyDateTime.addCommaNumber(string: String(money))
-//            header.txtDate.text = MyDateTime.convertDateToString(date: dateArray[section])
+//            return MyDateTime.convertDateToString(date: filterDateArray[section])
 //        }
-//        return header
+//        return MyDateTime.convertDateToString(date: dateArray[section])
 //    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = Bundle.main.loadNibNamed("TableSectionHeader", owner: self, options: nil)?.first as! TableSectionHeader
+        if(searchController.isActive && searchController.searchBar.text != "") {
+            var money: Double = 0
+            for i in 0..<filterSortProduct[filterDateArray[section]]!!.count {
+
+                money += filterSortProduct[filterDateArray[section]]!![i].money
+            }
+            header.lblTotal.text = MyDateTime.addCommaNumber(string: String(money))
+            header.txtDate.text = MyDateTime.convertDateToString(date: dateArray[section])
+        } else {
+            var money: Double = 0
+            for i in 0..<productSortArray[dateArray[section]]!!.count {
+
+                money += productSortArray[dateArray[section]]!![i].money
+            }
+            header.lblTotal.text = MyDateTime.addCommaNumber(string: String(money))
+            header.txtDate.text = MyDateTime.convertDateToString(date: dateArray[section])
+        }
+        if(selectScope == "Tất cả") {
+            header.lblTotal.isHidden = true
+        }
+        return header
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchController.isActive && searchController.searchBar.text != "") {
@@ -334,10 +381,10 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
         } else if editingStyle == .insert {
 
         }
-    }
-    
+    }      
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -363,6 +410,9 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                     destinationVC.transaction = filterProduct.type
                 }
             } else {
+                if(productArray.count == 0) {
+                    return
+                }
                 let product = productSortArray[dateArray[section]]!![row]
                 if let destinationVC = segue.destination as? DetailProductViewController {
                     if row > -1 {
@@ -394,13 +444,12 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
     
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        //let header = Bundle.main.loadNibNamed("TableSectionHeader", owner: self, options: nil)?.first as! TableSectionHeader
         switch selectedScope {
         case 1:
             loadDataByType(type: "Nhập Hàng")
             selectScope = "Nhập Hàng"
             break
-        case 2:
+        case 2:            
             loadDataByType(type: "Bán Hàng")
             selectScope = "Bán Hàng"
             break
@@ -413,6 +462,23 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     }
 }
 
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
+}
 
 
 
