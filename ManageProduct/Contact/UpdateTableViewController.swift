@@ -1,16 +1,16 @@
 //
-//  UpdateViewController.swift
+//  UpdateTableViewController.swift
 //  ManageProduct
 //
-//  Created by NXA on 9/5/18.
-//  Copyright © 2018 NXA. All rights reserved.
+//  Created by NXA on 1/29/19.
+//  Copyright © 2019 NXA. All rights reserved.
 //
 
 import UIKit
 import QuartzCore
 import CoreData
 
-class UpdateViewController: UIViewController {
+class UpdateTableViewController: UITableViewController {
     
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
     let product = ["", "Củ Sen", "Củ Hành"]
@@ -19,15 +19,16 @@ class UpdateViewController: UIViewController {
     var peopleArray = [People]()
     var id = "", name = "", phone = "", card = "", cardDate = "", bankCode = "", bankLocation = "", productText = "", typeText = ""
     
-    @IBOutlet var txtName: FloatingTextField!
-    @IBOutlet var txtPhone: FloatingTextField!
-    @IBOutlet var txtCard: FloatingTextField!
-    @IBOutlet var txtCardDate: FloatingTextField!
-    @IBOutlet var txtBankCode: FloatingTextField!
-    @IBOutlet var txtBankLocation: FloatingTextField!
-    @IBOutlet var txtProduct: FloatingTextField!
-    @IBOutlet var txtType: FloatingTextField!
+    @IBOutlet var txtName: UITextField!
+    @IBOutlet var txtPhone: UITextField!
+    @IBOutlet var txtCard: UITextField!
+    @IBOutlet var txtCardDate: UITextField!
+    @IBOutlet var txtBankCode: UITextField!
+    @IBOutlet var txtBankLocation: UITextField!
+    @IBOutlet var txtProduct: UITextField!
+    @IBOutlet var txtType: UITextField!
     @IBOutlet var btnSaveText: UIBarButtonItem!
+    
     @IBAction func btnSave(_ sender: Any) {
         let empId = id
         let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
@@ -71,11 +72,6 @@ class UpdateViewController: UIViewController {
         updateItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     private func createPickerViewType() {
         let typePicker = UIPickerView()
         typePicker.delegate = self
@@ -91,7 +87,7 @@ class UpdateViewController: UIViewController {
     private func createToolbarPickerView() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(UpdateViewController.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(UpdateTableViewController.dismissKeyboard))
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         txtType.inputAccessoryView = toolbar
@@ -124,7 +120,7 @@ class UpdateViewController: UIViewController {
     
 }
 
-extension UpdateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension UpdateTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -160,12 +156,3 @@ extension UpdateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         }
     }
 }
-
-
-
-
-
-
-
-
-

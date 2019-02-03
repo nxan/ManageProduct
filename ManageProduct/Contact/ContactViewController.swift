@@ -19,8 +19,6 @@ class ContactViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpNavBar()
@@ -240,7 +238,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 }
             }
         } else if(segue.identifier == "showAddNew") {
-            _ = segue.destination as? AddNewViewController
+            _ = segue.destination as? AddNewTableViewController
         }
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class UpdateProductViewController: UIViewController {
+class UpdateProductViewController: UITableViewController {
 
     var tempProduct = ""
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
@@ -29,8 +29,6 @@ class UpdateProductViewController: UIViewController {
     @IBOutlet var txtUnit: FloatingTextField!
     @IBOutlet var txtNote: FloatingTextField!
     @IBOutlet var lbSwitch: UISwitch!
-    @IBOutlet var txtType: UILabel!
-    @IBOutlet var lbEditHand: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +44,11 @@ class UpdateProductViewController: UIViewController {
     
     @IBAction func btnSwitch(_ sender: Any) {
         if lbSwitch.isOn {
-            lbEditHand.text = "Bật"
             createPickerViewProduct()
             createPickerViewPeople()
             createToolbarPickerView()
             txtPeople.isEnabled = true
         } else {
-            lbEditHand.text = "Tắt"
             createPickerViewProduct()
             createPickerViewPeople()
             createToolbarPickerView()
@@ -135,7 +131,6 @@ class UpdateProductViewController: UIViewController {
         txtUnit.text = unit
         txtDate.text = date
         txtNote.text = note
-        txtType.text = "Thông tin " + transaction
     }
   
     private func createPickerViewProduct() {

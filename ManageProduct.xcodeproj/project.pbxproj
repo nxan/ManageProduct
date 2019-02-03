@@ -10,19 +10,20 @@
 		EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */; };
 		EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05C88A213E773D001067C3 /* DetailContactViewController.swift */; };
 		EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */; };
+		EF1D86CC2206D5160087A56A /* CheckTypeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1D86CB2206D5160087A56A /* CheckTypeTableViewController.swift */; };
 		EF22DA262152B1D100A59016 /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */; };
 		EF22DA272152B1D100A59016 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF22DA252152B1D100A59016 /* ProductTableViewCell.xib */; };
 		EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */; };
 		EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */; };
-		EF2C882C2140310000AF7EA8 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */; };
+		EF32F7C921C2AADB002EFCCA /* AddNewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32F7C821C2AADB002EFCCA /* AddNewTableViewController.swift */; };
 		EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF468D1E2157A5A400E90E07 /* TableSectionHeader.swift */; };
 		EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */; };
 		EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */; };
 		EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */; };
 		EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF93926E2161DEBD0029977A /* MyCoreData.swift */; };
+		EFCA9FB12200B6B400A7CE51 /* UpdateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCA9FB02200B6B400A7CE51 /* UpdateTableViewController.swift */; };
 		EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */; };
 		EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */; };
-		EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */; };
 		EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD666F52143CE54000DD9A4 /* GroupViewController.swift */; };
 		EFDD983D2164B34000B01C01 /* MyDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFDD983C2164B34000B01C01 /* MyDateTime.swift */; };
 		EFE0A45E21A4030300DC1D28 /* SearchOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE0A45D21A4030300DC1D28 /* SearchOrderViewController.swift */; };
@@ -52,19 +53,20 @@
 		EF05C867213E311F001067C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EF05C88A213E773D001067C3 /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
 		EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		EF1D86CB2206D5160087A56A /* CheckTypeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckTypeTableViewController.swift; sourceTree = "<group>"; };
 		EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		EF22DA252152B1D100A59016 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
 		EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
-		EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		EF32F7C821C2AADB002EFCCA /* AddNewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableViewController.swift; sourceTree = "<group>"; };
 		EF468D1E2157A5A400E90E07 /* TableSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionHeader.swift; sourceTree = "<group>"; };
 		EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSectionHeader.xib; sourceTree = "<group>"; };
 		EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
 		EF93926E2161DEBD0029977A /* MyCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreData.swift; sourceTree = "<group>"; };
+		EFCA9FB02200B6B400A7CE51 /* UpdateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTableViewController.swift; sourceTree = "<group>"; };
 		EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
 		EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
-		EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewViewController.swift; sourceTree = "<group>"; };
 		EFD666F52143CE54000DD9A4 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		EFDD983C2164B34000B01C01 /* MyDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDateTime.swift; sourceTree = "<group>"; };
 		EFE0A45D21A4030300DC1D28 /* SearchOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOrderViewController.swift; sourceTree = "<group>"; };
@@ -111,13 +113,13 @@
 		EFCE0DE02147A507008BE2B0 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
-				EFD26BC1213A55C400A31CDC /* AddNewViewController.swift */,
+				EF32F7C821C2AADB002EFCCA /* AddNewTableViewController.swift */,
 				EF05C88A213E773D001067C3 /* DetailContactViewController.swift */,
 				EFD666F52143CE54000DD9A4 /* GroupViewController.swift */,
-				EF2C882B2140310000AF7EA8 /* UpdateViewController.swift */,
 				EFEE303C2139862B0026B50B /* ContactViewController.swift */,
 				EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */,
 				EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */,
+				EFCA9FB02200B6B400A7CE51 /* UpdateTableViewController.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -135,6 +137,7 @@
 				EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */,
 				EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */,
 				EFE412042168AF78000A6AF7 /* GroupTimeViewController.swift */,
+				EF1D86CB2206D5160087A56A /* CheckTypeTableViewController.swift */,
 			);
 			path = ImportProduct;
 			sourceTree = "<group>";
@@ -252,18 +255,19 @@
 				EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */,
 				EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */,
 				EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */,
+				EF32F7C921C2AADB002EFCCA /* AddNewTableViewController.swift in Sources */,
 				EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */,
 				EFEE302921397EAA0026B50B /* AppDelegate.swift in Sources */,
-				EFD26BC2213A55C400A31CDC /* AddNewViewController.swift in Sources */,
 				EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */,
+				EFCA9FB12200B6B400A7CE51 /* UpdateTableViewController.swift in Sources */,
 				EFE0A46021A410EB00DC1D28 /* ResultOrderViewController.swift in Sources */,
 				EFE412052168AF78000A6AF7 /* GroupTimeViewController.swift in Sources */,
 				EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */,
+				EF1D86CC2206D5160087A56A /* CheckTypeTableViewController.swift in Sources */,
 				EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */,
 				EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */,
 				EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */,
 				EF22DA262152B1D100A59016 /* ProductTableViewCell.swift in Sources */,
-				EF2C882C2140310000AF7EA8 /* UpdateViewController.swift in Sources */,
 				EFEE303D2139862B0026B50B /* ContactViewController.swift in Sources */,
 				EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */,
 				EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */,

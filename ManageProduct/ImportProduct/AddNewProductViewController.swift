@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddNewProductViewController: UIViewController {
+class AddNewProductViewController: UITableViewController {
     
     var tempProduct = ""
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -19,17 +19,18 @@ class AddNewProductViewController: UIViewController {
     var productArray = [Product]()
     let datePicker = UIDatePicker()
     
-    @IBOutlet var txtProductName: FloatingTextField!
-    @IBOutlet var txtPeople: FloatingTextField!
-    @IBOutlet var txtDate: FloatingTextField!
-    @IBOutlet var txtWeight: FloatingTextField!
-    @IBOutlet var txtMoney: FloatingTextField!
-    @IBOutlet var txtUnit: FloatingTextField!
-    @IBOutlet var segmentedControl: UISegmentedControl!
-    @IBOutlet var lbInfo: UILabel!
-    @IBOutlet var txtNote: FloatingTextField!
-    @IBOutlet var lbSwitch: UILabel!
+    @IBOutlet var txtProductName: UITextField!
+    @IBOutlet var txtPeople: UITextField!
+    @IBOutlet var txtDate: UITextField!
+    @IBOutlet var txtWeight: UITextField!
+    @IBOutlet var txtMoney: UITextField!
+    @IBOutlet var txtUnit: UITextField!
+    @IBOutlet var txtNote: UITextField!
     @IBOutlet var SwitchText: UISwitch!
+    @IBOutlet var lblType: UILabel!
+    @IBOutlet var lblPeopleType: UILabel!
+    
+    
     @IBOutlet var lbSave: UINavigationBar!
     
     override func viewDidLoad() {
@@ -42,7 +43,21 @@ class AddNewProductViewController: UIViewController {
         txtMoney.isEnabled = false
         txtDate.text = MyDateTime.getCurrentDate()
         txtMoney.text = "0"
-        lbInfo.attributedText = boldString(text1: "Nhập Hàng")           
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        lblType.text = UserDefaults.standard.string(forKey: "key_Value")
+        if lblType.text == "Nhập Hàng" {
+            lblPeopleType.text = "Người nhập hàng"
+        } else {
+            lblPeopleType.text = "Khách Hàng"
+        }
+        refreshTextField()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        let userDefaultStore = UserDefaults.standard
+        userDefaultStore.set(lblType.text, forKey: "peopleTypeFromParent")
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,30 +69,13 @@ class AddNewProductViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func indexChanged(_ sender: Any) {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            lbInfo.attributedText = boldString(text1: "Nhập Hàng")
-            refreshTextField()
-            break
-        case 1:
-            lbInfo.attributedText = boldString(text1: "Bán Hàng")
-            refreshTextField()
-            break
-        default:
-            break
-        }
-    }
-    
     @IBAction func btnSwitch(_ sender: Any) {
         if SwitchText.isOn {
-            lbSwitch.text = "Bật"
             createPickerViewProduct()
             createPickerViewPeople()
             createToolbarPickerView()
             txtPeople.isEnabled = true
         } else {
-            lbSwitch.text = "Tắt"
             createPickerViewProduct()
             createPickerViewPeople()
             createToolbarPickerView()
@@ -115,7 +113,7 @@ class AddNewProductViewController: UIViewController {
         newItem.weight = (MyDateTime.removeCommaNumber(string: txtWeight.text!)! as NSString).doubleValue
         newItem.money = (MyDateTime.removeCommaNumber(string: txtMoney.text!)! as NSString).doubleValue
         newItem.note = txtNote.text
-        newItem.type = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)        
+        newItem.type = lblType.text
         self.productArray.insert(newItem, at: 0)
         MyCoreData.saveItem()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
@@ -200,9 +198,9 @@ class AddNewProductViewController: UIViewController {
         view.endEditing(true)
     }
     
-    private func getPeople(product: String, type: Int) -> [String] {
+    private func getPeople(product: String, type: String) -> [String] {
         let temp = product
-        let tempTypePeople = (type == 0) ? "Người Nhập Hàng" : "Khách Hàng"
+        let tempTypePeople = (type == "Nhập Hàng") ? "Người Nhập Hàng" : "Khách Hàng"
         var arrPeople = [String]()
         let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
         let fetchRequest = NSFetchRequest<NSDictionary>()
@@ -257,7 +255,7 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product.count
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex).count
+            item = getPeople(product: txtProductName.text!, type: lblType.text!).count
         }
         return item
     }
@@ -267,7 +265,7 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product[row]
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex)[row]
+            item = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
         }
         return item
     }
@@ -281,7 +279,7 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 tempProduct = selectItem
             }            
         } else if(txtPeople.isEditing) {
-            selectItem = getPeople(product: txtProductName.text!, type: segmentedControl.selectedSegmentIndex)[row]
+            selectItem = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
             txtPeople.text = selectItem
         }
     }

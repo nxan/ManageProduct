@@ -1,8 +1,8 @@
 //
-//  AddNewViewController.swift
+//  AddNewTableViewController.swift
 //  ManageProduct
 //
-//  Created by NXA on 9/1/18.
+//  Created by NXA on 12/13/18.
 //  Copyright © 2018 NXA. All rights reserved.
 //
 
@@ -15,8 +15,7 @@ protocol AddNewToDelegate {
     func updatePeoPle(people: People)
 }
 
-class AddNewViewController: UIViewController {
-    
+class AddNewTableViewController: UITableViewController {
     
     var delegate: AddNewToDelegate?
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
@@ -25,15 +24,16 @@ class AddNewViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var peopleArray = [People]()
     
-    @IBOutlet var txtName: FloatingTextField!
-    @IBOutlet var txtPhone: FloatingTextField!
-    @IBOutlet var txtCard: FloatingTextField!
-    @IBOutlet var txtCardDate: FloatingTextField!
-    @IBOutlet var txtBankCode: FloatingTextField!
-    @IBOutlet var txtBankLocation: FloatingTextField!
-    @IBOutlet var txtProduct: FloatingTextField!
-    @IBOutlet var txtType: FloatingTextField!
+    @IBOutlet var txtName: UITextField!
+    @IBOutlet var txtPhone: UITextField!
+    @IBOutlet var txtCard: UITextField!
+    @IBOutlet var txtCardDate: UITextField!
+    @IBOutlet var txtBankCode: UITextField!
+    @IBOutlet var txtBankLocation: UITextField!
+    @IBOutlet var txtProduct: UITextField!
+    @IBOutlet var txtType: UITextField!
     @IBOutlet var btnSaveText: UIBarButtonItem!
+    
     @IBAction func btnSave(_ sender: Any) {
         let newItem = People(context: self.context)
         newItem.id = UUID.init().uuidString
@@ -55,19 +55,27 @@ class AddNewViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func txtNameDidChanged(_ sender: Any) {
+    @IBAction func txtNameChanged(_ sender: Any) {
         btnSaveText.isEnabled = true
         if(txtName.text == "") {
             btnSaveText.isEnabled = false
         }
     }
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         createPickerViewType()
         createPickerViewProduct()
         createToolbarPickerView()
         btnSaveText.isEnabled = false
+    }
+    
+    private func saveItem() {
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            print("Error save")
+        }
     }
     
     private func createPickerViewType() {
@@ -85,7 +93,7 @@ class AddNewViewController: UIViewController {
     private func createToolbarPickerView() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(AddNewViewController.dismissKeyboard))
+        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(AddNewTableViewController.dismissKeyboard))
         toolbar.setItems([doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         txtType.inputAccessoryView = toolbar
@@ -95,25 +103,9 @@ class AddNewViewController: UIViewController {
     @objc private func dismissKeyboard() {
         view.endEditing(true)
     }
-    
-    private func saveItem() {
-        do {
-        
-            try context.save()
-            print("Saved")
-        } catch {
-            print("Error save")
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
-extension AddNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddNewTableViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -148,19 +140,5 @@ extension AddNewViewController: UIPickerViewDelegate, UIPickerViewDataSource {
             txtProduct.text = selectItem
         }
     }
+    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

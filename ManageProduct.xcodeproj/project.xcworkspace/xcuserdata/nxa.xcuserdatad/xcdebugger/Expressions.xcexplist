@@ -14,13 +14,16 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddNewProductViewController.txtWeightEditChanged(_:):AddNewProductViewController.swift">
+         contextName = "ProductViewController.updateSearchResults(for:):ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "txtWeight.text">
+               value = "filterProduct.count">
             </PersistentString>
             <PersistentString
-               value = "txtUnit.text">
+               value = "filterSortProduct.count">
+            </PersistentString>
+            <PersistentString
+               value = "productArray.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -114,6 +117,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddNewProductViewController.pickerView(_:numberOfRowsInComponent:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "lblType.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddNewProductViewController.getPeople(product:type:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "fetchRequest.predicate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ProductViewController.searchBar(_:selectedScopeButtonIndexDidChange:):ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -129,6 +148,14 @@
          <PersistentStrings>
             <PersistentString
                value = "id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AddNewProductViewController.viewWillDisappear(_:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "lblType.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -243,6 +270,14 @@
          contextName = "GroupViewController.btnDone(_:):GroupViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "CheckTypeTableViewController.viewWillAppear(_:):CheckTypeTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContactViewController.loadData():ContactViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -291,6 +326,14 @@
          <PersistentStrings>
             <PersistentString
                value = "peopleArray[row].type">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DetailContactViewController.prepare(for:sender:):DetailContactViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "segue.destination">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -367,6 +410,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddNewProductViewController.pickerView(_:titleForRow:forComponent:):AddNewProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "lblType.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ProductViewController.loadDataByDate(beginDate:endDate:):ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -414,16 +465,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ProductViewController.updateSearchResults(for:):ProductViewController.swift">
+         contextName = "AddNewProductViewController.txtWeightEditChanged(_:):AddNewProductViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "filterProduct.count">
+               value = "txtWeight.text">
             </PersistentString>
             <PersistentString
-               value = "filterSortProduct.count">
-            </PersistentString>
-            <PersistentString
-               value = "productArray.count">
+               value = "txtUnit.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

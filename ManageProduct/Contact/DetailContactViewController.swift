@@ -50,7 +50,7 @@ class DetailContactViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(txtPhone.text != "") {
-            let updateVC = segue.destination as! UpdateViewController
+            let updateVC = segue.destination as! UpdateTableViewController            
             updateVC.id = id!
             updateVC.name = self.txtName.text!
             updateVC.phone = self.txtPhone.text!
@@ -61,6 +61,7 @@ class DetailContactViewController: UIViewController {
             updateVC.productText = self.txtProduct.text!
             updateVC.typeText = self.txtType.text!
         }
+        
     }
     
 }

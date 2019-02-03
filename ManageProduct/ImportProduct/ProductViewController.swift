@@ -429,7 +429,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 }
             }
         } else if(segue.identifier == "showAddNewProduct") {
-            _ = segue.destination as? AddNewViewController
+            _ = segue.destination as? AddNewTableViewController
         }
     }
     
