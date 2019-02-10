@@ -16,7 +16,6 @@
 		EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */; };
 		EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */; };
 		EF32F7C921C2AADB002EFCCA /* AddNewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF32F7C821C2AADB002EFCCA /* AddNewTableViewController.swift */; };
-		EF33605D2210878D00ACE7DB /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF33605C2210878D00ACE7DB /* Launch Screen.storyboard */; };
 		EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF468D1E2157A5A400E90E07 /* TableSectionHeader.swift */; };
 		EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */; };
 		EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */; };
@@ -67,7 +66,6 @@
 		EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactTableViewCell.xib; sourceTree = "<group>"; };
 		EF32F7C821C2AADB002EFCCA /* AddNewTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTableViewController.swift; sourceTree = "<group>"; };
-		EF33605C2210878D00ACE7DB /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EF468D1E2157A5A400E90E07 /* TableSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionHeader.swift; sourceTree = "<group>"; };
 		EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSectionHeader.xib; sourceTree = "<group>"; };
 		EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				EFCE0DE12147A97A008BE2B0 /* ImportProduct */,
 				EFB4E3292163743B00B5E5BC /* SearchOrder */,
 				EFEE302C21397EAA0026B50B /* Main.storyboard */,
-				EF33605C2210878D00ACE7DB /* Launch Screen.storyboard */,
 				EFEE302F21397EAA0026B50B /* Assets.xcassets */,
 				EFEE303421397EAA0026B50B /* Info.plist */,
 				EFFF235C213AE63C007797A2 /* FloatingTextField.swift */,
@@ -263,7 +260,6 @@
 				EF22DA272152B1D100A59016 /* ProductTableViewCell.xib in Resources */,
 				EFB02737220FC2680012EDCE /* SearchTableSectionHeader.xib in Resources */,
 				EFC8765822084BF50091B010 /* ExpandableHeaderView.xib in Resources */,
-				EF33605D2210878D00ACE7DB /* Launch Screen.storyboard in Resources */,
 				EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */,
 				EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */,
 				EFB02733220FBEBB0012EDCE /* SearchResultTableViewCell.xib in Resources */,
@@ -437,7 +433,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6DNR25453;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -460,7 +455,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6DNR25453;
 				FRAMEWORK_SEARCH_PATHS = (

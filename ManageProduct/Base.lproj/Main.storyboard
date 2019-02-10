@@ -416,7 +416,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Uas-RE-H0r">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="512" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Liên hệ mới" id="2Ld-Hd-Rfq">
@@ -1237,7 +1237,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="a1K-6S-Bfe">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="512" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Cập nhật danh ba" id="U03-2R-A7A">
@@ -1828,7 +1828,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="aEw-GH-F3r">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="512" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Cập nhật đơn hàng" id="rau-iD-TC7">
