@@ -27,9 +27,9 @@ public class MyCoreData {
         }
     }
     
-    public static func loadItem(array: [Product]) {
+    public static func loadItem(array: [Transaction]) {
         var arrayItem = array
-        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
            arrayItem = try getContext().fetch(fetchRequest)
         } catch {
@@ -40,7 +40,7 @@ public class MyCoreData {
      
     
     public static func removeItem(id: String) {
-        let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id = '\(id)'", getContext())
         let fetchResult = try! getContext().fetch(fetchRequest)
         for result in fetchResult {
@@ -48,10 +48,10 @@ public class MyCoreData {
         }        
     }
     
-    public static func loadDataByAttribute(array: [Product], attribute: String, string: String) {
+    public static func loadDataByAttribute(array: [Transaction], attribute: String, string: String) {
         var arrayItem = array
         do {
-            let fetchRequest: NSFetchRequest<Product> = Product.fetchRequest()
+            let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "\(attribute) == %@", string)
             let fetchResult = try getContext().fetch(fetchRequest)
             for result in fetchResult {
@@ -64,7 +64,7 @@ public class MyCoreData {
     
     public static func getAttribute(attribute: String) -> [String] {
         var arrayDate = [String]()
-        let entityDescription = NSEntityDescription.entity(forEntityName: "Product", in: getContext())
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Transaction", in: getContext())
         let fetchRequest = NSFetchRequest<NSDictionary>()
         fetchRequest.entity = entityDescription
         fetchRequest.includesPropertyValues = true

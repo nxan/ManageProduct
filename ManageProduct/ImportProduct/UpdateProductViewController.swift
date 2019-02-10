@@ -13,10 +13,10 @@ class UpdateProductViewController: UITableViewController {
 
     var tempProduct = ""
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
-    let product = ["", "Củ Sen", "Củ Hành"]
+    var product = [""]
     var selectItem: String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    var productArray = [Product]()
+    var productArray = [Transaction]()
     var id = "", productName = "", people = "", money = "", weight = "", unit = "", date = "", note = "", transaction = ""
     let datePicker = UIDatePicker()
     let typePicker = UIPickerView()
@@ -40,6 +40,9 @@ class UpdateProductViewController: UITableViewController {
         txtMoney.isEnabled = false
         tempProduct = txtProductName.text!
         typePicker.delegate = self
+        product = getProductName()
+        txtPeople.autocapitalizationType = .words
+        txtProductName.autocapitalizationType = .sentences
     }
     
     @IBAction func btnSwitch(_ sender: Any) {
@@ -59,7 +62,7 @@ class UpdateProductViewController: UITableViewController {
     
     @IBAction func btnEdit(_ sender: Any) {
         let empId = id
-        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Product")
+        let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "Transaction")
         let predicate = NSPredicate(format: "id = '\(empId)'")
         fetchRequest.predicate = predicate
         do
@@ -74,6 +77,7 @@ class UpdateProductViewController: UITableViewController {
                 objectUpdate.setValue((MyDateTime.removeCommaNumber(string: txtWeight.text!)! as NSString).doubleValue, forKey: "weight")
                 objectUpdate.setValue((MyDateTime.removeCommaNumber(string: txtUnit.text!)! as NSString).doubleValue, forKey: "unit")
                 objectUpdate.setValue(MyDateTime.convertStringToDate(string: txtDate.text!), forKey: "date")
+                objectUpdate.setValue(txtNote.text, forKey: "note")
                 MyCoreData.saveItem()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
                 dismiss(animated: true, completion: nil)
@@ -131,6 +135,29 @@ class UpdateProductViewController: UITableViewController {
         txtUnit.text = unit
         txtDate.text = date
         txtNote.text = note
+    }
+    
+    private func getProductName() -> [String] {
+        var arrProduct = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Product", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let productList = try context.fetch(fetchRequest)
+            let resultDict = productList as! [[String : String]]
+            for r in resultDict {
+                arrProduct.append(r["name"]!)
+            }
+            arrProduct.insert("", at: 0)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return arrProduct
     }
   
     private func createPickerViewProduct() {
@@ -191,6 +218,30 @@ class UpdateProductViewController: UITableViewController {
         self.view.endEditing(true)
     }
     
+    private func getPeopleCustomer(tempTypePeople: String) -> [String] {
+        var arrProduct = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.predicate = NSPredicate(format: "type == %@", tempTypePeople)
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let productList = try context.fetch(fetchRequest)
+            let resultDict = productList as! [[String : String]]
+            for r in resultDict {
+                arrProduct.append(r["name"]!)
+            }
+            arrProduct.insert("", at: 0)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return arrProduct
+    }
+    
     private func getPeople(product: String, type: String) -> [String] {
         let temp = product
         let tempTypePeople = (type == "Nhập Hàng") ? "Người Nhập Hàng" : "Khách Hàng"
@@ -234,7 +285,11 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product.count
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!, type: transaction).count
+            if(UserDefaults.standard.string(forKey: "key_type") == "Khách hàng") {
+                item = getPeopleCustomer(tempTypePeople: "Khách Hàng").count
+            } else {
+                item = getPeople(product: txtProductName.text!, type: transaction).count
+            }
         }
         return item
     }
@@ -244,7 +299,12 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product[row]
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!, type: transaction)[row]
+            if(UserDefaults.standard.string(forKey: "key_type") == "Khách hàng") {
+                item = getPeopleCustomer(tempTypePeople: "Khách Hàng")[row]
+            } else {
+                item = getPeople(product: txtProductName.text!, type: transaction)[row]
+            }
+            
         }
         return item
     }
@@ -254,12 +314,17 @@ extension UpdateProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
             selectItem = product[row]
             txtProductName.text = selectItem
             if(tempProduct != txtProductName.text) {
-                txtPeople.text = ""
+//                txtPeople.text = ""
                 tempProduct = selectItem!
             }
         } else if(txtPeople.isEditing) {
-            selectItem = getPeople(product: txtProductName.text!, type: transaction)[row]
-            txtPeople.text = selectItem
+            if(UserDefaults.standard.string(forKey: "key_type") == "Khách hàng") {
+                selectItem = getPeopleCustomer(tempTypePeople: "Khách Hàng")[row]
+                txtPeople.text = selectItem
+            } else {
+                selectItem = getPeople(product: txtProductName.text!, type: transaction)[row]
+                txtPeople.text = selectItem
+            }
         }
     }
     

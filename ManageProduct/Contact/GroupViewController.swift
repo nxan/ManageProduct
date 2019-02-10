@@ -20,7 +20,17 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        selectType = UserDefaults.standard.string(forKey: "type")!
+        if selectType == "Tất cả" {
+            selectIndex = 0
+        } else if selectType == "Người Nhập Hàng" {
+            selectIndex = 1
+        } else {
+            selectIndex = 2
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,7 +40,7 @@ class GroupViewController: UIViewController {
     
     @IBAction func btnDone(_ sender: Any) {
         let userDefaultStore = UserDefaults.standard
-        userDefaultStore.set(selectType, forKey: "key_Value")
+        userDefaultStore.set(selectType, forKey: "type")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadType"), object: nil)
         dismiss(animated: true, completion: nil)
     }

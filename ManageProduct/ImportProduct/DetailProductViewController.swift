@@ -21,6 +21,8 @@ class DetailProductViewController: UIViewController {
     var id, productName, money, people, unit, weight, date, note, transaction: String?
     
     @IBAction func btnEdit(_ sender: Any) {
+        let userDefaultStore = UserDefaults.standard
+        userDefaultStore.set(txtPeople.placeholder, forKey: "key_type")
         performSegue(withIdentifier: "showDetailProduct", sender: self)
     }
     
@@ -36,8 +38,10 @@ class DetailProductViewController: UIViewController {
             txtNote.text = note
             if(transaction == "Nhập Hàng") {
                 txtMoney.textColor = UIColor.red
+                txtPeople.placeholder = "Người nhập hàng"
             } else {
                 txtMoney.textColor = UIColor(red: 24/255, green: 160/255, blue: 42/255, alpha: 1)
+                txtPeople.placeholder = "Khách hàng"
             }
         }
     }

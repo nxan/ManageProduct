@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -217,6 +216,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jpe-tw-OOc">
+                                <rect key="frame" x="19" y="30" width="135" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Thêm sản phẩm"/>
+                                <connections>
+                                    <action selector="displayAlertAddNewProduct:" destination="ywp-kb-SvO" eventType="touchUpInside" id="sOi-vr-o2f"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2dI-Tc-cNu"/>
@@ -235,7 +243,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l3F-rq-3In" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="227" y="431"/>
+            <point key="canvasLocation" x="226.75781249999997" y="430.46875"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FR6-lQ-aDb">
@@ -361,7 +369,7 @@
                         <barButtonItem key="rightBarButtonItem" image="addnewproduct" id="ate-41-73F">
                             <connections>
                                 <action selector="btnAddNew:" destination="xAr-0H-dEb" id="HtI-DJ-ci7"/>
-                                <segue destination="9bd-qv-v0x" kind="presentation" identifier="showAddNew" modalPresentationStyle="formSheet" id="q0f-8R-Qq9"/>
+                                <segue destination="9bd-qv-v0x" kind="presentation" identifier="showAddNew" modalPresentationStyle="pageSheet" id="q0f-8R-Qq9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -379,11 +387,11 @@
             <objects>
                 <viewController storyboardIdentifier="AddNew" id="9bd-qv-v0x" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6vZ-q3-re9">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oUS-xR-QGf">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="748"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="ZgV-MB-7te" kind="embed" id="7SY-Km-0jg"/>
@@ -404,11 +412,11 @@
             <objects>
                 <tableViewController id="ZgV-MB-7te" customClass="AddNewTableViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Gdz-vB-axz">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="748"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="Uas-RE-H0r">
-                            <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Liên hệ mới" id="2Ld-Hd-Rfq">
@@ -429,10 +437,10 @@
                             <tableViewSection headerTitle="Thông tin cá nhân" id="Yfw-Ne-bOw">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uyR-V3-Aja">
-                                        <rect key="frame" x="0.0" y="99.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="99.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uyR-V3-Aja" id="dRi-NF-tOO">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập tên khách hàng..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qg7-ov-VP4">
@@ -440,7 +448,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                     <connections>
                                                         <action selector="txtNameChanged:" destination="ZgV-MB-7te" eventType="editingChanged" id="6BH-hP-5YV"/>
                                                     </connections>
@@ -456,10 +464,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="oe8-1c-05J">
-                                        <rect key="frame" x="0.0" y="143.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="143.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oe8-1c-05J" id="ST0-6B-m22">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập số điện thoại..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zwc-jF-3kZ">
@@ -467,7 +475,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="tel"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Số điện thoại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gh-Q0-EjN">
                                                     <rect key="frame" x="20" y="12" width="100" height="21"/>
@@ -480,10 +488,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="rSl-fe-PM7">
-                                        <rect key="frame" x="0.0" y="187.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="187.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rSl-fe-PM7" id="Q98-hg-noC">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập chứng minh thư..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jxr-rt-Ztx">
@@ -504,10 +512,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uv3-67-aAn">
-                                        <rect key="frame" x="0.0" y="231.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="231.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uv3-67-aAn" id="xuD-0I-52N">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nhập ngày cấp CMND..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bUm-Bd-Vf8">
@@ -532,10 +540,10 @@
                             <tableViewSection headerTitle="Tài khoản ngân hàng" id="zyQ-1J-XQO">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="d2c-zx-K8F">
-                                        <rect key="frame" x="0.0" y="331.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="331.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d2c-zx-K8F" id="ha1-4D-1my">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Số tài khoản" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16b-7f-E1Y">
@@ -556,10 +564,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="SVj-YP-C2K">
-                                        <rect key="frame" x="0.0" y="375.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="375.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SVj-YP-C2K" id="JAi-46-xA8">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Chi nhánh" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fl0-pV-98k">
@@ -584,10 +592,10 @@
                             <tableViewSection headerTitle="Khách hàng" id="RuW-mF-Ine">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="3kE-RY-QY5">
-                                        <rect key="frame" x="0.0" y="475.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="475.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3kE-RY-QY5" id="8Fx-sC-1yA">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loại khách hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GuC-dl-gfY">
@@ -608,10 +616,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="fJr-fq-2yo">
-                                        <rect key="frame" x="0.0" y="519.5" width="540" height="44"/>
+                                        <rect key="frame" x="0.0" y="519.5" width="768" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fJr-fq-2yo" id="c4L-T6-ygo">
-                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loại sản phẩm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zOX-da-g3F">
@@ -643,57 +651,92 @@
                         <outlet property="txtCardDate" destination="bUm-Bd-Vf8" id="xpw-EJ-3im"/>
                         <outlet property="txtName" destination="qg7-ov-VP4" id="gw4-bl-VY3"/>
                         <outlet property="txtPhone" destination="Zwc-jF-3kZ" id="Xn4-5M-7wQ"/>
-                        <outlet property="txtProduct" destination="zXt-R3-bO4" id="c0m-yb-fBL"/>
-                        <outlet property="txtType" destination="Oqs-wz-GGw" id="Ewt-km-iPr"/>
+                        <outlet property="txtProduct" destination="Oqs-wz-GGw" id="mrh-4a-1KY"/>
+                        <outlet property="txtType" destination="zXt-R3-bO4" id="tcD-Pe-i3z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUh-zP-jQr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2206.640625" y="1069.53125"/>
         </scene>
-        <!--Result Order View Controller-->
+        <!--Search Result View Controller-->
         <scene sceneID="mkj-dW-Tk7">
             <objects>
-                <viewController id="jce-xK-hKk" customClass="ResultOrderViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jce-xK-hKk" customClass="SearchResultViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lYr-FX-XlV">
                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CeF-gb-rdd">
+                                <rect key="frame" x="0.0" y="168" width="704" height="550"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="T55-CX-xDn" detailTextLabel="kdT-Iq-cno" rowHeight="88" style="IBUITableViewCellStyleValue1" id="jgU-UG-Jtm">
+                                        <rect key="frame" x="0.0" y="28" width="704" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jgU-UG-Jtm" id="GsC-ut-QU9">
+                                            <rect key="frame" x="0.0" y="0.0" width="704" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T55-CX-xDn">
+                                                    <rect key="frame" x="15" y="34" width="32.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kdT-Iq-cno">
+                                                    <rect key="frame" x="645" y="34" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="jce-xK-hKk" id="Udk-sH-hOp"/>
+                                    <outlet property="delegate" destination="jce-xK-hKk" id="xeN-Ic-wBP"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZm-ea-rs3">
+                                <rect key="frame" x="1" y="19" width="702" height="70"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Thông tin khách hàng" largeTitleDisplayMode="always" id="DzP-k3-xdX"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tổng tiền:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lav-zE-3YV">
+                                <rect key="frame" x="377" y="110" width="306" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Họ và Tên:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRv-tB-dAg">
+                                <rect key="frame" x="20" y="110" width="292" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="2XK-M0-V4j"/>
+                        <viewLayoutGuide key="safeArea" id="ix1-df-IrF"/>
                     </view>
+                    <connections>
+                        <outlet property="lblName" destination="QRv-tB-dAg" id="gLH-pG-GOF"/>
+                        <outlet property="lblTotalMoney" destination="Lav-zE-3YV" id="OFX-c2-Gzm"/>
+                        <outlet property="tableView" destination="CeF-gb-rdd" id="I4f-af-EEX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gu4-IK-2Ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2167" y="629"/>
-        </scene>
-        <!--Tìm Đơn Hàng-->
-        <scene sceneID="oMi-Sj-3uh">
-            <objects>
-                <tableViewController id="nvk-Og-cNZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="nS7-O8-pNE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ISV-kC-0Zb">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ISV-kC-0Zb" id="0W4-fa-gY7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="nvk-Og-cNZ" id="r5M-bo-ckB"/>
-                            <outlet property="delegate" destination="nvk-Og-cNZ" id="hNm-qQ-cF2"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Tìm Đơn Hàng" largeTitleDisplayMode="always" id="DDp-9l-rzv"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LJl-Tb-Avj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1413" y="-1142"/>
+            <point key="canvasLocation" x="-2167.3828125" y="628.90625"/>
         </scene>
         <!--Tìm Đơn Hàng-->
         <scene sceneID="hgm-6a-Wgn">
@@ -708,18 +751,31 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="Z9i-Qm-HPG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="labelCell" textLabel="UyQ-3u-IdJ" style="IBUITableViewCellStyleDefault" id="Z9i-Qm-HPG">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z9i-Qm-HPG" id="dTt-wB-4S7">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UyQ-3u-IdJ">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="nvk-Og-cNZ" kind="push" id="337-Rb-e3h"/>
+                                            <segue destination="jce-xK-hKk" kind="showDetail" identifier="showSearchCustomer" id="PXn-ML-hbw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Rxp-ZE-8HJ" id="kzx-6M-exq"/>
+                                    <outlet property="delegate" destination="Rxp-ZE-8HJ" id="Ght-g0-1Rv"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -727,7 +783,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Tìm Đơn Hàng" largeTitleDisplayMode="always" id="h8A-lQ-oCX"/>
                     <connections>
-                        <outlet property="tableView" destination="NO2-Ik-Sci" id="2qb-Op-y3e"/>
+                        <outlet property="tableView" destination="NO2-Ik-Sci" id="CCV-60-kVs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vb9-Pv-tUk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -766,7 +822,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGd-7k-GXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2872" y="-137"/>
+            <point key="canvasLocation" x="-2985" y="84"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qJc-7d-ebV">
@@ -775,7 +831,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9jj-6d-EvH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.018645260483026505" green="0.47766226530075073" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="GvH-7L-Ac6" kind="relationship" relationship="viewControllers" id="j5c-Vg-RNE"/>
@@ -1213,7 +1269,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Họ và Tên" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NzS-Al-HR9">
                                                     <rect key="frame" x="20" y="12" width="117" height="21"/>
@@ -1237,7 +1293,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="tel"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Số điện thoại" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRj-IF-ReH">
                                                     <rect key="frame" x="20" y="12" width="100" height="21"/>
@@ -1413,8 +1469,8 @@
                         <outlet property="txtCardDate" destination="rJg-a0-8nU" id="AYE-pW-AoF"/>
                         <outlet property="txtName" destination="aMp-yB-X5c" id="07L-a4-T0s"/>
                         <outlet property="txtPhone" destination="GVf-e2-dHd" id="QHA-jD-Fyq"/>
-                        <outlet property="txtProduct" destination="21l-cR-Zri" id="eca-JJ-HLM"/>
-                        <outlet property="txtType" destination="1Pu-KJ-W18" id="0ii-KN-6qp"/>
+                        <outlet property="txtProduct" destination="1Pu-KJ-W18" id="PO6-Z3-yVY"/>
+                        <outlet property="txtType" destination="21l-cR-Zri" id="eNX-4S-TeP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tnY-x2-U64" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1461,7 +1517,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Cài đặt" footerTitle="Tính năng tự động nhập sẽ gợi ý theo danh ba của bạn" id="aZo-m0-0QL">
+                            <tableViewSection headerTitle="Cài đặt" footerTitle="Tính năng tự động nhập sẽ gợi ý theo danh bạ của bạn" id="aZo-m0-0QL">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ksI-j1-jL0">
                                         <rect key="frame" x="0.0" y="175" width="768" height="44"/>
@@ -1503,7 +1559,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tên mặt hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jn-im-BXF">
                                                     <rect key="frame" x="20" y="12" width="117" height="21"/>
@@ -1527,7 +1583,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Người nhập hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6a0-wr-9cZ">
                                                     <rect key="frame" x="20" y="12" width="132" height="21"/>
@@ -1790,7 +1846,7 @@
                             </items>
                         </navigationBar>
                         <sections>
-                            <tableViewSection headerTitle="Cài đặt" footerTitle="Tính năng tự động nhập sẽ gợi ý theo danh ba của bạn" id="TMQ-99-54c">
+                            <tableViewSection headerTitle="Cài đặt" footerTitle="Tính năng tự động nhập sẽ gợi ý theo danh bạ của bạn" id="TMQ-99-54c">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rd3-Ys-qox">
                                         <rect key="frame" x="0.0" y="99.5" width="768" height="44"/>
@@ -1832,7 +1888,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tên mặt hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcm-df-lGI">
                                                     <rect key="frame" x="20" y="12" width="117" height="21"/>
@@ -1856,7 +1912,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Người nhập hàng" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egs-DM-Z2o">
                                                     <rect key="frame" x="20" y="12" width="132" height="21"/>
@@ -2262,8 +2318,8 @@
                         <outlet property="txtCardDate" destination="miE-U9-Gzl" id="6qG-ci-Ijq"/>
                         <outlet property="txtName" destination="hZV-f0-aP1" id="y3L-O3-v94"/>
                         <outlet property="txtPhone" destination="uOI-pK-FDg" id="X9M-hw-Xt5"/>
-                        <outlet property="txtProduct" destination="Nfz-50-uER" id="y0y-Im-bDb"/>
-                        <outlet property="txtType" destination="Wqs-zV-o2x" id="gH0-Hy-bIV"/>
+                        <outlet property="txtProduct" destination="Wqs-zV-o2x" id="0tt-Od-e7C"/>
+                        <outlet property="txtType" destination="Nfz-50-uER" id="Qvx-uo-tM4"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vO2-rB-mGp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2281,6 +2337,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6BD-PY-b3q"/>
-        <segue reference="JKg-NS-Qch"/>
+        <segue reference="PXn-ML-hbw"/>
+        <segue reference="Opu-5a-Jlm"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,7 +13,7 @@ import CoreData
 class UpdateTableViewController: UITableViewController {
     
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
-    let product = ["", "Củ Sen", "Củ Hành"]
+    var product = [""]
     var selectItem: String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var peopleArray = [People]()
@@ -70,6 +70,31 @@ class UpdateTableViewController: UITableViewController {
         createToolbarPickerView()
         btnSaveText.isEnabled = true
         updateItem()
+        product = getProductName()
+        txtName.autocapitalizationType = .words
+    }
+    
+    private func getProductName() -> [String] {
+        var arrProduct = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Product", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let productList = try context.fetch(fetchRequest)
+            let resultDict = productList as! [[String : String]]
+            for r in resultDict {
+                arrProduct.append(r["name"]!)
+            }
+            arrProduct.insert("", at: 0)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return arrProduct
     }
 
     private func createPickerViewType() {

@@ -11,10 +11,10 @@ import CoreData
 
 class ProductViewController: UIViewController {
     
-    var productArray = [Product]()
-    var filterProduct = [Product]()
-    var productSortArray: [Date:[Product]?] = [:]
-    var filterSortProduct: [Date:[Product]?] = [:]
+    var productArray = [Transaction]()
+    var filterProduct = [Transaction]()
+    var productSortArray: [Date:[Transaction]?] = [:]
+    var filterSortProduct: [Date:[Transaction]?] = [:]
     let searchController = UISearchController(searchResultsController: nil)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var index = NSIndexPath()
@@ -44,7 +44,7 @@ class ProductViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        //super.viewWillAppear(true)
         NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
         if(!productArray.isEmpty) {
             tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
@@ -82,29 +82,40 @@ class ProductViewController: UIViewController {
         
     }
     
-    private func filterContent(searchText: String) {
-        if(searchText.isEmpty || searchText == "") {
-            loadDataByType(type: selectScope)
-            flag = true
-            filterProduct = productArray.filter { product in
-                if(searchText == "") {
-                    return true
-                }
-                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
+//    private func filterContent(searchText: String) {
+//        if(searchText.isEmpty || searchText == "") {
+//            loadDataByType(type: selectScope)
+//            flag = true
+//            filterProduct = productArray.filter { product in
+//                if(searchText == "") {
+//                    return true
+//                }
+//                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
+//            }
+//        } else {
+//
+//            filterProduct = filterProduct.filter { product in
+//                if(searchText == "") {
+//                    return true
+//                }
+//                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
+//            }
+//        }
+//        tableView.reloadData()
+//    }
+    
+    private func filterContent(searchText: String, scope: String = "All") {
+        filterProduct = productArray.filter { product in
+            if(searchText == "") {
+                return true
             }
-        } else {
-            
-            filterProduct = filterProduct.filter { product in
-                if(searchText == "") {
-                    return true
-                }
-                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
-            }
+            return (product.productName?.contains(searchText))!
         }
+        tableView.reloadData()
     }
     
     private func loadItem() {
-        let request: NSFetchRequest<Product> = Product.fetchRequest()
+        let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
             productArray = try context.fetch(request)
         } catch {
@@ -116,7 +127,7 @@ class ProductViewController: UIViewController {
     }
     
     private func loadItemFilter() {
-        let request: NSFetchRequest<Product> = Product.fetchRequest()
+        let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
             filterProduct = try context.fetch(request)
         } catch {
@@ -154,6 +165,8 @@ class ProductViewController: UIViewController {
         loadDataByType(type: selectScope)
         flag = true
         self.tableView.reloadData()
+        tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
+        tableView(tableView, didSelectRowAt: index as IndexPath)
     }
     
     public func loadDataByDate(beginDate: String, endDate: String) {
@@ -163,7 +176,7 @@ class ProductViewController: UIViewController {
         let fromdate = "\(beginDate) 00:00"
         let todate = "\(endDate) 23:59"
         do {
-            let fetchRequest : NSFetchRequest<Product> = Product.fetchRequest()
+            let fetchRequest : NSFetchRequest<Transaction> = Transaction.fetchRequest()
             fetchRequest.returnsObjectsAsFaults = false
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -192,7 +205,7 @@ class ProductViewController: UIViewController {
                 loadItemFilter()
             } else {
                 do {
-                    let fetchRequest : NSFetchRequest<Product> = Product.fetchRequest()
+                    let fetchRequest : NSFetchRequest<Transaction> = Transaction.fetchRequest()
                     fetchRequest.predicate = NSPredicate(format: "type == %@", type)
                     let fetchedResults = try context.fetch(fetchRequest)
                     for result in fetchedResults {
@@ -214,7 +227,7 @@ class ProductViewController: UIViewController {
                 loadItem()
             } else {
                 do {
-                    let fetchRequest : NSFetchRequest<Product> = Product.fetchRequest()
+                    let fetchRequest : NSFetchRequest<Transaction> = Transaction.fetchRequest()
                     fetchRequest.predicate = NSPredicate(format: "type == %@", type)
                     let fetchedResults = try context.fetch(fetchRequest)
                     for result in fetchedResults {
@@ -231,7 +244,7 @@ class ProductViewController: UIViewController {
     }
     
     
-    private func order(array: [Product]) {
+    private func order(array: [Transaction]) {
         for product in array {
             var products = productSortArray[product.date!] ?? []
             if products?.count == 0 {
@@ -245,7 +258,7 @@ class ProductViewController: UIViewController {
         }
     }
     
-    private func orderFilter(array: [Product]) {
+    private func orderFilter(array: [Transaction]) {
         filterDateArray.removeAll()
         filterSortProduct.removeAll()
         for product in filterProduct {
@@ -390,6 +403,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showDetailProduct", sender: indexPath)
         index = indexPath as NSIndexPath
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

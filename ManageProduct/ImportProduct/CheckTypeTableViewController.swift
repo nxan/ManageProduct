@@ -12,7 +12,7 @@ class CheckTypeTableViewController: UITableViewController {
     
     let types = ["Nhập Hàng", "Bán Hàng"]
     var selectIndex = 0
-    var selectType = ""
+    var selectType = "Nhập Hàng"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +22,14 @@ class CheckTypeTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         if self.isMovingFromParent {
             let userDefaultStore = UserDefaults.standard
-            userDefaultStore.set(selectType, forKey: "key_Value")
+            userDefaultStore.set(selectType, forKey: "key_Type")
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        selectType = UserDefaults.standard.string(forKey: "peopleTypeFromParent")!
+        if (UserDefaults.standard.string(forKey: "peopleTypeFromParent")) != nil {
+            selectType = UserDefaults.standard.string(forKey: "peopleTypeFromParent")!
+        }
         selectIndex = (selectType == "Nhập Hàng") ? 0 : 1
     }
 

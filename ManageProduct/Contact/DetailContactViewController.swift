@@ -11,6 +11,8 @@ import CoreData
 
 class DetailContactViewController: UIViewController {
     
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     @IBOutlet var txtName: UILabel!
     @IBOutlet var txtPhone: FloatingTextField!
     @IBOutlet var txtType: UILabel!
@@ -21,10 +23,46 @@ class DetailContactViewController: UIViewController {
     @IBOutlet var txtProduct: FloatingTextField!
     @IBOutlet var btnEditText: UIButton!
     
+    var productTextField: UITextField!
+    var productArray = [Product]()
+    
     var id, name, phone, card, cardDate, bankCode, bankLocation, type, product:String?
     
     @IBAction func btnEdit(_ sender: Any) {
         performSegue(withIdentifier: "showDetail", sender: self)
+    }
+    
+    @IBAction func displayAlertAddNewProduct(_ sender: Any) {
+        let alertController = UIAlertController(title: "Thêm sản phẩm", message: nil, preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: productTextField)
+        
+        let okAction = UIAlertAction(title: "Thêm", style: .default, handler: self.okHandler)
+        let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true)
+    }
+    
+    func productTextField(textField: UITextField!) {
+        productTextField = textField
+        productTextField.placeholder = "Ví dụ: Củ sen, Củ năng..."
+        productTextField.autocapitalizationType = .sentences
+    }
+    
+    func okHandler(alert: UIAlertAction) {
+        let newItem = Product(context: self.context)
+        newItem.name = productTextField.text
+        self.productArray.append(newItem)
+        self.saveItem()
+    }
+    
+    private func saveItem() {
+        do {
+            try context.save()
+            print("Saved")
+        } catch {
+            print("Error save")
+        }
     }
     
     override func viewDidLoad() {
@@ -49,7 +87,7 @@ class DetailContactViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(txtPhone.text != "") {
+        if(txtName.text != "") {
             let updateVC = segue.destination as! UpdateTableViewController            
             updateVC.id = id!
             updateVC.name = self.txtName.text!

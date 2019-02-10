@@ -14,9 +14,9 @@ class AddNewProductViewController: UITableViewController {
     var tempProduct = ""
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var selectItem = ""
-    let product = ["", "Củ Sen", "Củ Hành"]
+    var product = [""]
     let peopleArray = [People]()
-    var productArray = [Product]()
+    var productArray = [Transaction]()
     let datePicker = UIDatePicker()
     
     @IBOutlet var txtProductName: UITextField!
@@ -43,15 +43,20 @@ class AddNewProductViewController: UITableViewController {
         txtMoney.isEnabled = false
         txtDate.text = MyDateTime.getCurrentDate()
         txtMoney.text = "0"
+        product = getProductName()
+        txtPeople.autocapitalizationType = .words
+        txtProductName.autocapitalizationType = .sentences
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        lblType.text = UserDefaults.standard.string(forKey: "key_Value")
+        lblType.text = UserDefaults.standard.string(forKey: "key_Type")
         if lblType.text == "Nhập Hàng" {
             lblPeopleType.text = "Người nhập hàng"
         } else {
             lblPeopleType.text = "Khách Hàng"
         }
+        
+        //picker view khach hang all
         refreshTextField()
     }
     
@@ -104,7 +109,7 @@ class AddNewProductViewController: UITableViewController {
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        let newItem = Product(context: self.context)
+        let newItem = Transaction(context: self.context)
         newItem.id = UUID.init().uuidString
         newItem.productName = txtProductName.text
         newItem.peopleType = txtPeople.text
@@ -152,6 +157,53 @@ class AddNewProductViewController: UITableViewController {
         } else {
             txtMoney.text = "0"
         }
+    }
+    
+    private func getProductName() -> [String] {
+        var arrProduct = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Product", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let productList = try context.fetch(fetchRequest)
+            let resultDict = productList as! [[String : String]]
+            for r in resultDict {
+                arrProduct.append(r["name"]!)
+            }
+            arrProduct.insert("", at: 0)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return arrProduct
+    }
+    
+    private func getPeopleCustomer(tempTypePeople: String) -> [String] {
+        var arrProduct = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "People", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.predicate = NSPredicate(format: "type == %@", tempTypePeople)
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let productList = try context.fetch(fetchRequest)
+            let resultDict = productList as! [[String : String]]
+            for r in resultDict {
+                arrProduct.append(r["name"]!)
+            }
+            arrProduct.insert("", at: 0)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return arrProduct
     }
     
     private func createPickerViewProduct() {
@@ -255,7 +307,11 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product.count
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!, type: lblType.text!).count
+            if(lblType.text == "Bán Hàng") {
+                item = getPeopleCustomer(tempTypePeople: "Khách Hàng").count
+            } else {
+                item = getPeople(product: txtProductName.text!, type: lblType.text!).count
+            }
         }
         return item
     }
@@ -265,7 +321,11 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if(txtProductName.isEditing) {
             item = product[row]
         } else if(txtPeople.isEditing) {
-            item = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
+            if(lblType.text == "Bán Hàng") {
+                item = getPeopleCustomer(tempTypePeople: "Khách Hàng")[row]
+            } else {
+                item = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
+            }
         }
         return item
     }
@@ -279,8 +339,13 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
                 tempProduct = selectItem
             }            
         } else if(txtPeople.isEditing) {
-            selectItem = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
-            txtPeople.text = selectItem
+            if(lblType.text == "Bán Hàng") {
+                selectItem = getPeopleCustomer(tempTypePeople: "Khách Hàng")[row]
+                txtPeople.text = selectItem
+            } else {
+                selectItem = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
+                txtPeople.text = selectItem
+            }
         }
     }
     

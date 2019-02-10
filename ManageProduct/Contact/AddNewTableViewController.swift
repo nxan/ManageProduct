@@ -19,10 +19,12 @@ class AddNewTableViewController: UITableViewController {
     
     var delegate: AddNewToDelegate?
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
-    let product = ["", "Củ Sen", "Củ Hành"]
+    var product = [""]
     var selectItem: String?
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var peopleArray = [People]()
+    var productArray = [Product]()
+    var typeCheck = UserDefaults.standard.string(forKey: "type")
     
     @IBOutlet var txtName: UITextField!
     @IBOutlet var txtPhone: UITextField!
@@ -47,7 +49,12 @@ class AddNewTableViewController: UITableViewController {
         newItem.product = txtProduct.text
         self.peopleArray.append(newItem)
         self.saveItem()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
+        if(typeCheck != "Tất cả") {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadType"), object: nil)
+        } else {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
+        }
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -67,6 +74,31 @@ class AddNewTableViewController: UITableViewController {
         createPickerViewProduct()
         createToolbarPickerView()
         btnSaveText.isEnabled = false
+        product = getProductName()
+        txtName.autocapitalizationType = .words
+    }
+    
+    private func getProductName() -> [String] {
+        var arrProduct = [String]()
+        let entityDescription = NSEntityDescription.entity(forEntityName: "Product", in: context)
+        let fetchRequest = NSFetchRequest<NSDictionary>()
+        fetchRequest.entity = entityDescription
+        fetchRequest.includesPropertyValues = true
+        fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.propertiesToFetch = ["name"]
+        fetchRequest.resultType = .dictionaryResultType
+        do {
+            let productList = try context.fetch(fetchRequest)
+            let resultDict = productList as! [[String : String]]
+            for r in resultDict {
+                arrProduct.append(r["name"]!)
+            }
+            arrProduct.insert("", at: 0)
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        return arrProduct
     }
     
     private func saveItem() {

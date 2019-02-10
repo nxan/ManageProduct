@@ -16,6 +16,8 @@ class ContactViewController: UIViewController {
     var filterPeople = [People]()
     var index = NSIndexPath()
     let searchController = UISearchController(searchResultsController: nil)
+    var typeCheck = "Tất cả"
+    let typeUserDefault = UserDefaults.standard
     
     @IBOutlet var tableView: UITableView!
     
@@ -30,7 +32,7 @@ class ContactViewController: UIViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(loadData), name: NSNotification.Name(rawValue: "loadData"), object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(loadUpdateData), name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
         }
-
+        typeUserDefault.set(typeCheck, forKey: "type")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,13 +41,14 @@ class ContactViewController: UIViewController {
             tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
             tableView(tableView, didSelectRowAt: index as IndexPath)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     private func selectRowAtZero() {
         let indexPath = NSIndexPath(row: 0, section: 0)
         tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
@@ -54,7 +57,7 @@ class ContactViewController: UIViewController {
     
     @objc func loadList(){
         peopleArray.removeAll()
-        loadDataByType(type: UserDefaults.standard.string(forKey: "key_Value")!)
+        loadDataByType(type: UserDefaults.standard.string(forKey: "type")!)
         self.tableView.reloadData()
         let indexPath = NSIndexPath(row: 0, section: 0)
         tableView.selectRow(at: indexPath as IndexPath, animated: true, scrollPosition: .none)
