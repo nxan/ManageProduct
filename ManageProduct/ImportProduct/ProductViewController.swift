@@ -22,6 +22,7 @@ class ProductViewController: UIViewController {
     var dateArray: [Date] = []
     var filterDateArray: [Date] = []
     var flag = false
+    var flagdelete = false
     var updateView = UpdateProductViewController()
     var selectScope = "Tất cả"
     
@@ -82,37 +83,37 @@ class ProductViewController: UIViewController {
         
     }
     
-//    private func filterContent(searchText: String) {
-//        if(searchText.isEmpty || searchText == "") {
-//            loadDataByType(type: selectScope)
-//            flag = true
-//            filterProduct = productArray.filter { product in
-//                if(searchText == "") {
-//                    return true
-//                }
-//                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
-//            }
-//        } else {
-//
-//            filterProduct = filterProduct.filter { product in
-//                if(searchText == "") {
-//                    return true
-//                }
-//                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
-//            }
-//        }
-//        tableView.reloadData()
-//    }
-    
-    private func filterContent(searchText: String, scope: String = "All") {
-        filterProduct = productArray.filter { product in
-            if(searchText == "") {
-                return true
+    private func filterContent(searchText: String) {
+        if(searchText.isEmpty || searchText == "") {
+            loadDataByType(type: selectScope)
+            flag = true
+            filterProduct = productArray.filter { product in
+                if(searchText == "") {
+                    return true
+                }
+                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
             }
-            return (product.productName?.contains(searchText))!
+        } else {
+
+            filterProduct = filterProduct.filter { product in
+                if(searchText == "") {
+                    return true
+                }
+                return (product.productName?.contains(searchText))! || (product.peopleType?.contains(searchText))!
+            }
         }
         tableView.reloadData()
     }
+    
+//    private func filterContent(searchText: String, scope: String = "All") {
+//        filterProduct = productArray.filter { product in
+//            if(searchText == "") {
+//                return true
+//            }
+//            return (product.productName?.contains(searchText))!
+//        }
+//        tableView.reloadData()
+//    }
     
     private func loadItem() {
         let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
@@ -133,7 +134,7 @@ class ProductViewController: UIViewController {
         } catch {
             print("Error reload data")
         }
-        orderFilter(array: filterProduct)
+        orderFilter()
         filterDateArray = Array(filterSortProduct.keys)
         filterDateArray.sort { $0 > $1 }
     }
@@ -215,7 +216,7 @@ class ProductViewController: UIViewController {
                     print("Error")
                 }
             }
-            orderFilter(array: filterProduct)
+            orderFilter()
             filterDateArray = Array(filterSortProduct.keys)
             filterDateArray.sort { $0 > $1 }
             updateSearchResults(for: searchController)
@@ -258,18 +259,39 @@ class ProductViewController: UIViewController {
         }
     }
     
-    private func orderFilter(array: [Transaction]) {
+    private func orderFilter() {
         filterDateArray.removeAll()
         filterSortProduct.removeAll()
         for product in filterProduct {
             var products = filterSortProduct[product.date!] ?? []
-            if products?.count == 0 {
-                filterSortProduct[product.date!] = [product]
-            } else {
-                if(!(products?.contains(product))!) {
-                    products?.insert(product, at: 0)
+            if(products != nil) {
+                if products!.count == 0 {
+                    filterSortProduct[product.date!] = [product]
+                } else {
+                    if(!(products!.contains(product))) {
+                        products!.insert(product, at: 0)
+                    }
+                    filterSortProduct[product.date!] = products
                 }
-                filterSortProduct[product.date!] = products
+            }
+        }
+    }
+    
+    private func orderFilterDelete() {
+        filterDateArray.removeAll()
+        filterSortProduct.removeAll()
+        filterProduct.removeAll()
+        for product in filterProduct {
+            var products = filterSortProduct[product.date!] ?? []
+            if(products != nil) {
+                if products!.count == 0 {
+                    filterSortProduct[product.date!] = [product]
+                } else {
+                    if(!(products!.contains(product))) {
+                        products!.insert(product, at: 0)
+                    }
+                    filterSortProduct[product.date!] = products
+                }
             }
         }
     }
@@ -351,49 +373,66 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if(searchController.isActive && searchController.searchBar.text != "") {
-                let filterProduct = filterSortProduct[filterDateArray[indexPath.section]]!![indexPath.row]
-                MyCoreData.removeItem(id: filterProduct.id!)
-                MyCoreData.saveItem()
-                self.filterProduct.remove(at: indexPath.row)
-                self.filterSortProduct[filterDateArray[indexPath.section]]!!.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                if(filterSortProduct[filterDateArray[indexPath.section]]!!.isEmpty) {
-                    filterSortProduct.removeValue(forKey: filterDateArray[indexPath.section])
-                    while filterDateArray.contains(filterDateArray[indexPath.section]) {
-                        if let itemToRemoveIndex = filterDateArray.index(of: filterDateArray[indexPath.section]) {
-                            filterDateArray.remove(at: itemToRemoveIndex)
-                            break
+            flagdelete = true
+            if(self.searchController.isActive && self.searchController.searchBar.text != "") {
+                let filterProduct = self.filterSortProduct[self.filterDateArray[indexPath.section]]!![indexPath.row]
+                let alertController = UIAlertController(title: "Bạn có chắc chắn muốn xóa đơn hàng " + filterProduct.productName! + " của " + filterProduct.peopleType! + " này không?", message: "", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Xóa", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    MyCoreData.removeItem(id: filterProduct.id!)
+                    MyCoreData.saveItem()
+                    self.filterProduct.remove(at: indexPath.row)
+                    self.filterSortProduct[self.filterDateArray[indexPath.section]]!!.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    if(self.filterSortProduct[self.filterDateArray[indexPath.section]]!!.isEmpty) {
+                        self.filterSortProduct.removeValue(forKey: self.filterDateArray[indexPath.section])
+                        while self.filterDateArray.contains(self.filterDateArray[indexPath.section]) {
+                            if let itemToRemoveIndex = self.filterDateArray.index(of: self.filterDateArray[indexPath.section]) {
+                                self.filterDateArray.remove(at: itemToRemoveIndex)
+                                break
+                            }
                         }
+                        let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                        tableView.deleteSections(indexSet, with: .fade)
                     }
-                    let indexSet = IndexSet(arrayLiteral: indexPath.section)
-                    tableView.deleteSections(indexSet, with: .fade)
                 }
+                let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
                 tableView.reloadData()
             } else {
-                let product = productSortArray[dateArray[indexPath.section]]!![indexPath.row]
-                MyCoreData.removeItem(id: product.id!)
-                MyCoreData.saveItem()
-                self.productArray.remove(at: indexPath.row)
-                self.productSortArray[dateArray[indexPath.section]]!!.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                if(productSortArray[dateArray[indexPath.section]]!!.isEmpty) {
-                    productSortArray.removeValue(forKey: dateArray[indexPath.section])
-                    while dateArray.contains(dateArray[indexPath.section]) {
-                        if let itemToRemoveIndex = dateArray.index(of: dateArray[indexPath.section]) {
-                            dateArray.remove(at: itemToRemoveIndex)
-                            break
+                let product = self.productSortArray[self.dateArray[indexPath.section]]!![indexPath.row]
+                let alertController = UIAlertController(title: "Xóa " + product.productName! + " của " + product.peopleType! + " đúng  ?", message: "", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Xóa", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    MyCoreData.removeItem(id: product.id!)
+                    MyCoreData.saveItem()
+                    self.productArray.remove(at: indexPath.row)
+                    self.productSortArray[self.dateArray[indexPath.section]]!!.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    if(self.productSortArray[self.dateArray[indexPath.section]]!!.isEmpty) {
+                        self.productSortArray.removeValue(forKey: self.dateArray[indexPath.section])
+                        while self.dateArray.contains(self.dateArray[indexPath.section]) {
+                            if let itemToRemoveIndex = self.dateArray.index(of: self.dateArray[indexPath.section]) {
+                                self.dateArray.remove(at: itemToRemoveIndex)
+                                break
+                            }
                         }
+                        let indexSet = IndexSet(arrayLiteral: indexPath.section)
+                        tableView.deleteSections(indexSet, with: .fade)
                     }
-                    let indexSet = IndexSet(arrayLiteral: indexPath.section)
-                    tableView.deleteSections(indexSet, with: .fade)
                 }
+                let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
                 tableView.reloadData()
-                selectRowAtZero()
+                self.selectRowAtZero()
             }
         } else if editingStyle == .insert {
-
         }
+
     }      
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -451,7 +490,12 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if(flag) { filterProduct = productArray }
         flag = false
         filterContent(searchText: searchController.searchBar.text!)
-        orderFilter(array: filterProduct)
+        if flagdelete {
+            orderFilterDelete()
+            flagdelete = false
+        } else {
+            orderFilter()
+        }
         filterDateArray = Array(filterSortProduct.keys)
         filterDateArray.sort { $0 > $1 }
         tableView.reloadData()

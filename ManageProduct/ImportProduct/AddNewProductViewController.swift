@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AddNewProductViewController: UITableViewController {
+class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     
     var tempProduct = ""
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -55,8 +55,6 @@ class AddNewProductViewController: UITableViewController {
         } else {
             lblPeopleType.text = "Khách Hàng"
         }
-        
-        //picker view khach hang all
         refreshTextField()
     }
     
@@ -89,8 +87,41 @@ class AddNewProductViewController: UITableViewController {
         }
     }
     
-    @IBAction func txtProductNameDidChanged(_ sender: Any) {
+    @IBAction func txtProductNameDidChanged(_ sender: Any) {}
+    
+    private func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let existingTextHasDecimalSeparator = textField.text?.range(of: ".")
+        let replacementTextHasDecimalSeparator = string.range(of: ".")
         
+        if existingTextHasDecimalSeparator != nil && replacementTextHasDecimalSeparator != nil {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        moveTextField(textField: textField, moveDistance: -350, up: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        moveTextField(textField: textField, moveDistance: -350, up: false)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func moveTextField(textField: UITextField, moveDistance: Int, up: Bool) {
+        let moveDuration = 0.3
+        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        UIView.beginAnimations("animatedTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(moveDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
     }
     
     private func boldString(text1: String) -> NSAttributedString {
@@ -119,6 +150,7 @@ class AddNewProductViewController: UITableViewController {
         newItem.money = (MyDateTime.removeCommaNumber(string: txtMoney.text!)! as NSString).doubleValue
         newItem.note = txtNote.text
         newItem.type = lblType.text
+        newItem.isPay = false
         self.productArray.insert(newItem, at: 0)
         MyCoreData.saveItem()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
@@ -133,7 +165,7 @@ class AddNewProductViewController: UITableViewController {
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
             txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
             txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
-            txtMoney.text = String(Int(txtUnit.text!)! * Int(txtWeight.text!)!)
+            txtMoney.text = String(Double(txtUnit.text!)! * Double(txtWeight.text!)!)
             txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
             txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
             txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
@@ -143,21 +175,23 @@ class AddNewProductViewController: UITableViewController {
     }
     
     @IBAction func txtWeightEditChanged(_ sender: Any) {
-        txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
         if(!(txtWeight.text?.isEmpty)!) {
-            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
         }
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
             txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
-            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
             txtMoney.text = String(Double(txtUnit.text!)! * Double(txtWeight.text!)!)
             txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
-            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
             txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
         } else {
             txtMoney.text = "0"
         }
     }
+    
+    @IBAction func txtWeightDidEnd(_ sender: Any) {
+        txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+    }
+    
     
     private func getProductName() -> [String] {
         var arrProduct = [String]()

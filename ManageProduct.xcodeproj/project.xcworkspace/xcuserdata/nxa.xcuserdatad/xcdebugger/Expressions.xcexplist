@@ -49,6 +49,23 @@
             <PersistentString
                value = "searchCustomer">
             </PersistentString>
+            <PersistentString
+               value = "UserDefaults.standard.string(forKey: &quot;typePay&quot;)!">
+            </PersistentString>
+            <PersistentString
+               value = "typeCheck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProductViewController.filterByDate():ProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UserDefaults.standard.string(forKey: &quot;BeginDate&quot;)!">
+            </PersistentString>
+            <PersistentString
+               value = "UserDefaults.standard.string(forKey: &quot;EndDate&quot;)!">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -127,6 +144,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GroupPayViewController.tableView(_:didSelectRowAt:):GroupPayViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "select">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GroupViewController.viewWillAppear(_:):GroupViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -190,10 +215,13 @@
          contextName = "SearchResultViewController.viewWillAppear(_:):SearchResultViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "searchProduct">
+               value = "searchCustomer">
             </PersistentString>
             <PersistentString
-               value = "searchCustomer">
+               value = "name">
+            </PersistentString>
+            <PersistentString
+               value = "UserDefaults.standard.string(forKey: &quot;typePay&quot;)!">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -299,6 +327,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ProductCategoryViewController.tableView(_:commit:forRowAt:):ProductCategoryViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "productArray.count">
+            </PersistentString>
+            <PersistentString
+               value = "(productArray[indexPath.row].name)!">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContactViewController.tableView(_:commit:forRowAt:):ContactViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -316,6 +358,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SearchResultViewController.loadDataByType(name:isPay:):SearchResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "SearchOrderViewController.tableView(_:didSelectRowAt:):SearchOrderViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -329,26 +379,6 @@
             </PersistentString>
             <PersistentString
                value = "customer">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "ProductViewController.loadUpdateData():ProductViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "index.row">
-            </PersistentString>
-            <PersistentString
-               value = "indexPath.section">
-            </PersistentString>
-            <PersistentString
-               value = "index.section">
-            </PersistentString>
-            <PersistentString
-               value = "updateView.temp">
-            </PersistentString>
-            <PersistentString
-               value = "dateArray.count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -377,6 +407,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ProductViewController.loadUpdateData():ProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "index.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "index.section">
+            </PersistentString>
+            <PersistentString
+               value = "updateView.temp">
+            </PersistentString>
+            <PersistentString
+               value = "dateArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "CheckTypeTableViewController.viewWillAppear(_:):CheckTypeTableViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -385,10 +435,52 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in ProductViewController.filterContent(searchText:scope:):ProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filterProduct">
+            </PersistentString>
+            <PersistentString
+               value = "productArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProductCategoryViewController.okHandler(alert:):ProductCategoryViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newItem.name">
+            </PersistentString>
+            <PersistentString
+               value = "productArray.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ProductViewController.prepare(for:sender:):ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
                value = "productSortArray[dateArray[section]]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ProductViewController.orderFilter(array:):ProductViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "filterProduct.count">
+            </PersistentString>
+            <PersistentString
+               value = "filterSortProduct">
+            </PersistentString>
+            <PersistentString
+               value = "filterProduct">
+            </PersistentString>
+            <PersistentString
+               value = "product.date">
+            </PersistentString>
+            <PersistentString
+               value = "filterDateArray">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -402,7 +494,19 @@
                value = "filterSortProduct.count">
             </PersistentString>
             <PersistentString
+               value = "Array(filterSortProduct.keys)">
+            </PersistentString>
+            <PersistentString
                value = "productArray.count">
+            </PersistentString>
+            <PersistentString
+               value = "dateArray">
+            </PersistentString>
+            <PersistentString
+               value = "flagdelete">
+            </PersistentString>
+            <PersistentString
+               value = "filterDateArray">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -410,13 +514,41 @@
          contextName = "ProductViewController.tableView(_:commit:forRowAt:):ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "itemToRemoveIndex">
+            </PersistentString>
+            <PersistentString
                value = "filterProduct.count">
             </PersistentString>
             <PersistentString
-               value = "indexPath.row">
+               value = "dateArray[indexPath.section]">
             </PersistentString>
             <PersistentString
-               value = "dateArray[indexPath.section]">
+               value = "dateArray">
+            </PersistentString>
+            <PersistentString
+               value = "filterDateArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultViewController.loadCustomerPay(name:):SearchResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SearchResultViewController.loadList():SearchResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchCustomer">
+            </PersistentString>
+            <PersistentString
+               value = "UserDefaults.standard.bool(forKey: &quot;typePay&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "typeCheck">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -432,6 +564,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SearchResultViewController.loadCustomer(name:):SearchResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "searchArray">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ContactViewController.prepare(for:sender:):ContactViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -440,13 +580,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SearchResultViewController.tableView(_:cellForRowAt:):SearchResultViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "result.isPay">
+            </PersistentString>
+            <PersistentString
+               value = "typeCheck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ProductViewController.numberOfSections(in:):ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dateArray.count">
-            </PersistentString>
-            <PersistentString
-               value = "(productSortArray[dateArray[section]]!!.count)">
+               value = "filterDateArray">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -536,6 +684,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "AddNewTableViewController.btnSave(_:):AddNewTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "typeCheck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "AddNewProductViewController.pickerView(_:titleForRow:forComponent:):AddNewProductViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -544,10 +700,22 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AddNewTableViewController.btnSave(_:):AddNewTableViewController.swift">
+         contextName = "ProductViewController.orderFilter():ProductViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "typeCheck">
+               value = "filterSortProduct">
+            </PersistentString>
+            <PersistentString
+               value = "product.count">
+            </PersistentString>
+            <PersistentString
+               value = "filterProduct">
+            </PersistentString>
+            <PersistentString
+               value = "filterDateArray">
+            </PersistentString>
+            <PersistentString
+               value = "filterSortProduct[product.date!]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

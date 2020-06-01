@@ -20,12 +20,14 @@
 		EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */; };
 		EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */; };
 		EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */; };
+		EF6C717D221E4FDB00EAF1E7 /* ProductCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6C717C221E4FDB00EAF1E7 /* ProductCategoryViewController.swift */; };
 		EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF93926E2161DEBD0029977A /* MyCoreData.swift */; };
 		EFB0272F220F24A30012EDCE /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB0272E220F24A30012EDCE /* SearchResultViewController.swift */; };
 		EFB02732220FBEBB0012EDCE /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB02730220FBEBB0012EDCE /* SearchResultTableViewCell.swift */; };
 		EFB02733220FBEBB0012EDCE /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB02731220FBEBB0012EDCE /* SearchResultTableViewCell.xib */; };
 		EFB02736220FC2680012EDCE /* SearchTableSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB02734220FC2680012EDCE /* SearchTableSectionHeader.swift */; };
 		EFB02737220FC2680012EDCE /* SearchTableSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFB02735220FC2680012EDCE /* SearchTableSectionHeader.xib */; };
+		EFB402C92223CA98005F80F3 /* GroupPayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB402C82223CA98005F80F3 /* GroupPayViewController.swift */; };
 		EFC8765622084BBA0091B010 /* ExpandableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC8765522084BBA0091B010 /* ExpandableHeaderView.swift */; };
 		EFC8765822084BF50091B010 /* ExpandableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EFC8765722084BF50091B010 /* ExpandableHeaderView.xib */; };
 		EFC8765A22084C120091B010 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFC8765922084C120091B010 /* Section.swift */; };
@@ -70,12 +72,14 @@
 		EF468D1F2157A5A400E90E07 /* TableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableSectionHeader.xib; sourceTree = "<group>"; };
 		EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewController.swift; sourceTree = "<group>"; };
 		EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProductViewController.swift; sourceTree = "<group>"; };
+		EF6C717C221E4FDB00EAF1E7 /* ProductCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCategoryViewController.swift; sourceTree = "<group>"; };
 		EF93926E2161DEBD0029977A /* MyCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoreData.swift; sourceTree = "<group>"; };
 		EFB0272E220F24A30012EDCE /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
 		EFB02730220FBEBB0012EDCE /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
 		EFB02731220FBEBB0012EDCE /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
 		EFB02734220FC2680012EDCE /* SearchTableSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableSectionHeader.swift; sourceTree = "<group>"; };
 		EFB02735220FC2680012EDCE /* SearchTableSectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableSectionHeader.xib; sourceTree = "<group>"; };
+		EFB402C82223CA98005F80F3 /* GroupPayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPayViewController.swift; sourceTree = "<group>"; };
 		EFC8765522084BBA0091B010 /* ExpandableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableHeaderView.swift; sourceTree = "<group>"; };
 		EFC8765722084BF50091B010 /* ExpandableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpandableHeaderView.xib; sourceTree = "<group>"; };
 		EFC8765922084C120091B010 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				EFB02731220FBEBB0012EDCE /* SearchResultTableViewCell.xib */,
 				EFB02734220FC2680012EDCE /* SearchTableSectionHeader.swift */,
 				EFB02735220FC2680012EDCE /* SearchTableSectionHeader.xib */,
+				EFB402C82223CA98005F80F3 /* GroupPayViewController.swift */,
 			);
 			path = SearchOrder;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				EF22DA282152C1B700A59016 /* ContactTableViewCell.swift */,
 				EF22DA292152C1B700A59016 /* ContactTableViewCell.xib */,
 				EFCA9FB02200B6B400A7CE51 /* UpdateTableViewController.swift */,
+				EF6C717C221E4FDB00EAF1E7 /* ProductCategoryViewController.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -148,9 +154,9 @@
 		EFCE0DE12147A97A008BE2B0 /* ImportProduct */ = {
 			isa = PBXGroup;
 			children = (
+				EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */,
 				EFCE0DE42147ADFF008BE2B0 /* ProductViewController.swift */,
 				EFCE0DE62147CC92008BE2B0 /* AddNewProductViewController.swift */,
-				EF22DA242152B1D100A59016 /* ProductTableViewCell.swift */,
 				EF22DA252152B1D100A59016 /* ProductTableViewCell.xib */,
 				EF58DF992153A04E00C85A39 /* DetailProductViewController.swift */,
 				EF58DF9B2153F3EC00C85A39 /* UpdateProductViewController.swift */,
@@ -280,6 +286,7 @@
 				EFC8765622084BBA0091B010 /* ExpandableHeaderView.swift in Sources */,
 				EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */,
 				EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */,
+				EFB402C92223CA98005F80F3 /* GroupPayViewController.swift in Sources */,
 				EF32F7C921C2AADB002EFCCA /* AddNewTableViewController.swift in Sources */,
 				EFB02732220FBEBB0012EDCE /* SearchResultTableViewCell.swift in Sources */,
 				EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */,
@@ -299,6 +306,7 @@
 				EFEE303D2139862B0026B50B /* ContactViewController.swift in Sources */,
 				EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */,
 				EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */,
+				EF6C717D221E4FDB00EAF1E7 /* ProductCategoryViewController.swift in Sources */,
 				EFB0272F220F24A30012EDCE /* SearchResultViewController.swift in Sources */,
 				EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */,
 			);

@@ -54,8 +54,7 @@ class AddNewTableViewController: UITableViewController {
         } else {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
         }
-        
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func btnCancel(_ sender: Any) {

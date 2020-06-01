@@ -72,7 +72,7 @@ class ContactViewController: UIViewController {
         tableView(tableView, didSelectRowAt: indexPath as IndexPath)
     }
     
-    @objc func loadUpdateData(){
+    @objc func loadUpdateData() {
         loadItem()
         tableView.reloadData()
         tableView.selectRow(at: index as IndexPath, animated: true, scrollPosition: .none)
@@ -160,41 +160,58 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if(searchController.isActive && searchController.searchBar.text != "") {
-                var empId = ""
-                empId = (filterPeople[indexPath.row].id)!
-                let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
-                let predicate = NSPredicate(format: "id = '\(empId)'")
-                fetchRequest.predicate = predicate
-                let objects = try! context.fetch(fetchRequest)
-                for object in objects {
-                    context.delete(object as! NSManagedObject)
+            
+            if(self.searchController.isActive && self.searchController.searchBar.text != "") {
+                let alertController = UIAlertController(title: "Bạn có chắc chắn muốn xóa liên hệ " + filterPeople[indexPath.row].name! + " này không?", message: "", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Xóa", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    var empId = ""
+                    empId = (self.filterPeople[indexPath.row].id)!
+                    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
+                    let predicate = NSPredicate(format: "id = '\(empId)'")
+                    fetchRequest.predicate = predicate
+                    let objects = try! self.context.fetch(fetchRequest)
+                    for object in objects {
+                        self.context.delete(object as! NSManagedObject)
+                    }
+                    self.saveItem()
+                    self.filterPeople.remove(at: indexPath.row)
+                    //self.peopleArray.remove(at: indexPath.row + 1)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.reloadData()
+                    if(self.peopleArray.count > 0) {
+                        self.selectRowAtZero()
+                    }
                 }
-                saveItem()
-                self.filterPeople.remove(at: indexPath.row)
-                self.peopleArray.remove(at: indexPath.row + 1)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.reloadData()
-                if(peopleArray.count > 0) {
-                    selectRowAtZero()
-                }
+                let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
             } else {
-                var empId = ""
-                empId = (peopleArray[indexPath.row].id)!
-                let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
-                let predicate = NSPredicate(format: "id = '\(empId)'")
-                fetchRequest.predicate = predicate
-                let objects = try! context.fetch(fetchRequest)
-                for object in objects {
-                    context.delete(object as! NSManagedObject)
+                let alertController = UIAlertController(title: "Xóa liên hệ " + peopleArray[indexPath.row].name! + " đúng không?", message: "", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Xóa", style: UIAlertAction.Style.default) {
+                    UIAlertAction in
+                    var empId = ""
+                    empId = (self.peopleArray[indexPath.row].id)!
+                    let fetchRequest:NSFetchRequest<NSFetchRequestResult> = NSFetchRequest.init(entityName: "People")
+                    let predicate = NSPredicate(format: "id = '\(empId)'")
+                    fetchRequest.predicate = predicate
+                    let objects = try! self.context.fetch(fetchRequest)
+                    for object in objects {
+                        self.context.delete(object as! NSManagedObject)
+                    }
+                    self.saveItem()
+                    self.peopleArray.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.reloadData()
+                    if(self.peopleArray.count > 0) {
+                        self.selectRowAtZero()
+                    }
                 }
-                saveItem()
-                self.peopleArray.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-                tableView.reloadData()
-                if(peopleArray.count > 0) {
-                    selectRowAtZero()
-                }
+                let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         } else if editingStyle == .insert {
 
@@ -214,16 +231,18 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
         if(segue.identifier == "showDetail") {
             let row =  (sender as! NSIndexPath).row
             if(searchController.isActive && searchController.searchBar.text != "") {
-                if let destinationVC = segue.destination as? DetailContactViewController {
-                    destinationVC.id = filterPeople[row].id
-                    destinationVC.name = filterPeople[row].name
-                    destinationVC.phone = filterPeople[row].phone
-                    destinationVC.card = filterPeople[row].card
-                    destinationVC.cardDate = filterPeople[row].cardDate
-                    destinationVC.bankCode = filterPeople[row].bankCode
-                    destinationVC.bankLocation = filterPeople[row].bankLocation
-                    destinationVC.type = filterPeople[row].type
-                    destinationVC.product = filterPeople[row].product
+                if filterPeople.count > 0 {
+                    if let destinationVC = segue.destination as? DetailContactViewController {
+                        destinationVC.id = filterPeople[row].id
+                        destinationVC.name = filterPeople[row].name
+                        destinationVC.phone = filterPeople[row].phone
+                        destinationVC.card = filterPeople[row].card
+                        destinationVC.cardDate = filterPeople[row].cardDate
+                        destinationVC.bankCode = filterPeople[row].bankCode
+                        destinationVC.bankLocation = filterPeople[row].bankLocation
+                        destinationVC.type = filterPeople[row].type
+                        destinationVC.product = filterPeople[row].product
+                    }
                 }
             } else {
                 if let destinationVC = segue.destination as? DetailContactViewController {

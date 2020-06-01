@@ -32,29 +32,29 @@ class DetailContactViewController: UIViewController {
         performSegue(withIdentifier: "showDetail", sender: self)
     }
     
-    @IBAction func displayAlertAddNewProduct(_ sender: Any) {
-        let alertController = UIAlertController(title: "Thêm sản phẩm", message: nil, preferredStyle: .alert)
-        alertController.addTextField(configurationHandler: productTextField)
-        
-        let okAction = UIAlertAction(title: "Thêm", style: .default, handler: self.okHandler)
-        let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true)
-    }
-    
-    func productTextField(textField: UITextField!) {
-        productTextField = textField
-        productTextField.placeholder = "Ví dụ: Củ sen, Củ năng..."
-        productTextField.autocapitalizationType = .sentences
-    }
-    
-    func okHandler(alert: UIAlertAction) {
-        let newItem = Product(context: self.context)
-        newItem.name = productTextField.text
-        self.productArray.append(newItem)
-        self.saveItem()
-    }
+//    @IBAction func displayAlertAddNewProduct(_ sender: Any) {
+//        let alertController = UIAlertController(title: "Thêm sản phẩm", message: nil, preferredStyle: .alert)
+//        alertController.addTextField(configurationHandler: productTextField)
+//
+//        let okAction = UIAlertAction(title: "Thêm", style: .default, handler: self.okHandler)
+//        let cancelAction = UIAlertAction(title: "Hủy bỏ", style: .default, handler: nil)
+//        alertController.addAction(okAction)
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true)
+//    }
+//
+//    func productTextField(textField: UITextField!) {
+//        productTextField = textField
+//        productTextField.placeholder = "Ví dụ: Củ sen, Củ năng..."
+//        productTextField.autocapitalizationType = .sentences
+//    }
+//
+//    func okHandler(alert: UIAlertAction) {
+//        let newItem = Product(context: self.context)
+//        newItem.name = productTextField.text
+//        self.productArray.append(newItem)
+//        self.saveItem()
+//    }
     
     private func saveItem() {
         do {
@@ -88,18 +88,19 @@ class DetailContactViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(txtName.text != "") {
-            let updateVC = segue.destination as! UpdateTableViewController            
-            updateVC.id = id!
-            updateVC.name = self.txtName.text!
-            updateVC.phone = self.txtPhone.text!
-            updateVC.card = self.txtCard.text!
-            updateVC.cardDate = self.txtCardDate.text!
-            updateVC.bankCode = self.txtBankCode.text!
-            updateVC.bankLocation = self.txtBankLocation.text!
-            updateVC.productText = self.txtProduct.text!
-            updateVC.typeText = self.txtType.text!
+            if(segue.identifier == "showDetail") {
+                let updateVC = segue.destination as! UpdateTableViewController
+                updateVC.id = id!
+                updateVC.name = self.txtName.text!
+                updateVC.phone = self.txtPhone.text!
+                updateVC.card = self.txtCard.text!
+                updateVC.cardDate = self.txtCardDate.text!
+                updateVC.bankCode = self.txtBankCode.text!
+                updateVC.bankLocation = self.txtBankLocation.text!
+                updateVC.productText = self.txtProduct.text!
+                updateVC.typeText = self.txtType.text!
+            }
         }
-        
     }
     
 }

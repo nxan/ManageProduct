@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class UpdateProductViewController: UITableViewController {
+class UpdateProductViewController: UITableViewController, UITextFieldDelegate {
 
     var tempProduct = ""
     let type = ["", "Người Nhập Hàng", "Khách Hàng"]
@@ -78,6 +78,7 @@ class UpdateProductViewController: UITableViewController {
                 objectUpdate.setValue((MyDateTime.removeCommaNumber(string: txtUnit.text!)! as NSString).doubleValue, forKey: "unit")
                 objectUpdate.setValue(MyDateTime.convertStringToDate(string: txtDate.text!), forKey: "date")
                 objectUpdate.setValue(txtNote.text, forKey: "note")
+                objectUpdate.setValue(false, forKey: "isPay")
                 MyCoreData.saveItem()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadUpdateData"), object: nil)
                 dismiss(animated: true, completion: nil)
@@ -111,21 +112,24 @@ class UpdateProductViewController: UITableViewController {
     }
     
     @IBAction func txtWeightEditChanged(_ sender: Any) {
-        txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
         if(!(txtWeight.text?.isEmpty)!) {
-            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
+            
         }
         if(!(txtUnit.text?.isEmpty)! && !(txtWeight.text?.isEmpty)!) {
             txtUnit.text = MyDateTime.removeCommaNumber(string: txtUnit.text!)
-            txtWeight.text = MyDateTime.removeCommaNumber(string: txtWeight.text!)
             txtMoney.text = String(Double(txtUnit.text!)! * Double(txtWeight.text!)!)
             txtUnit.text = MyDateTime.addCommaNumber(string: txtUnit.text!)
-            txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
             txtMoney.text = MyDateTime.addCommaNumber(string: txtMoney.text!)
         } else {
             txtMoney.text = "0"
         }
     }
+    
+    @IBAction func txtWeightDidEnd(_ sender: Any) {
+        txtWeight.text = MyDateTime.addCommaNumber(string: txtWeight.text!)
+    }
+    
     
     private func updateItem() {
         txtProductName.text = productName
