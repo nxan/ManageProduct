@@ -403,7 +403,7 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 tableView.reloadData()
             } else {
                 let product = self.productSortArray[self.dateArray[indexPath.section]]!![indexPath.row]
-                let alertController = UIAlertController(title: "Xóa " + product.productName! + " của " + product.peopleType! + " đúng  ?", message: "", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "Bạn muốn xóa " + product.productName! + " của " + product.peopleType! + " đúng không ?", message: "", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Xóa", style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     MyCoreData.removeItem(id: product.id!)

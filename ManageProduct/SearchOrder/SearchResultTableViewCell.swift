@@ -15,6 +15,7 @@ class SearchResultTableViewCell: UITableViewCell {
     @IBOutlet var textUnitLabel: UILabel!
     @IBOutlet var textWeightLabel: UILabel!
     @IBOutlet var textMoneyLabel: UILabel!
+    @IBOutlet weak var imgSuccess: UIImageView!
     
 
     override func awakeFromNib() {

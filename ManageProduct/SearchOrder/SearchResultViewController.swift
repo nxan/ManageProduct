@@ -18,7 +18,7 @@ class SearchResultViewController: UIViewController {
     var totalMoney = 0
     var tempPay: Int = 0
     let typeUserDefault = UserDefaults.standard
-    var typeCheck = "Đã thanh toán"
+    var typeCheck = "Tất cả"
     
     
     @IBOutlet var tableView: UITableView!
@@ -166,8 +166,9 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
         cell.textWeightLabel.text = MyDateTime.addCommaNumber(string: String(result.weight))
         cell.textMoneyLabel.text = MyDateTime.addCommaNumber(string: String(result.money))
         if(result.isPay && tempPay == 2) {
-            cell.backgroundColor = UIColor.lightGray
-            cell.textMoneyLabel.text = "Đã thanh toán"
+//            cell.backgroundColor = UIColor.lightGray
+//            cell.textMoneyLabel.text = "Đã thanh toán"
+            cell.imgSuccess.image = UIImage(named: "success")
         }
         lblName.text = "Họ và tên: " + result.peopleType!
         var money: Double = 0
@@ -212,5 +213,4 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             return [payAction]
         }
     }
-    
 }

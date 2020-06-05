@@ -26,6 +26,11 @@ class DetailProductViewController: UIViewController {
         performSegue(withIdentifier: "showDetailProduct", sender: self)
     }
     
+    @IBAction func print(_ sender: Any) {
+        
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if(id != nil) {
@@ -48,6 +53,22 @@ class DetailProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if(id != nil) {
+            txtProductName.text = productName
+            txtMoney.text = MyDateTime.addCommaNumber(string: money!)! + " VND"
+            txtPeople.text = people
+            txtUnit.text = MyDateTime.addCommaNumber(string: unit!)! + " VND"
+            txtWeight.text = MyDateTime.addCommaNumber(string: weight!)! + " Kg"
+            txtDate.text = date
+            txtNote.text = note
+            if(transaction == "Nhập Hàng") {
+                txtMoney.textColor = UIColor.red
+                txtPeople.placeholder = "Người nhập hàng"
+            } else {
+                txtMoney.textColor = UIColor(red: 24/255, green: 160/255, blue: 42/255, alpha: 1)
+                txtPeople.placeholder = "Khách hàng"
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,16 +78,26 @@ class DetailProductViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(txtProductName.text != "") {
-            let updateVC = segue.destination as! UpdateProductViewController
-            updateVC.id = id!
-            updateVC.productName = self.productName!
-            updateVC.people = self.people!
-            updateVC.money = MyDateTime.addCommaNumber(string: money!)!
-            updateVC.unit = MyDateTime.addCommaNumber(string: unit!)!
-            updateVC.weight = MyDateTime.addCommaNumber(string: weight!)!
-            updateVC.date = self.date!
-            updateVC.note = self.note!
-            updateVC.transaction = self.transaction!
+            if let updateVC = segue.destination as? UpdateProductViewController {
+                updateVC.id = id!
+                updateVC.productName = self.productName!
+                updateVC.people = self.people!
+                updateVC.money = MyDateTime.addCommaNumber(string: money!)!
+                updateVC.unit = MyDateTime.addCommaNumber(string: unit!)!
+                updateVC.weight = MyDateTime.addCommaNumber(string: weight!)!
+                updateVC.date = self.date!
+                updateVC.note = self.note!
+                updateVC.transaction = self.transaction!
+            } else if let printVC = segue.destination as? PreviewViewController {
+                printVC.id = id!
+                printVC.productName = self.productName!
+                printVC.people = self.people!
+                printVC.money = MyDateTime.addCommaNumber(string: money!)!
+                printVC.unit = MyDateTime.addCommaNumber(string: unit!)!
+                printVC.weight = MyDateTime.addCommaNumber(string: weight!)!
+                printVC.date = self.date!
+                printVC.note = self.note!
+            }
         }
     }
 }

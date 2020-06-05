@@ -49,13 +49,15 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if lblType.text != UserDefaults.standard.string(forKey: "key_Type") {
+            refreshTextField()
+        }
         lblType.text = UserDefaults.standard.string(forKey: "key_Type")
         if lblType.text == "Nhập Hàng" {
             lblPeopleType.text = "Người nhập hàng"
         } else {
             lblPeopleType.text = "Khách Hàng"
         }
-        refreshTextField()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,6 +85,10 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
             createPickerViewPeople()
             createToolbarPickerView()
             txtPeople.isEnabled = false
+            txtProductName.resignFirstResponder()
+            txtPeople.resignFirstResponder()
+            txtWeight.resignFirstResponder()
+            txtUnit.resignFirstResponder()
             
         }
     }
@@ -103,6 +109,9 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         moveTextField(textField: textField, moveDistance: -350, up: true)
+        if let picker = textField.inputView as? UIPickerView {
+            picker.selectRow(0, inComponent: 0, animated: false)
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -137,7 +146,16 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     
     private func refreshTextField() {
         txtProductName.text = ""; txtPeople.text = ""; txtUnit.text = ""; txtWeight.text = ""; txtMoney.text = "0"; txtNote.text = "";
+        resetPickerView(txtProductName)
+        resetPickerView(txtPeople)
     }
+    
+    private func resetPickerView(_ textField: UITextField) {
+        if let picker = textField.inputView as? UIPickerView {
+            picker.selectRow(0, inComponent: 0, animated: false)
+        }
+    }
+   
     
     @IBAction func btnSave(_ sender: Any) {
         let newItem = Transaction(context: self.context)
@@ -309,7 +327,7 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         return arrPeople
     }
     
-    func showDatePicker(){
+    func showDatePicker() {
         datePicker.datePickerMode = .date
         let toolbar = UIToolbar();
         toolbar.sizeToFit()
@@ -321,13 +339,12 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         
     }
     
-    @objc func donedatePicker(){
+    @objc func donedatePicker() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         txtDate.text = formatter.string(from: datePicker.date)
         self.view.endEditing(true)
     }
-       
 }
 
 extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -382,8 +399,6 @@ extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSou
             }
         }
     }
-    
-    
 }
 
 

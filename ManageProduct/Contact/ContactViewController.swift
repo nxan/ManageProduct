@@ -188,7 +188,7 @@ extension ContactViewController: UITableViewDelegate, UITableViewDataSource, UIS
                 alertController.addAction(cancelAction)
                 self.present(alertController, animated: true, completion: nil)
             } else {
-                let alertController = UIAlertController(title: "Xóa liên hệ " + peopleArray[indexPath.row].name! + " đúng không?", message: "", preferredStyle: .alert)
+                let alertController = UIAlertController(title: " Bạn muốn xóa liên hệ " + peopleArray[indexPath.row].name! + " đúng không?", message: "", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Xóa", style: UIAlertAction.Style.default) {
                     UIAlertAction in
                     var empId = ""

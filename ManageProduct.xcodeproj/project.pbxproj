@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6419F33248892DF000EA61F /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F32248892DF000EA61F /* PreviewViewController.swift */; };
+		A6419F3524889336000EA61F /* InvoiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F3424889336000EA61F /* InvoiceComposer.swift */; };
+		A6419F3A2488934B000EA61F /* single_item.html in Resources */ = {isa = PBXBuildFile; fileRef = A6419F372488934B000EA61F /* single_item.html */; };
+		A6419F3B2488934B000EA61F /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = A6419F382488934B000EA61F /* invoice.html */; };
+		A6419F3C2488934B000EA61F /* last_item.html in Resources */ = {isa = PBXBuildFile; fileRef = A6419F392488934B000EA61F /* last_item.html */; };
+		A6419F402488E130000EA61F /* ProductInvoiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */; };
 		EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */; };
 		EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05C88A213E773D001067C3 /* DetailContactViewController.swift */; };
 		EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */; };
@@ -59,6 +65,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A6419F32248892DF000EA61F /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
+		A6419F3424889336000EA61F /* InvoiceComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceComposer.swift; sourceTree = "<group>"; };
+		A6419F372488934B000EA61F /* single_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = single_item.html; sourceTree = "<group>"; };
+		A6419F382488934B000EA61F /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
+		A6419F392488934B000EA61F /* last_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = last_item.html; sourceTree = "<group>"; };
+		A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInvoiceComposer.swift; sourceTree = "<group>"; };
 		EF05C867213E311F001067C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EF05C88A213E773D001067C3 /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
 		EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +122,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6419F362488934B000EA61F /* HTML Templates */ = {
+			isa = PBXGroup;
+			children = (
+				A6419F372488934B000EA61F /* single_item.html */,
+				A6419F382488934B000EA61F /* invoice.html */,
+				A6419F392488934B000EA61F /* last_item.html */,
+			);
+			path = "HTML Templates";
+			sourceTree = "<group>";
+		};
 		EF93926B2160FC230029977A /* Framework */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +187,9 @@
 				EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */,
 				EFE412042168AF78000A6AF7 /* GroupTimeViewController.swift */,
 				EF1D86CB2206D5160087A56A /* CheckTypeTableViewController.swift */,
+				A6419F3424889336000EA61F /* InvoiceComposer.swift */,
+				A6419F32248892DF000EA61F /* PreviewViewController.swift */,
+				A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */,
 			);
 			path = ImportProduct;
 			sourceTree = "<group>";
@@ -172,6 +197,7 @@
 		EFEE301C21397EAA0026B50B = {
 			isa = PBXGroup;
 			children = (
+				A6419F362488934B000EA61F /* HTML Templates */,
 				EFEE302721397EAA0026B50B /* ManageProduct */,
 				EFEE302621397EAA0026B50B /* Products */,
 			);
@@ -267,10 +293,13 @@
 				EFB02737220FC2680012EDCE /* SearchTableSectionHeader.xib in Resources */,
 				EFC8765822084BF50091B010 /* ExpandableHeaderView.xib in Resources */,
 				EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */,
+				A6419F3C2488934B000EA61F /* last_item.html in Resources */,
 				EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */,
 				EFB02733220FBEBB0012EDCE /* SearchResultTableViewCell.xib in Resources */,
 				EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */,
 				EFEE302E21397EAA0026B50B /* Main.storyboard in Resources */,
+				A6419F3B2488934B000EA61F /* invoice.html in Resources */,
+				A6419F3A2488934B000EA61F /* single_item.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +316,7 @@
 				EF58DF9A2153A04E00C85A39 /* DetailProductViewController.swift in Sources */,
 				EF22DA2A2152C1B700A59016 /* ContactTableViewCell.swift in Sources */,
 				EFB402C92223CA98005F80F3 /* GroupPayViewController.swift in Sources */,
+				A6419F33248892DF000EA61F /* PreviewViewController.swift in Sources */,
 				EF32F7C921C2AADB002EFCCA /* AddNewTableViewController.swift in Sources */,
 				EFB02732220FBEBB0012EDCE /* SearchResultTableViewCell.swift in Sources */,
 				EFD666F62143CE54000DD9A4 /* GroupViewController.swift in Sources */,
@@ -296,6 +326,7 @@
 				EFE412052168AF78000A6AF7 /* GroupTimeViewController.swift in Sources */,
 				EFC8765C220852800091B010 /* SearchOrderViewController.swift in Sources */,
 				EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */,
+				A6419F402488E130000EA61F /* ProductInvoiceComposer.swift in Sources */,
 				EF1D86CC2206D5160087A56A /* CheckTypeTableViewController.swift in Sources */,
 				EFB02736220FC2680012EDCE /* SearchTableSectionHeader.swift in Sources */,
 				EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */,
@@ -303,6 +334,7 @@
 				EFC8765A22084C120091B010 /* Section.swift in Sources */,
 				EFCE0DE52147ADFF008BE2B0 /* ProductViewController.swift in Sources */,
 				EF22DA262152B1D100A59016 /* ProductTableViewCell.swift in Sources */,
+				A6419F3524889336000EA61F /* InvoiceComposer.swift in Sources */,
 				EFEE303D2139862B0026B50B /* ContactViewController.swift in Sources */,
 				EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */,
 				EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */,

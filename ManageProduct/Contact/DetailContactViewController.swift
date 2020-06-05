@@ -67,6 +67,14 @@ class DetailContactViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtName.text = name
+        txtPhone.text = phone
+        txtCard.text = card
+        txtCardDate.text = cardDate
+        txtBankCode.text = bankCode
+        txtBankLocation.text = bankLocation
+        txtType.text = type
+        txtProduct.text = product
     }
     
     override func viewWillAppear(_ animated: Bool) {
