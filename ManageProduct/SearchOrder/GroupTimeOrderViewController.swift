@@ -1,5 +1,5 @@
 //
-//  GroupTimeViewController.swift
+//  GroupTimeOrderViewController.swift
 //  ManageProduct
 //
 //  Created by NXA on 10/6/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupTimeViewController: UIViewController {
+class GroupTimeOrderViewController: UIViewController {
     
     let pickerAnimationDuration = 0.40 // duration for the animation to slide the date picker into view
     let datePickerTag           = 99   // view tag identifiying the date picker view
@@ -30,7 +30,7 @@ class GroupTimeViewController: UIViewController {
     var datePickerIndexPath: NSIndexPath?
     
     var pickerCellRowHeight: CGFloat = 216
-        
+    
     @IBOutlet var tableView: UITableView!
     
     @IBAction func btnDone(_ sender: Any) {
@@ -45,9 +45,9 @@ class GroupTimeViewController: UIViewController {
         if(dateStringEnd == nil) {
             dateStringEnd = MyDateTime.getCurrentDate()
         }
-        UserDefaults.standard.set(dateString, forKey: "BeginDate")
-        UserDefaults.standard.set(dateStringEnd, forKey: "EndDate")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadByDate"), object: nil)
+        UserDefaults.standard.set(dateString, forKey: "BeginOrderDate")
+        UserDefaults.standard.set(dateStringEnd, forKey: "EndOrderDate")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadOrderByDate"), object: nil)
         
         self.dismiss(animated: true, completion: nil)
     }
@@ -83,8 +83,8 @@ class GroupTimeViewController: UIViewController {
         
         // setup our data source
         let itemOne = [titleKey : "Chọn khoảng thời gian bạn muốn tìm kiếm: "]
-        let itemTwo = [titleKey : "Ngày bắt đầu", dateKey : NSDate()] as [String : Any]
-        let itemThree = [titleKey : "Ngày kết thúc", dateKey : NSDate()] as [String : Any]
+        let itemTwo = [titleKey : "Ngày bắt đầu", dateKey : UserDefaults.standard.string(forKey: "BeginOrderDate") ?? NSDate()] as [String : Any]
+        let itemThree = [titleKey : "Ngày kết thúc", dateKey : UserDefaults.standard.string(forKey: "EndOrderDate") ?? NSDate()] as [String : Any]
         dataArray = [itemOne as Dictionary<String, AnyObject>, itemTwo as Dictionary<String, AnyObject>, itemThree as Dictionary<String, AnyObject>]
         
         dateFormatter.dateStyle = .medium // show short-style date format
@@ -94,7 +94,7 @@ class GroupTimeViewController: UIViewController {
         // if the local changes while in the background, we need to be notified so we can update the date
         // format in the table view cells
         //
-        NotificationCenter.default.addObserver(self, selector: #selector(GroupTimeViewController.localeChanged(notif:)), name: NSLocale.currentLocaleDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GroupTimeOrderViewController.localeChanged(notif:)), name: NSLocale.currentLocaleDidChangeNotification, object: nil)
     }
     
     @objc func localeChanged(notif: NSNotification) {
@@ -103,7 +103,7 @@ class GroupTimeViewController: UIViewController {
     
 }
 
-extension GroupTimeViewController: UITableViewDataSource, UITableViewDelegate {
+extension GroupTimeOrderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if hasInlineDatePicker() {
             // we have a date picker, so allow for it in the number of rows in this section
@@ -126,7 +126,8 @@ extension GroupTimeViewController: UITableViewDataSource, UITableViewDelegate {
             cellID = dateCellID       // the start/end date cells
         }
         
-        cell = tableView.dequeueReusableCell(withIdentifier: cellID)
+        cell = tableView.dequeueReusableCell(withIdentifier: cellID) // pickercell vs CellId
+        
         
         if indexPath.row == 0 {
             // we decide here that first cell in the table is not selectable (it's just an indicator)
@@ -147,12 +148,15 @@ extension GroupTimeViewController: UITableViewDataSource, UITableViewDelegate {
             // we have either start or end date cells, populate their date field
             //
             cell?.textLabel?.text = itemData[titleKey] as? String
-            cell?.detailTextLabel?.text = self.dateFormatter.string(from: (itemData[dateKey] as! NSDate) as Date)
+//            cell?.detailTextLabel?.text = self.dateFormatter.string(from: (itemData[dateKey] as! NSDate) as Date)
+            cell?.detailTextLabel?.text = itemData[dateKey] as? String
         } else if cellID == otherCellID {
             // this cell is a non-date cell, just assign it's text label
             //
             cell?.textLabel?.text = itemData[titleKey] as? String
         }
+        
+        
         
         return cell!
     }

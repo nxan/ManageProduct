@@ -13,6 +13,7 @@
 		A6419F3B2488934B000EA61F /* invoice.html in Resources */ = {isa = PBXBuildFile; fileRef = A6419F382488934B000EA61F /* invoice.html */; };
 		A6419F3C2488934B000EA61F /* last_item.html in Resources */ = {isa = PBXBuildFile; fileRef = A6419F392488934B000EA61F /* last_item.html */; };
 		A6419F402488E130000EA61F /* ProductInvoiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */; };
+		A6419F42248DCB10000EA61F /* GroupTimeOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F41248DCB10000EA61F /* GroupTimeOrderViewController.swift */; };
 		EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */; };
 		EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05C88A213E773D001067C3 /* DetailContactViewController.swift */; };
 		EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */; };
@@ -71,6 +72,7 @@
 		A6419F382488934B000EA61F /* invoice.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invoice.html; sourceTree = "<group>"; };
 		A6419F392488934B000EA61F /* last_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = last_item.html; sourceTree = "<group>"; };
 		A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInvoiceComposer.swift; sourceTree = "<group>"; };
+		A6419F41248DCB10000EA61F /* GroupTimeOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTimeOrderViewController.swift; sourceTree = "<group>"; };
 		EF05C867213E311F001067C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EF05C88A213E773D001067C3 /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
 		EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				EFB02734220FC2680012EDCE /* SearchTableSectionHeader.swift */,
 				EFB02735220FC2680012EDCE /* SearchTableSectionHeader.xib */,
 				EFB402C82223CA98005F80F3 /* GroupPayViewController.swift */,
+				A6419F41248DCB10000EA61F /* GroupTimeOrderViewController.swift */,
 			);
 			path = SearchOrder;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				A6419F402488E130000EA61F /* ProductInvoiceComposer.swift in Sources */,
 				EF1D86CC2206D5160087A56A /* CheckTypeTableViewController.swift in Sources */,
 				EFB02736220FC2680012EDCE /* SearchTableSectionHeader.swift in Sources */,
+				A6419F42248DCB10000EA61F /* GroupTimeOrderViewController.swift in Sources */,
 				EFFF235D213AE63C007797A2 /* FloatingTextField.swift in Sources */,
 				EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */,
 				EFC8765A22084C120091B010 /* Section.swift in Sources */,

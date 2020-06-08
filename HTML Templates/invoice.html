@@ -53,6 +53,13 @@
                 padding-bottom:10px;
                 text-align: left;
             }
+                
+            .invoice-box table tr.signal table td{
+                padding-top: 50px;
+                padding-bottom:10px;
+                text-align: left;
+                padding-left: 80px;
+            }
             
             .invoice-box table tr.heading td{
                 background:#eee;
@@ -124,6 +131,15 @@
                                         <td>
                                             Khách hàng: #USER_INFO# </td>
                                     </tr>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Ngày tạo hoá đơn: #DATE_TRANSACTION# </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Ngày in hoá đơn: #INVOICE_DATE# </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </td>
@@ -168,11 +184,25 @@
                         <td>
                             Thanh toán: #TOTAL#
                         </td>
-                        
+                    </tr>
+                    <tr class="signal">
+                        <td colspan="4">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                                                            
+                                        <td> Người mua hàng
+                                        </td>
+                                        <td>
+                                           Người bán hàng </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        
     </body>
 </html>

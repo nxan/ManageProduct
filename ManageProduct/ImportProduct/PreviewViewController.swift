@@ -40,7 +40,8 @@ class PreviewViewController: UIViewController {
                                                            end: "\(time.hour):\(minute)",
                                                            deskInfo: "aaa", userInfo: people,
                                                            items: transaction,
-                                                           totalAmount: money, fee: "0%", total: money, product: productName, quantity: weight, unit: unit) {
+                                                           totalAmount: money, fee: "0%", total: money, product: productName, quantity: weight, unit: unit,
+                                                           transactionDate: date) {
             
             webView.loadHTMLString(invoiceHTML, baseURL: NSURL(string: invoiceComposer.pathToInvoiceHTMLTemplate!)! as URL)
             HTMLContent = invoiceHTML

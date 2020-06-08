@@ -31,21 +31,56 @@ class SearchResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadType"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadOrderByDate"), object: nil)
 //        typeUserDefault.set(typeCheck, forKey: "typePay")
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        loadDataByType(name: searchCustomer, isPay: UserDefaults.standard.string(forKey: "typePay")!)
+        loadDataByType(name: searchCustomer, isPay: UserDefaults.standard.string(forKey: "typePay")!, beginDate: UserDefaults.standard.string(forKey: "BeginOrderDate") ?? "", endDate: UserDefaults.standard.string(forKey: "EndOrderDate") ?? "")
         self.tableView.reloadData()
     }
+    
+    
     
     @objc func loadList() {
         searchArray.removeAll()
-        loadDataByType(name: searchCustomer, isPay: UserDefaults.standard.string(forKey: "typePay")!)
+        loadDataByType(name: searchCustomer, isPay: UserDefaults.standard.string(forKey: "typePay")!, beginDate: UserDefaults.standard.string(forKey: "BeginOrderDate") ?? "", endDate: UserDefaults.standard.string(forKey: "EndOrderDate") ?? "")
         self.tableView.reloadData()
     }
     
-    private func loadDataByType(name: String, isPay: String) {
+    @objc func filterOrderByDate() {
+        loadDataByDate(name: searchCustomer, beginDate: UserDefaults.standard.string(forKey: "BeginOrderDate") ?? "", endDate: UserDefaults.standard.string(forKey: "EndOrderDate") ?? "")
+        self.tableView.reloadData()
+    }
+    
+    private func loadDataByDate(name: String, beginDate: String, endDate: String) {
+        searchArray.removeAll()
+        let fromdate = "\(beginDate) 00:00"
+        let todate = "\(endDate) 23:59"
+        do {
+            let fetchRequest : NSFetchRequest<Transaction> = Transaction.fetchRequest()
+            fetchRequest.returnsObjectsAsFaults = false
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+            dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+            let a:Date = dateFormatter.date(from: fromdate)!
+            let b:Date = dateFormatter.date(from: todate)!
+            fetchRequest.predicate = NSPredicate(format: "(date >= %@) AND (date <= %@) && peopleType == %@ && isPay = '\(tempPay)'", a as CVarArg, b as CVarArg, name)
+            let fetchedResults = try context.fetch(fetchRequest)
+            for result in fetchedResults {
+                searchArray.append(result)
+            }
+        } catch {
+            print("Error")
+        }
+//        order(array: productArray)
+//        dateArray = Array(productSortArray.keys)
+//        dateArray.sort { $0 > $1 }
+    }
+    
+    private func loadDataByType(name: String, isPay: String, beginDate: String, endDate: String) {
+        let fromdate = "\(beginDate) 00:00"
+        let todate = "\(endDate) 23:59"
         switch isPay {
         case "Chưa thanh toán":
             tempPay = 0
@@ -58,10 +93,15 @@ class SearchResultViewController: UIViewController {
             lblType.text = "Danh sách đầy đủ"
         }
         let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
+        let a:Date = dateFormatter.date(from: fromdate)!
+        let b:Date = dateFormatter.date(from: todate)!
         if(tempPay == 0 || tempPay == 1) {
-            request.predicate = NSPredicate(format: "peopleType == %@ && isPay = '\(tempPay)'", name)
+            request.predicate = NSPredicate(format: "peopleType == %@ && isPay = '\(tempPay)' && (date >= %@) AND (date <= %@)", name, a as CVarArg, b as CVarArg)
         } else {
-            request.predicate = NSPredicate(format: "peopleType == %@ ", name)
+            request.predicate = NSPredicate(format: "peopleType == %@ && (date >= %@) AND (date <= %@)", name, a as CVarArg, b as CVarArg)
         }
         let sort = NSSortDescriptor(key: #keyPath(Transaction.date), ascending: false)
         request.sortDescriptors = [sort]
@@ -165,7 +205,7 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
         cell.textUnitLabel.text = MyDateTime.addCommaNumber(string: String(result.unit))
         cell.textWeightLabel.text = MyDateTime.addCommaNumber(string: String(result.weight))
         cell.textMoneyLabel.text = MyDateTime.addCommaNumber(string: String(result.money))
-        if(result.isPay && tempPay == 2) {
+        if(result.isPay && (tempPay == 2 || tempPay == 0)) {
 //            cell.backgroundColor = UIColor.lightGray
 //            cell.textMoneyLabel.text = "Đã thanh toán"
             cell.imgSuccess.image = UIImage(named: "success")
@@ -176,7 +216,6 @@ extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource
             money += searchArray[i].money
         }
         lblTotalMoney.text = "Tổng cộng: " + MyDateTime.addCommaNumber(string: String(money))! + "VNĐ"
-        
         return cell
     }
     

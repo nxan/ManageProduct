@@ -699,11 +699,18 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Thông Tin Khách Hàng" largeTitleDisplayMode="always" id="DzP-k3-xdX">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="organize" id="5Ng-GY-1ZG">
-                                            <connections>
-                                                <segue destination="6yu-as-72J" kind="presentation" modalPresentationStyle="formSheet" id="grN-FK-v9X"/>
-                                            </connections>
-                                        </barButtonItem>
+                                        <leftBarButtonItems>
+                                            <barButtonItem systemItem="organize" id="5Ng-GY-1ZG">
+                                                <connections>
+                                                    <segue destination="6yu-as-72J" kind="presentation" modalPresentationStyle="formSheet" id="grN-FK-v9X"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Item" image="calendar.badge.plus" catalog="system" id="Pb3-ee-e74">
+                                                <connections>
+                                                    <segue destination="NzR-Ng-qwa" kind="presentation" modalPresentationStyle="formSheet" id="lET-SN-CxV"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -2464,15 +2471,125 @@
             </objects>
             <point key="canvasLocation" x="1519.921875" y="1151.5625"/>
         </scene>
+        <!--Group Time Order View Controller-->
+        <scene sceneID="9ju-cV-ymr">
+            <objects>
+                <viewController id="NzR-Ng-qwa" customClass="GroupTimeOrderViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dff-y9-sxy">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h6G-Dc-c0c">
+                                <rect key="frame" x="0.0" y="0.0" width="540" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Khoảng giai đoạn" id="hiQ-n9-bDH">
+                                        <barButtonItem key="rightBarButtonItem" title="Xong" id="Nic-T9-FDz">
+                                            <connections>
+                                                <action selector="btnDone:" destination="NzR-Ng-qwa" id="K43-l4-Nm1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="YVm-Il-ym2">
+                                <rect key="frame" x="0.0" y="50" width="540" height="570"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="wRt-Z2-3jV" detailTextLabel="Bzy-B1-SXd" style="IBUITableViewCellStyleValue1" id="Xb6-cW-O0a">
+                                        <rect key="frame" x="0.0" y="55.5" width="540" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xb6-cW-O0a" id="SLb-nd-AXI">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wRt-Z2-3jV">
+                                                    <rect key="frame" x="15" y="12" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bzy-B1-SXd">
+                                                    <rect key="frame" x="481" y="12" width="44" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.34766855839999999" green="0.60523599390000005" blue="0.98985928300000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="pickercell" rowHeight="234" id="e7X-cT-SIX">
+                                        <rect key="frame" x="0.0" y="99" width="540" height="234"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="e7X-cT-SIX" id="MGy-yG-uyO">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="234"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="OZd-Ov-bKD">
+                                                    <rect key="frame" x="0.0" y="-1" width="540" height="234"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                                        <!--1970-01-01 11:00:00 +0000-->
+                                                    </date>
+                                                    <date key="maximumDate" timeIntervalSinceReferenceDate="1167562800">
+                                                        <!--2037-12-31 11:00:00 +0000-->
+                                                    </date>
+                                                    <locale key="locale" localeIdentifier="vi_VN"/>
+                                                    <connections>
+                                                        <action selector="datepickerAction:" destination="NzR-Ng-qwa" eventType="valueChanged" id="fDt-Dw-1fI"/>
+                                                    </connections>
+                                                </datePicker>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="othercell" textLabel="cTz-zs-24Q" style="IBUITableViewCellStyleDefault" id="DKz-In-kor">
+                                        <rect key="frame" x="0.0" y="333" width="540" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DKz-In-kor" id="KGN-8E-7SU">
+                                            <rect key="frame" x="0.0" y="0.0" width="540" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cTz-zs-24Q">
+                                                    <rect key="frame" x="15" y="0.0" width="510" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="NzR-Ng-qwa" id="HL0-1c-wnq"/>
+                                    <outlet property="delegate" destination="NzR-Ng-qwa" id="7pW-jc-dsg"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="ZrL-td-B8k"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="YVm-Il-ym2" id="Rfp-1v-T4T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uce-em-s5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2156" y="1384"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6BD-PY-b3q"/>
-        <segue reference="PXn-ML-hbw"/>
+        <segue reference="IUn-DG-veR"/>
+        <segue reference="rMz-JB-Fc5"/>
         <segue reference="Opu-5a-Jlm"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addnewproduct" width="50" height="50"/>
         <image name="calendar" width="30" height="30"/>
+        <image name="calendar.badge.plus" catalog="system" width="128" height="101"/>
         <image name="contact" width="30" height="30"/>
         <image name="filter" width="30" height="30"/>
         <image name="product" width="30" height="30"/>

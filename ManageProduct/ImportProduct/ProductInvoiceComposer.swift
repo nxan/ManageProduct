@@ -34,7 +34,7 @@ class ProductInvoiceComposer: NSObject {
     }
     
     
-    func renderInvoice(invoiceNumber: String, start: String, end: String, deskInfo: String, userInfo: String, items: [Transaction], totalAmount: String, fee: String, total: String, product: String, quantity: String, unit: String) -> String! {
+    func renderInvoice(invoiceNumber: String, start: String, end: String, deskInfo: String, userInfo: String, items: [Transaction], totalAmount: String, fee: String, total: String, product: String, quantity: String, unit: String, transactionDate: String) -> String! {
         // Store the invoice number for future use.
         self.invoiceNumber = invoiceNumber
         var allItems = ""
@@ -51,10 +51,10 @@ class ProductInvoiceComposer: NSObject {
             HTMLContent = HTMLContent.replacingOccurrences(of: "#INVOICE_NUMBER#", with: invoiceNumber)
             
             // Invoice date.
-            //HTMLContent = HTMLContent.replacingOccurrences(of: "#INVOICE_DATE#", with: invoiceDate)
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#DATE_TRANSACTION#", with: transactionDate)
             
             // Due date (we leave it blank by default).
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#DUE_DATE#", with: dueDate)
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#INVOICE_DATE#", with: MyDateTime.getCurrentDate())
             
             // Due date (we leave it blank by default).
             HTMLContent = HTMLContent.replacingOccurrences(of: "#START#", with: start)
@@ -79,7 +79,7 @@ class ProductInvoiceComposer: NSObject {
             
             itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#UNIT#", with: unit)
             
-            itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#TOTAL#", with: totalAmount)
+            itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#PRICE#", with: totalAmount)
             // Total amount.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#TOTAL_AMOUNT#", with: totalAmount)
             
