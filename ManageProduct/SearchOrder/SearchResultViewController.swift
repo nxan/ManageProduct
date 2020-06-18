@@ -32,7 +32,9 @@ class SearchResultViewController: UIViewController {
         super.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadType"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "loadOrderByDate"), object: nil)
-//        typeUserDefault.set(typeCheck, forKey: "typePay")
+        typeUserDefault.set(typeCheck, forKey: "typePay")
+        typeUserDefault.set(MyDateTime.getCurrentDate(), forKey: "BeginOrderDate")
+        typeUserDefault.set(MyDateTime.getCurrentDate(), forKey: "EndOrderDate")
     }
     
     override func viewWillAppear(_ animated: Bool) {
