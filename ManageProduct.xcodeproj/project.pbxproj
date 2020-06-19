@@ -14,6 +14,10 @@
 		A6419F3C2488934B000EA61F /* last_item.html in Resources */ = {isa = PBXBuildFile; fileRef = A6419F392488934B000EA61F /* last_item.html */; };
 		A6419F402488E130000EA61F /* ProductInvoiceComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */; };
 		A6419F42248DCB10000EA61F /* GroupTimeOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6419F41248DCB10000EA61F /* GroupTimeOrderViewController.swift */; };
+		A6500826249CB33A009ED0EF /* invoice_order.html in Resources */ = {isa = PBXBuildFile; fileRef = A6500825249CB33A009ED0EF /* invoice_order.html */; };
+		A6500828249CB8B9009ED0EF /* last_item_order.html in Resources */ = {isa = PBXBuildFile; fileRef = A6500827249CB8B9009ED0EF /* last_item_order.html */; };
+		A650082A249CB8CC009ED0EF /* single_item_order.html in Resources */ = {isa = PBXBuildFile; fileRef = A6500829249CB8CC009ED0EF /* single_item_order.html */; };
+		A6655A60249C6BE400E20B56 /* PreviewInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6655A5F249C6BE400E20B56 /* PreviewInvoiceViewController.swift */; };
 		EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */; };
 		EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05C88A213E773D001067C3 /* DetailContactViewController.swift */; };
 		EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */; };
@@ -73,6 +77,10 @@
 		A6419F392488934B000EA61F /* last_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = last_item.html; sourceTree = "<group>"; };
 		A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInvoiceComposer.swift; sourceTree = "<group>"; };
 		A6419F41248DCB10000EA61F /* GroupTimeOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTimeOrderViewController.swift; sourceTree = "<group>"; };
+		A6500825249CB33A009ED0EF /* invoice_order.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = invoice_order.html; sourceTree = "<group>"; };
+		A6500827249CB8B9009ED0EF /* last_item_order.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = last_item_order.html; sourceTree = "<group>"; };
+		A6500829249CB8CC009ED0EF /* single_item_order.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = single_item_order.html; sourceTree = "<group>"; };
+		A6655A5F249C6BE400E20B56 /* PreviewInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInvoiceViewController.swift; sourceTree = "<group>"; };
 		EF05C867213E311F001067C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EF05C88A213E773D001067C3 /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
 		EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +138,9 @@
 				A6419F372488934B000EA61F /* single_item.html */,
 				A6419F382488934B000EA61F /* invoice.html */,
 				A6419F392488934B000EA61F /* last_item.html */,
+				A6500829249CB8CC009ED0EF /* single_item_order.html */,
+				A6500825249CB33A009ED0EF /* invoice_order.html */,
+				A6500827249CB8B9009ED0EF /* last_item_order.html */,
 			);
 			path = "HTML Templates";
 			sourceTree = "<group>";
@@ -157,6 +168,8 @@
 				EFB02735220FC2680012EDCE /* SearchTableSectionHeader.xib */,
 				EFB402C82223CA98005F80F3 /* GroupPayViewController.swift */,
 				A6419F41248DCB10000EA61F /* GroupTimeOrderViewController.swift */,
+				A6419F3424889336000EA61F /* InvoiceComposer.swift */,
+				A6655A5F249C6BE400E20B56 /* PreviewInvoiceViewController.swift */,
 			);
 			path = SearchOrder;
 			sourceTree = "<group>";
@@ -190,7 +203,6 @@
 				EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */,
 				EFE412042168AF78000A6AF7 /* GroupTimeViewController.swift */,
 				EF1D86CB2206D5160087A56A /* CheckTypeTableViewController.swift */,
-				A6419F3424889336000EA61F /* InvoiceComposer.swift */,
 				A6419F32248892DF000EA61F /* PreviewViewController.swift */,
 				A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */,
 			);
@@ -293,13 +305,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF22DA272152B1D100A59016 /* ProductTableViewCell.xib in Resources */,
+				A6500826249CB33A009ED0EF /* invoice_order.html in Resources */,
 				EFB02737220FC2680012EDCE /* SearchTableSectionHeader.xib in Resources */,
 				EFC8765822084BF50091B010 /* ExpandableHeaderView.xib in Resources */,
 				EFEE303021397EAA0026B50B /* Assets.xcassets in Resources */,
 				A6419F3C2488934B000EA61F /* last_item.html in Resources */,
 				EF22DA2B2152C1B700A59016 /* ContactTableViewCell.xib in Resources */,
 				EFB02733220FBEBB0012EDCE /* SearchResultTableViewCell.xib in Resources */,
+				A6500828249CB8B9009ED0EF /* last_item_order.html in Resources */,
 				EF468D212157A5A400E90E07 /* TableSectionHeader.xib in Resources */,
+				A650082A249CB8CC009ED0EF /* single_item_order.html in Resources */,
 				EFEE302E21397EAA0026B50B /* Main.storyboard in Resources */,
 				A6419F3B2488934B000EA61F /* invoice.html in Resources */,
 				A6419F3A2488934B000EA61F /* single_item.html in Resources */,
@@ -329,6 +344,7 @@
 				EFE412052168AF78000A6AF7 /* GroupTimeViewController.swift in Sources */,
 				EFC8765C220852800091B010 /* SearchOrderViewController.swift in Sources */,
 				EF93926F2161DEBD0029977A /* MyCoreData.swift in Sources */,
+				A6655A60249C6BE400E20B56 /* PreviewInvoiceViewController.swift in Sources */,
 				A6419F402488E130000EA61F /* ProductInvoiceComposer.swift in Sources */,
 				EF1D86CC2206D5160087A56A /* CheckTypeTableViewController.swift in Sources */,
 				EFB02736220FC2680012EDCE /* SearchTableSectionHeader.swift in Sources */,
@@ -477,8 +493,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V6DNR25453;
+				DEVELOPMENT_TEAM = 8KZWX5GQX7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManageProduct",
@@ -488,8 +505,9 @@
 				INFOPLIST_FILE = ManageProduct/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProduct;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProductt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -499,8 +517,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V6DNR25453;
+				DEVELOPMENT_TEAM = 8KZWX5GQX7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ManageProduct",
@@ -510,8 +529,9 @@
 				INFOPLIST_FILE = ManageProduct/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProduct;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nxa.ManageProductt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -711,6 +711,11 @@
                                                 </connections>
                                             </barButtonItem>
                                         </leftBarButtonItems>
+                                        <barButtonItem key="rightBarButtonItem" title="Item" image="printer" catalog="system" id="SIS-Ns-N4F">
+                                            <connections>
+                                                <segue destination="yzU-vN-G3J" kind="presentation" id="gwp-bB-dfW"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1202,7 +1207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyE-b4-7wt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-683.33333333333337" y="4106.6666666666661"/>
+            <point key="canvasLocation" x="-683" y="4140"/>
         </scene>
         <!--Nhập Hàng-->
         <scene sceneID="gwm-Q6-RNr">
@@ -1405,7 +1410,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="a1K-6S-Bfe">
-                            <rect key="frame" x="0.0" y="0.0" width="344" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="712" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Cập nhật danh ba" id="U03-2R-A7A">
@@ -1987,7 +1992,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="aEw-GH-F3r">
-                            <rect key="frame" x="0.0" y="0.0" width="344" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="712" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <items>
                                 <navigationItem title="Cập nhật đơn hàng" id="rau-iD-TC7">
@@ -2580,6 +2585,42 @@
             </objects>
             <point key="canvasLocation" x="-2156" y="1384"/>
         </scene>
+        <!--Preview Invoice View Controller-->
+        <scene sceneID="LBQ-6H-qRU">
+            <objects>
+                <viewController id="yzU-vN-G3J" customClass="PreviewInvoiceViewController" customModule="ManageProduct" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QXF-3o-a2l">
+                        <rect key="frame" x="0.0" y="0.0" width="712" height="770"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLf-Y1-FPc">
+                                <rect key="frame" x="0.0" y="0.0" width="712" height="770"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nnB-UK-ZGb">
+                                <rect key="frame" x="0.0" y="726" width="712" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Print" id="maj-B0-Tr6">
+                                        <connections>
+                                            <action selector="print:" destination="yzU-vN-G3J" id="gbf-EJ-Z1y"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="QHB-GR-Pr2"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="dLf-Y1-FPc" id="SB8-eZ-y8W"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VfI-Th-JEX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1413" y="1036"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IUn-DG-veR"/>
@@ -2592,6 +2633,7 @@
         <image name="calendar.badge.plus" catalog="system" width="128" height="101"/>
         <image name="contact" width="30" height="30"/>
         <image name="filter" width="30" height="30"/>
+        <image name="printer" catalog="system" width="128" height="111"/>
         <image name="product" width="30" height="30"/>
         <image name="search" width="30" height="30"/>
     </resources>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +9,7 @@
                     max-width:800px;
                     margin:auto;
                     padding:30px;
-                    padding-top: 5px;
+                    padding-top: 0px;
                     /*border:1px solid #eee;*/
                     /*box-shadow:0 0 10px rgba(0, 0, 0, .15); */
                     font-size:16px;
@@ -37,6 +38,10 @@
             }
             
             .invoice-box table tr td:nth-child(4){
+                text-align:left;
+            }
+            
+            .invoice-box table tr td:nth-child(5){
                 text-align:right;
             }
             
@@ -83,6 +88,11 @@
             .invoice-box table tr.total td{
                 border-top:1px solid #000;
                 font-weight:bold;
+                text-align: right;
+            }
+            .invoice-box table tr.total-sub td{
+                font-weight:bold;
+                text-align: right;
             }
             
             @media only screen and (max-width: 600px) {
@@ -107,16 +117,16 @@
             <table cellpadding="0" cellspacing="0">
                 <tbody>
                     <tr class="information">
-                        <td colspan="4">
+                        <td colspan="5">
                             <table>
                                 <tbody>
-                                    <tr>
-                                        <td> Mã hoá đơn: #INVOICE_NUMBER#<br>
-                                        </td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <td> Mã hoá đơn: #INVOICE_NUMBER#<br>-->
+<!--                                        </td>-->
+<!--                                    </tr>-->
                                     <tr>
                                         <td>
-                                            Ngày tạo hoá đơn: #DATE_TRANSACTION# </td>
+                                            Khoảng thời gian: #START# ---> #END#</td>
                                     </tr>
                                     <tr>
                                         <td>
@@ -125,8 +135,9 @@
                                 </tbody>
                             </table>
                         </td>
-                    </tr>                    
+                    </tr>
                     <tr class="heading">
+                        <td> Ngày </td>
                         <td> Mặt hàng </td>
                         <td> Số lượng </td>
                         <td> Đơn giá </td>
@@ -140,35 +151,41 @@
                         </td>
                         <td>
                         </td>
+                        <td>
+                        </td>
                         <td> Tổng cộng: #TOTAL_AMOUNT#
                         </td>
                         
                     </tr>
-                    <tr class="">
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            Phụ thu: #FEE#
-                        </td>
-                        
-                    </tr>
-                    <tr class="">
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                            Thanh toán: #TOTAL#
-                        </td>
-                    </tr>
+<!--                    <tr class="total-sub">-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            Phụ thu: #FEE#-->
+<!--                        </td>-->
+<!--                        -->
+<!--                    </tr>-->
+<!--                    <tr class="total-sub">-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                        </td>-->
+<!--                        <td>-->
+<!--                            Thanh toán: #TOTAL#-->
+<!--                        </td>-->
+<!--                    </tr>-->
                     <tr class="signal">
-                        <td colspan="4">
+                        <td colspan="5">
                             <table>
                                 <tbody>
                                     <tr>

@@ -10,11 +10,11 @@ import UIKit
 
 class InvoiceComposer: NSObject {
 
-    let pathToInvoiceHTMLTemplate = Bundle.main.path(forResource: "invoice", ofType: "html")
+    let pathToInvoiceHTMLTemplate = Bundle.main.path(forResource: "invoice_order", ofType: "html")
     
-    let pathToSingleItemHTMLTemplate = Bundle.main.path(forResource: "single_item", ofType: "html")
+    let pathToSingleItemHTMLTemplate = Bundle.main.path(forResource: "single_item_order", ofType: "html")
     
-    let pathToLastItemHTMLTemplate = Bundle.main.path(forResource: "last_item", ofType: "html")
+    let pathToLastItemHTMLTemplate = Bundle.main.path(forResource: "last_item_order", ofType: "html")
     
     let senderInfo = ""
     
@@ -28,13 +28,14 @@ class InvoiceComposer: NSObject {
     
     var pdfFilename: String!
     
+    var total: Double = 0.0
     
     override init() {
         super.init()
     }
     
     
-    func renderInvoice(invoiceNumber: String, start: String, end: String, deskInfo: String, userInfo: String, items: [Transaction], totalAmount: String, fee: String, total: String) -> String! {
+    func renderInvoice(invoiceNumber: String, start: String, end: String, items: [Transaction], userInfo: String, beginDate: String, endDate: String) -> String! {
         // Store the invoice number for future use.
         self.invoiceNumber = invoiceNumber
         
@@ -50,19 +51,19 @@ class InvoiceComposer: NSObject {
             HTMLContent = HTMLContent.replacingOccurrences(of: "#INVOICE_NUMBER#", with: invoiceNumber)
             
             // Invoice date.
-            //HTMLContent = HTMLContent.replacingOccurrences(of: "#INVOICE_DATE#", with: invoiceDate)
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#INVOICE_DATE#", with: MyDateTime.getCurrentDate())
             
             // Due date (we leave it blank by default).
             HTMLContent = HTMLContent.replacingOccurrences(of: "#DUE_DATE#", with: dueDate)
             
             // Due date (we leave it blank by default).
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#START#", with: start)
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#START#", with: beginDate)
             
             // Due date (we leave it blank by default).
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#END#", with: end)
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#END#", with: endDate)
             
             // Sender info.
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#DESK_INFO#", with: deskInfo)
+            //HTMLContent = HTMLContent.replacingOccurrences(of: "#DESK_INFO#", with: deskInfo)
             
             // Recipient info.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#USER_INFO#", with: userInfo)
@@ -70,12 +71,9 @@ class InvoiceComposer: NSObject {
             // Payment method.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#PAYMENT_METHOD#", with: paymentMethod)
             
-            // Total amount.
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#TOTAL_AMOUNT#", with: totalAmount)
+//            HTMLContent = HTMLContent.replacingOccurrences(of: "#FEE#", with: fee)
             
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#FEE#", with: fee)
-            
-            HTMLContent = HTMLContent.replacingOccurrences(of: "#TOTAL#", with: total)
+//            HTMLContent = HTMLContent.replacingOccurrences(of: "#TOTAL#", with: total)
                         
             
             // The invoice items will be added by using a loop.
@@ -85,7 +83,7 @@ class InvoiceComposer: NSObject {
             // For the last one we'll use the "last_item.html" template.
             for i in 0..<items.count {
                 var itemHTMLContent: String!
-                var quantity, unit, money: String!
+                var quantity, unit,dateItem: String!
                 // Determine the proper template file.
                 if i != items.count - 1 {
                     itemHTMLContent = try String(contentsOfFile: pathToSingleItemHTMLTemplate!)
@@ -96,6 +94,11 @@ class InvoiceComposer: NSObject {
                 
                 quantity = addCommaNumber(string: String(items[i].weight))
                 unit = addCommaNumber(string: String(items[i].unit))
+                dateItem = MyDateTime.convertDateToString(date: items[i].date!)
+                
+                total += items[i].money
+                
+                itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#DATE_ITEM#", with: dateItem)
                 
                 itemHTMLContent = itemHTMLContent.replacingOccurrences(of: "#QUANTITY#", with: quantity)
                 
@@ -115,6 +118,10 @@ class InvoiceComposer: NSObject {
             
             // Set the items.
             HTMLContent = HTMLContent.replacingOccurrences(of: "#ITEMS#", with: allItems)
+            
+            // Total amount.
+            HTMLContent = HTMLContent.replacingOccurrences(of: "#TOTAL_AMOUNT#", with: addCommaNumber(string: forTrailingZero(temp: total))!)
+            
             
             // The HTML code is ready.
             return HTMLContent

@@ -173,6 +173,15 @@ class SearchResultViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let printVC = segue.destination as? PreviewInvoiceViewController {
+            printVC.transaction = searchArray
+            printVC.userInfo = searchCustomer
+            printVC.beginDate = UserDefaults.standard.string(forKey: "BeginOrderDate") ?? ""
+            printVC.endDate = UserDefaults.standard.string(forKey: "EndOrderDate") ?? ""
+        }
+    }
+    
 }
 
 extension SearchResultViewController: UITableViewDelegate, UITableViewDataSource {
