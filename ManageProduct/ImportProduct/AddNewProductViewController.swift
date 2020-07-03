@@ -43,8 +43,8 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    @IBOutlet var txtProductName: UITextField!
-    @IBOutlet var txtPeople: UITextField!
+    @IBOutlet var txtProductName: DropDown!
+    @IBOutlet var txtPeople: DropDown!
     @IBOutlet var txtDate: UITextField!
     @IBOutlet var txtWeight: UITextField!
     @IBOutlet var txtMoney: UITextField!
@@ -55,24 +55,24 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var lblPeopleType: UILabel!
     
     
-    @IBOutlet var txtProductName4: UITextField!
+    @IBOutlet var txtProductName4: DropDown!
     @IBOutlet var txtWeight4: UITextField!
     @IBOutlet var txtUnit4: UITextField!
     @IBOutlet weak var txtMoney4: UITextField!
     
     
-    @IBOutlet var txtProductName5: UITextField!
+    @IBOutlet var txtProductName5: DropDown!
     @IBOutlet var txtWeight5: UITextField!
     @IBOutlet var txtUnit5: UITextField!
     @IBOutlet weak var txtMoney5: UITextField!
     
-    @IBOutlet var txtProductName6: UITextField!
+    @IBOutlet var txtProductName6: DropDown!
     @IBOutlet var txtWeight6: UITextField!
     @IBOutlet var txtUnit6: UITextField!
     @IBOutlet weak var txtMoney6: UITextField!
     
     
-    @IBOutlet var txtProductName7: UITextField!
+    @IBOutlet var txtProductName7: DropDown!
     @IBOutlet var txtWeight7: UITextField!
     @IBOutlet var txtUnit7: UITextField!
     @IBOutlet weak var txtMoney7: UITextField!
@@ -85,16 +85,7 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createPickerViewProduct()
-        createPickerViewPeople()
-        createToolbarPickerView()
         showDatePicker()
-        txtPeople.isEnabled = true
-        txtMoney.isEnabled = false
-        txtMoney4.isEnabled = false
-        txtMoney5.isEnabled = false
-        txtMoney6.isEnabled = false
-        txtMoney7.isEnabled = false
         txtDate.text = MyDateTime.getCurrentDate()
         txtMoney.text = "0"
         product = getProductName()
@@ -104,6 +95,13 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         txtProductName5.autocapitalizationType = .sentences
         txtProductName6.autocapitalizationType = .sentences
         txtProductName7.autocapitalizationType = .sentences
+        
+        txtProductName.optionArray = getProductName()
+        txtProductName4.optionArray = getProductName()
+        txtProductName5.optionArray = getProductName()
+        txtProductName6.optionArray = getProductName()
+        txtProductName7.optionArray = getProductName()
+                
     }  
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,8 +111,10 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         lblType.text = UserDefaults.standard.string(forKey: "key_Type")
         if lblType.text == "Nhập Hàng" {
             lblPeopleType.text = "Người nhập hàng"
+            txtPeople.optionArray = getPeopleCustomer(tempTypePeople: "Người Nhập Hàng")
         } else {
             lblPeopleType.text = "Khách Hàng"
+            txtPeople.optionArray = getPeopleCustomer(tempTypePeople: "Khách Hàng")
         }
     }
     
@@ -141,14 +141,9 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func btnSwitch(_ sender: Any) {
         if SwitchText.isOn {
-            createPickerViewProduct()
-            createPickerViewPeople()
-            createToolbarPickerView()
             txtPeople.isEnabled = true
+                        
         } else {
-            createPickerViewProduct()
-            createPickerViewPeople()
-            createToolbarPickerView()
             txtPeople.isEnabled = false
             txtProductName.resignFirstResponder()
             txtPeople.resignFirstResponder()
@@ -225,8 +220,26 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     @IBAction func btnSave(_ sender: Any) {
         collectProduct()
         print(products)
-        saveProduct(productName: products[0].productName, weight: products[0].weight, unit: products[0].unit, money: products[0].money)
-        saveProduct(productName: products[1].productName, weight: products[1].weight, unit: products[1].unit, money: products[1].money)
+        if txtProductName.text != "" {
+            saveProduct(productName: products[0].productName, weight: products[0].weight, unit: products[0].unit, money: products[0].money)
+        }
+        
+        if txtProductName4.text != "" {
+            saveProduct(productName: products[1].productName, weight: products[1].weight, unit: products[1].unit, money: products[1].money)
+        }
+        
+        if txtProductName5.text != "" {
+            saveProduct(productName: products[2].productName, weight: products[2].weight, unit: products[2].unit, money: products[2].money)
+        }
+        
+        if txtProductName6.text != "" {
+            saveProduct(productName: products[3].productName, weight: products[3].weight, unit: products[3].unit, money: products[3].money)
+        }
+        
+        if txtProductName7.text != "" {
+            saveProduct(productName: products[4].productName, weight: products[4].weight, unit: products[4].unit, money: products[4].money)
+        }
+        
         MyCoreData.saveItem()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loadData"), object: nil)
         dismiss(animated: true, completion: nil)
@@ -536,59 +549,6 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         return arrProduct
     }
     
-    private func createPickerViewProduct() {
-        let typePicker = UIPickerView()
-        typePicker.delegate = self
-        if(SwitchText.isOn) {
-            txtProductName.inputView = nil
-            txtProductName4.inputView = nil
-            txtProductName5.inputView = nil
-            txtProductName6.inputView = nil
-            txtProductName7.inputView = nil
-            refreshTextField()
-        } else {
-            txtProductName.inputView = typePicker
-            txtProductName4.inputView = typePicker
-            txtProductName5.inputView = typePicker
-            txtProductName6.inputView = typePicker
-            txtProductName7.inputView = typePicker
-            refreshTextField()
-        }
-    }
-    
-    private func createPickerViewPeople() {
-        let typePicker = UIPickerView()
-        typePicker.delegate = self
-        if(SwitchText.isOn) {
-            txtPeople.inputView = nil
-        } else {
-            txtPeople.inputView = typePicker
-        }
-    }
-    
-    private func createToolbarPickerView() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Xong", style: .plain, target: self, action: #selector(AddNewProductViewController.dismissKeyboard))
-        toolbar.setItems([doneButton], animated: false)
-        toolbar.isUserInteractionEnabled = true
-        if(SwitchText.isOn) {
-            txtProductName.inputAccessoryView = nil
-            txtProductName4.inputAccessoryView = nil
-            txtProductName5.inputAccessoryView = nil
-            txtProductName6.inputAccessoryView = nil
-            txtProductName7.inputAccessoryView = nil
-            txtPeople.inputAccessoryView = nil
-        } else {
-            txtProductName.inputAccessoryView = toolbar
-            txtProductName4.inputAccessoryView = toolbar
-            txtProductName5.inputAccessoryView = toolbar
-            txtProductName6.inputAccessoryView = toolbar
-            txtProductName7.inputAccessoryView = toolbar
-            txtPeople.inputAccessoryView = toolbar
-        }
-    }
-    
     @objc private func dismissKeyboard() {
         if(!(txtProductName.text?.isEmpty)!) {
             txtPeople.isEnabled = true
@@ -881,7 +841,7 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
             if (section == flagadd && !flag5 && !flagDelete5) || (sectionDelete == 5 && !flagDelete5) {
                 flagHeader5 = true
                 return heightRow
-            } else if (flagHeader5 && !flagDelete5) || (flag5 && !flagDelete5) {
+            } else if (flagHeader5 && !flagDelete5) {
                 return UITableView.automaticDimension
             } else if flagDelete5 {
                 return 0.1
@@ -909,6 +869,7 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
         }
         return 0.1
     }
+        
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         switch section {
@@ -955,101 +916,18 @@ class AddNewProductViewController: UITableViewController, UITextFieldDelegate {
     }
     
 }
-
-extension AddNewProductViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var item = 0
-        if(txtProductName.isEditing) || (txtProductName4.isEditing) || (txtProductName5.isEditing) || (txtProductName6.isEditing) || (txtProductName7.isEditing) {
-            item = product.count
-        } else if(txtPeople.isEditing) {
-            if(lblType.text == "Bán Hàng") {
-                item = getPeopleCustomer(tempTypePeople: "Khách Hàng").count
-            } else {
-                item = getPeople(product: txtProductName.text!, type: lblType.text!).count
-            }
-        }
-        return item
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        var item = ""
-        if(txtProductName.isEditing) || (txtProductName4.isEditing) || (txtProductName5.isEditing) || (txtProductName6.isEditing) || (txtProductName7.isEditing) {
-            item = product[row]
-        } else if(txtPeople.isEditing) {
-            if(lblType.text == "Bán Hàng") {
-                item = getPeopleCustomer(tempTypePeople: "Khách Hàng")[row]
-            } else {
-                item = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
-            }
-        }
-        return item
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if(txtProductName.isEditing) {
-            selectItem = product[row]
-            txtProductName.text = selectItem
-            if(tempProduct != txtProductName.text) {
-                //txtPeople.text = ""
-                tempProduct = selectItem
-            }
-        } else if(txtPeople.isEditing) {
-            if(lblType.text == "Bán Hàng") {
-                selectItem = getPeopleCustomer(tempTypePeople: "Khách Hàng")[row]
-                txtPeople.text = selectItem
-            } else {
-                selectItem = getPeople(product: txtProductName.text!, type: lblType.text!)[row]
-                txtPeople.text = selectItem
-            }
-        } else if txtProductName4.isEditing {
-            selectItem = product[row]
-            txtProductName4.text = selectItem
-            if(tempProduct != txtProductName4.text) {
-                //txtPeople.text = ""
-                tempProduct = selectItem
-            }
-        } else if txtProductName5.isEditing {
-            selectItem = product[row]
-            txtProductName5.text = selectItem
-            if(tempProduct != txtProductName5.text) {
-                //txtPeople.text = ""
-                tempProduct = selectItem
-            }
-        } else if txtProductName6.isEditing {
-            selectItem = product[row]
-            txtProductName6.text = selectItem
-            if(tempProduct != txtProductName6.text) {
-                //txtPeople.text = ""
-                tempProduct = selectItem
-            }
-        } else if txtProductName7.isEditing {
-            selectItem = product[row]
-            txtProductName7.text = selectItem
-            if(tempProduct != txtProductName7.text) {
-                //txtPeople.text = ""
-                tempProduct = selectItem
-            }
-        }
-    }
-}
-
-
-final class ContentSizedTableView: UITableView {
-
-    override var contentSize:CGSize {
-        didSet {
-            invalidateIntrinsicContentSize()
-        }
-    }
-
-    override var intrinsicContentSize: CGSize {
-        layoutIfNeeded()
-        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
-    }
-
-}
+//
+//final class ContentSizedTableView: UITableView {
+//
+//    override var contentSize:CGSize {
+//        didSet {
+//            invalidateIntrinsicContentSize()
+//        }
+//    }
+//
+//    override var intrinsicContentSize: CGSize {
+//        layoutIfNeeded()
+//        return CGSize(width: UIView.noIntrinsicMetric, height: contentSize.height)
+//    }
+//
+//}

@@ -9,6 +9,12 @@
 import UIKit
 import CoreData
 
+struct Invoice {
+    var people: String
+    var date: Date
+    var money: Double
+}
+
 class ProductViewController: UIViewController {
     
     var productArray = [Transaction]()
@@ -18,13 +24,14 @@ class ProductViewController: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var index = NSIndexPath()
-    var x = [String]()
     var dateArray: [Date] = []
     var filterDateArray: [Date] = []
     var flag = false
     var flagdelete = false
     var updateView = UpdateProductViewController()
     var selectScope = "Tất cả"
+    var people: [String] = []
+    var invoiceArray: [Invoice] = []
     
     @IBOutlet var tableView: UITableView!
     
@@ -52,7 +59,6 @@ class ProductViewController: UIViewController {
             tableView(tableView, didSelectRowAt: index as IndexPath)
         }
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -61,11 +67,11 @@ class ProductViewController: UIViewController {
 
     private func setUpNavBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationController?.setToolbarHidden(false, animated: false)
+        navigationController?.setToolbarHidden(false, animated: false)
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = false
+//        searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchController.searchResultsUpdater = self
         searchController.searchBar.placeholder = "Tìm kiếm..."
@@ -119,6 +125,7 @@ class ProductViewController: UIViewController {
         let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
             productArray = try context.fetch(request)
+            print(productArray)
         } catch {
             print("Error reload data")
         }
@@ -126,7 +133,7 @@ class ProductViewController: UIViewController {
         dateArray = Array(productSortArray.keys)
         dateArray.sort { $0 > $1 }
     }
-    
+       
     private func loadItemFilter() {
         let request: NSFetchRequest<Transaction> = Transaction.fetchRequest()
         do {
@@ -250,13 +257,21 @@ class ProductViewController: UIViewController {
             var products = productSortArray[product.date!] ?? []
             if products?.count == 0 {
                 productSortArray[product.date!] = [product]
+                invoiceArray.append(Invoice(people: product.peopleType!, date: product.date!, money: product.money))
             } else {
                 if(!(products?.contains(product))!) {
                     products?.insert(product, at: 0)
                 }
+
+                for i in 0..<invoiceArray.count {
+                    if invoiceArray[i].date == product.date && invoiceArray[i].people == product.peopleType {
+                        invoiceArray[i].money += product.money
+                    }
+                }
                 productSortArray[product.date!] = products
             }
         }
+        print(invoiceArray)
     }
     
     private func orderFilter() {
@@ -349,7 +364,6 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
         let cell = Bundle.main.loadNibNamed("ProductTableViewCell", owner: self, options: nil)?.first as! ProductTableViewCell
         if(searchController.isActive && searchController.searchBar.text != "") {
             let filterProduct = filterSortProduct[filterDateArray[indexPath.section]]!![indexPath.row]
-            cell.titleLabel.text = filterProduct.productName
             cell.detailLabel.text = filterProduct.peopleType
             cell.rightLabel.text = MyDateTime.addCommaNumber(string: String(filterProduct.money))
             if(filterProduct.type == "Nhập Hàng") {
@@ -359,9 +373,12 @@ extension ProductViewController: UITableViewDelegate, UITableViewDataSource, UIS
             }
         } else {
             let product = productSortArray[dateArray[indexPath.section]]!![indexPath.row]
-            cell.titleLabel.text = product.productName
-            cell.detailLabel.text = product.peopleType
-            cell.rightLabel.text = MyDateTime.addCommaNumber(string: String(product.money))
+            let invoice = invoiceArray[indexPath.row]
+            //xxx
+            if product.peopleType == invoice.people && product.date == invoice.date {
+                cell.detailLabel.text = invoice.people
+                cell.rightLabel.text = MyDateTime.addCommaNumber(string: String(invoice.money))
+            }            
             if(product.type == "Nhập Hàng") {
                 cell.rightLabel.textColor = UIColor.red
             } else {
@@ -537,12 +554,5 @@ extension UIColor {
         )
     }
 }
-
-
-
-
-
-
-
 
 

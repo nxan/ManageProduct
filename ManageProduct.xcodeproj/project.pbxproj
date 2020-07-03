@@ -18,6 +18,7 @@
 		A6500828249CB8B9009ED0EF /* last_item_order.html in Resources */ = {isa = PBXBuildFile; fileRef = A6500827249CB8B9009ED0EF /* last_item_order.html */; };
 		A650082A249CB8CC009ED0EF /* single_item_order.html in Resources */ = {isa = PBXBuildFile; fileRef = A6500829249CB8CC009ED0EF /* single_item_order.html */; };
 		A6655A60249C6BE400E20B56 /* PreviewInvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6655A5F249C6BE400E20B56 /* PreviewInvoiceViewController.swift */; };
+		A688185624AECC6E00DC2069 /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = A688185524AECC6E00DC2069 /* iOSDropDown.swift */; };
 		EF05C868213E311F001067C3 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EF05C866213E311F001067C3 /* DataModel.xcdatamodeld */; };
 		EF05C88B213E773D001067C3 /* DetailContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF05C88A213E773D001067C3 /* DetailContactViewController.swift */; };
 		EF0711D4215CCDA100A2ADE7 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */; };
@@ -70,6 +71,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7F3A1A75B0711FD5FBE19188 /* Pods_ManageProduct.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManageProduct.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		986AA1BEE2B10D8915C73B58 /* Pods-ManageProduct.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManageProduct.debug.xcconfig"; path = "Target Support Files/Pods-ManageProduct/Pods-ManageProduct.debug.xcconfig"; sourceTree = "<group>"; };
 		A6419F32248892DF000EA61F /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		A6419F3424889336000EA61F /* InvoiceComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceComposer.swift; sourceTree = "<group>"; };
 		A6419F372488934B000EA61F /* single_item.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = single_item.html; sourceTree = "<group>"; };
@@ -81,6 +84,10 @@
 		A6500827249CB8B9009ED0EF /* last_item_order.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = last_item_order.html; sourceTree = "<group>"; };
 		A6500829249CB8CC009ED0EF /* single_item_order.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = single_item_order.html; sourceTree = "<group>"; };
 		A6655A5F249C6BE400E20B56 /* PreviewInvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewInvoiceViewController.swift; sourceTree = "<group>"; };
+		A688185524AECC6E00DC2069 /* iOSDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
+		A688185724AED11A00DC2069 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A688185A24AED13800DC2069 /* iOSDropDown.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = iOSDropDown.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCABEE5CF6A6D04E93AF3533 /* Pods-ManageProduct.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManageProduct.release.xcconfig"; path = "Target Support Files/Pods-ManageProduct/Pods-ManageProduct.release.xcconfig"; sourceTree = "<group>"; };
 		EF05C867213E311F001067C3 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		EF05C88A213E773D001067C3 /* DetailContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContactViewController.swift; sourceTree = "<group>"; };
 		EF0711D3215CCDA100A2ADE7 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +139,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44547F811DCF2F89967B19E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A688185A24AED13800DC2069 /* iOSDropDown.framework */,
+				A688185724AED11A00DC2069 /* iOSDropDown.framework */,
+				7F3A1A75B0711FD5FBE19188 /* Pods_ManageProduct.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8832340B8D2A396BA50DD4D9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				986AA1BEE2B10D8915C73B58 /* Pods-ManageProduct.debug.xcconfig */,
+				DCABEE5CF6A6D04E93AF3533 /* Pods-ManageProduct.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A6419F362488934B000EA61F /* HTML Templates */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +231,7 @@
 				EF1D86CB2206D5160087A56A /* CheckTypeTableViewController.swift */,
 				A6419F32248892DF000EA61F /* PreviewViewController.swift */,
 				A6419F3F2488E130000EA61F /* ProductInvoiceComposer.swift */,
+				A688185524AECC6E00DC2069 /* iOSDropDown.swift */,
 			);
 			path = ImportProduct;
 			sourceTree = "<group>";
@@ -215,6 +242,8 @@
 				A6419F362488934B000EA61F /* HTML Templates */,
 				EFEE302721397EAA0026B50B /* ManageProduct */,
 				EFEE302621397EAA0026B50B /* Products */,
+				8832340B8D2A396BA50DD4D9 /* Pods */,
+				44547F811DCF2F89967B19E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,10 +279,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EFEE303721397EAA0026B50B /* Build configuration list for PBXNativeTarget "ManageProduct" */;
 			buildPhases = (
+				1C35310FA910B477275875B2 /* [CP] Check Pods Manifest.lock */,
 				EFEE302121397EAA0026B50B /* Sources */,
 				EFEE302221397EAA0026B50B /* Frameworks */,
 				EFEE302321397EAA0026B50B /* Resources */,
 				EF93872A2160D3C00029977A /* Embed Frameworks */,
+				CFC4CDC8A02A420A7DA26D22 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -323,6 +354,49 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C35310FA910B477275875B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ManageProduct-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CFC4CDC8A02A420A7DA26D22 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ManageProduct/Pods-ManageProduct-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ManageProduct/Pods-ManageProduct-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EFEE302121397EAA0026B50B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -358,6 +432,7 @@
 				EFEE303D2139862B0026B50B /* ContactViewController.swift in Sources */,
 				EFCE0DE72147CC92008BE2B0 /* AddNewProductViewController.swift in Sources */,
 				EF468D202157A5A400E90E07 /* TableSectionHeader.swift in Sources */,
+				A688185624AECC6E00DC2069 /* iOSDropDown.swift in Sources */,
 				EF6C717D221E4FDB00EAF1E7 /* ProductCategoryViewController.swift in Sources */,
 				EFB0272F220F24A30012EDCE /* SearchResultViewController.swift in Sources */,
 				EF58DF9C2153F3EC00C85A39 /* UpdateProductViewController.swift in Sources */,
@@ -491,6 +566,7 @@
 		};
 		EFEE303821397EAA0026B50B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 986AA1BEE2B10D8915C73B58 /* Pods-ManageProduct.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -515,6 +591,7 @@
 		};
 		EFEE303921397EAA0026B50B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCABEE5CF6A6D04E93AF3533 /* Pods-ManageProduct.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
